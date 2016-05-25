@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/blackbaud/npi-datamart-ux"
+    "url": "git+https://github.com/blackbaud/npi-datamart-ux.git"
   },
   "license": "MIT",
   "files": [
@@ -51,22 +51,7 @@
     "karma-coveralls": "1.1.2",
     "karma-firefox-launcher": "0.1.7",
     "karma-jasmine": "0.3.8",
-    "path": "0.12.7",
-    "to": {
-      "dependencies": {
-        "handy": {
-          "from": "handy@>=0.0.11",
-          "resolved": "https://registry.npmjs.org/handy/-/handy-0.0.13.tgz",
-          "version": "0.0.13"
-        }
-      },
-      "from": "to@>=0.2.9 <0.3.0",
-      "resolved": "https://registry.npmjs.org/to/-/to-0.2.9.tgz",
-      "version": "0.2.9"
-    },
-    "wdio-jasmine-framework": "0.1.7",
-    "webdrivercss": "v2.0.0beta-rc1",
-    "webdriverio": "3.2.6"
+    "path": "0.12.7"
   },
   "dependencies": {
     "angular": "1.5.3",
@@ -86,10 +71,15 @@
     "jquery-ui-bundle": "1.11.4",
     "jquery-ui-touch-punch": "0.2.3",
     "moment": "2.9.0",
-    "ng-file-upload": "12.0.4",
-    "webdriverio": "3.2.6"
+    "ng-file-upload": "12.0.4"
   },
   "scripts": {
     "test": "node test.js"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/blackbaud/npi-datamart-ux/issues"
+  },
+  "homepage": "https://github.com/blackbaud/npi-datamart-ux#readme",
+  "main": "gruntfile.js",
+  "author": "Blackbaud NPI"
 }
