@@ -2,7 +2,7 @@
 module.exports = function (grunt) {
     'use strict';
 
-    var prefix = 'SKYUX '.blue;
+    var prefix = 'NPI Datamart UX '.blue;
 
     // Adds the colorized SKYUX prefix to any message.
     function log(message) {

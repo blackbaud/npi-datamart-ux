@@ -3,14 +3,13 @@ module.exports = function (grunt, env, utils) {
     'use strict';
 
     grunt.config.merge({
-        skyux: {
+        npiux: {
             paths: {
                 jsHint: [
                     'gruntfile.js',
                     'config/grunt/*.js',
                     'js/**/*.js'
-                ],
-                webdriver: 'webdriver-screenshots' + (env.isCurrent(env.SUPPORTED.LOCAL) || env.isCurrent(env.SUPPORTED.LOCAL_BS) ? 'local' : '')
+                ]
             }
         },
         connect: {
@@ -20,28 +19,17 @@ module.exports = function (grunt, env, utils) {
                 }
             }
         },
-        exec: {
-            ciBrowserStackTunnel: {
-                cmd: './scripts/browserstack-local-start.sh'
-            },
-            localBrowserStackTunnelStart: {
-                cmd: './scripts/browserstack-local-dev.sh'
-            },
-            localBrowserStackTunnelStop: {
-                cmd: './scripts/browserstack-local-stop.sh'
-            }
-        },
         jshint: {
             options: {
                 jshintrc: true
             },
-            all: '<%= skyux.paths.jsHint %>'
+            all: '<%= npiux.paths.jsHint %>'
         },
         jscs: {
             options: {
                 config: '.jscsrc'
             },
-            all: '<%= skyux.paths.jsHint %>'
+            all: '<%= npiux.paths.jsHint %>'
         },
         karma: {
             options: {
@@ -57,40 +45,17 @@ module.exports = function (grunt, env, utils) {
                 background: true
             }
         },
-        mkdir: {
-            webdriver: {
-                options: {
-                    create: [
-                        '<%= skyux.paths.webdriver %>/MAC_chrome',
-                        '<%= skyux.paths.webdriver %>/MAC_firefox',
-                        '<%= skyux.paths.webdriver %>-diffs/MAC_chrome',
-                        '<%= skyux.paths.webdriver %>-diffs/MAC_firefox'
-                    ]
-                }
-            }
-        },
         // Renamed the original grunt-contrib-watch task
         watchRenamed: {
             test: {
-                files: ['<%= skyux.paths.src %>**/test/*.js'],
+                files: ['<%= npiux.paths.src %>**/test/*.js'],
                 tasks: ['karma:watch:run']
-            }
-        },
-        webdriver: {
-            ci: {
-                configFile: './config/wdio/wdio.conf-ci.js'
-            },
-            local: {
-                configFile: './config/wdio/wdio.conf-local.js'
-            },
-            localBrowserStack: {
-                configFile: './config/wdio/wdio.conf-local-browserstack.js'
             }
         }
     });
 
     function buildTestFixtures(root) {
-        var pathDist = grunt.config.get('skyux.paths.dist'),
+        var pathDist = grunt.config.get('npiux.paths.dist'),
             template = grunt.file.read((root + '/fixtures/template.html')),
             pattern = root + '/test/**/fixtures/*.html',
             options = {
@@ -115,23 +80,6 @@ module.exports = function (grunt, env, utils) {
         });
     }
 
-    function cleanupWorkingScreenshots(root) {
-        var pattern = root + '/**/*px.png',
-            regressionPattern = root + '/**/*.regression.png';
-        grunt.file.expand(
-            {
-                filter: 'isFile',
-                cwd: '.'
-            },
-            pattern,
-            regressionPattern
-        ).forEach(function (file) {
-            grunt.file.delete(file);
-        });
-
-        utils.log('Visual test working screenshots deleted.');
-    }
-
     function cleanupTestFixtures(root) {
         var pattern = root + '/test/**/fixtures/*.full.html';
 
@@ -147,20 +95,6 @@ module.exports = function (grunt, env, utils) {
 
         utils.log('Visual test fixture temp files deleted.');
     }
-
-    // Generate the files needed for visual tests
-    grunt.registerTask('buildwebdrivertestfixtures', function () {
-        buildTestFixtures('webdrivertest');
-    });
-
-    // Remove the temporary files needed for visual tests
-    grunt.registerTask('cleanupwebdrivertestfixtures', function () {
-        cleanupTestFixtures('webdrivertest');
-    });
-
-    grunt.registerTask('cleanupworkingscreenshots', function () {
-        cleanupWorkingScreenshots(grunt.config.get('skyux.paths.webdriver'));
-    });
 
     grunt.registerTask('lint', ['jshint', 'jscs']);
 
@@ -184,48 +118,12 @@ module.exports = function (grunt, env, utils) {
         grunt.task.run(tasks);
     });
 
-    // visualtest task supports an optional target.
-    // defaults to local
-    grunt.registerTask('visualtest', function () {
-        var tasks = [
-            'cleanupwebdrivertestfixtures',
-            'cleanupworkingscreenshots',
-            'buildwebdrivertestfixtures',
-            'connect:webdrivertest',
-            'mkdir:webdriver'
-        ];
-
-        switch (env.get()) {
-        case env.SUPPORTED.CI_PR_FORK:
-        case env.SUPPORTED.CI_PR_BRANCH:
-        case env.SUPPORTED.CI_PUSH:
-            tasks.push('exec:ciBrowserStackTunnel');
-            tasks.push('webdriver:ci');
-            break;
-        case env.SUPPORTED.LOCAL_BS:
-            tasks.push('exec:localBrowserStackTunnelStart');
-            tasks.push('webdriver:localBrowserStack');
-            tasks.push('exec:localBrowserStackTunnelStop');
-            break;
-        case env.SUPPORTED.LOCAL:
-            tasks.push('webdriver:local');
-            break;
-        default:
-            utils.log('grunt visualtest is not configured to run in this environment.');
-        }
-
-        tasks.push('cleanupwebdrivertestfixtures');
-        tasks.push('cleanupworkingscreenshots');
-        grunt.task.run(tasks);
-    });
-
-    // This is the main entry point for testing skyux.
+    // This is the main entry point for testing npiux.
     grunt.registerTask('test', function () {
         var tasks = [
             'lint',
             'build',
-            'unittest',
-            'visualtest'
+            'unittest'
         ];
 
         switch (env.get()) {
@@ -237,7 +135,7 @@ module.exports = function (grunt, env, utils) {
             tasks.push('docs');
             break;
         case env.SUPPORTED.CI_PR_FORK:
-            utils.log('Pull requests from forks are ran via blackbaud-sky-savage.');
+            utils.log('Pull requests from forks are ran via blackbaud-npi-datamart-savage.');
             return;
         default:
             utils.log('grunt test is not configured to run in this environment.');

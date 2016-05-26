@@ -8,7 +8,6 @@ module.exports = function (grunt, utils) {
     // Set our support environments
     SUPPORTED = {
         LOCAL: 'local',
-        LOCAL_BS: 'local-browserstack',
         CI_PR_FORK: 'ci-pullrequest-fork',
         CI_PR_BRANCH: 'ci-pullrequest-branch',
         CI_PUSH: 'ci-push'
@@ -36,8 +35,7 @@ module.exports = function (grunt, utils) {
     // Supports a one-time requested environment,
     // which will be validated and returned if present, but not globally set.
     function get(requested) {
-        return requested && validate(requested) ?
-            requested : current;
+        return requested && validate(requested) ? requested : current;
     }
 
     // Set the current environment
@@ -61,7 +59,7 @@ module.exports = function (grunt, utils) {
             environment = grunt.option('env');
         } else if (process.env.TRAVIS) {
             if (process.env.TRAVIS_SECURE_ENV_VARS === 'true') {
-                if (process.env.TRAVIS_PULL_REQUEST === 'false' && process.env.TRAVIS_REPO_SLUG === 'blackbaud/skyux') {
+                if (process.env.TRAVIS_PULL_REQUEST === 'false' && process.env.TRAVIS_REPO_SLUG === 'blackbaud/npi-datamart-ux') {
                     environment = SUPPORTED.CI_PUSH;
                 } else {
                     environment = SUPPORTED.CI_PR_BRANCH;
