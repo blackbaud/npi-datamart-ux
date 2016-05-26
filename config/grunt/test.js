@@ -121,7 +121,7 @@ module.exports = function (grunt, env, utils) {
     // This is the main entry point for testing npiux.
     grunt.registerTask('test', function () {
         var tasks = [
-            'lint',
+            //'lint',
             'build',
             'unittest'
         ];
