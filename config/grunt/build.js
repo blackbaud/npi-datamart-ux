@@ -137,8 +137,6 @@ module.exports = function (grunt, env, utils) {
     // The watch task supports the "--rapid" flag.
     grunt.registerTask('scripts', function () {
         utils.run({
-            'l10n': true,
-            'buildpaletteservice': true,
             'html2js': true,
             'concat_sourcemap': true,
             'uglify': false
