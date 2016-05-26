@@ -51,7 +51,7 @@
   },
   "dependencies": {
     "angular": "1.5.3",
-    "skyux": "~1.5.21"
+    "blackbaud-skyux": "~1.5.21"
   },
   "scripts": {
     "test": "grunt test"
