@@ -18,9 +18,6 @@ before_install:
 
   - rvm install ruby-2.3.0
 
-  # This needs to happen here instead of before_script since some of the node moduules depend on it.
-  - gem install sass
-
   # Make our three scripts executable
   #- chmod +x ./scripts/update-skyux.sh
   #- chmod +x ./scripts/update-skyux-docs.sh
