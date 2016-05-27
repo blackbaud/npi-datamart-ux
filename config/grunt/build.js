@@ -10,7 +10,7 @@ module.exports = function (grunt, env, utils) {
                 templates: 'js/templates/',
                 npiDatamartJs: [
                     '<%= npiux.paths.src %>*/*.js',
-//                    '<%= skyux.paths.src %>module.js',
+//                    '<%= npiux.paths.src %>module.js',
                     '<%= npiux.paths.templates %>templates.js.tmp'
                 ],
                 libsJs: [

@@ -33,7 +33,7 @@ before_script:
 #  - bower install
 
 # We want deployment failures to fail the build
-script: npm test #&& ./scripts/update-skyux.sh && ./scripts/update-skyux-releases.sh && ./scripts/update-skyux-docs.sh
+script: npm test #&& ./scripts/update-npi-datamart-ux.sh && ./scripts/update-npi-datamart-ux-releases.sh #&& ./scripts/update-npi-datamart-ux-docs.sh
 
 # Kill any remaining BrowserStack sessions.
 #after_script: ./scripts/browserstack-local-stop.sh

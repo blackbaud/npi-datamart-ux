@@ -21,7 +21,7 @@ module.exports = {
         'node_modules/angular-animate/angular-animate.js',
         'node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js',
         'node_modules/angular-ui-router/release/angular-ui-router.js',
-        'libs/easyXDM.js',
+//        'libs/easyXDM.js',
         'node_modules/moment/moment.js',
         'node_modules/autonumeric/autonumeric.js',
         'node_modules/free-jqgrid/js/jquery.jqGrid.js',
@@ -31,17 +31,17 @@ module.exports = {
         'node_modules/angular-mocks/angular-mocks.js',
         'node_modules/jasmine-jquery/lib/jasmine-jquery.js',
         'node_modules/ng-file-upload/dist/ng-file-upload.js',
-        'js/sky/src/*/*.module.js',
-        'js/sky/src/*/*.js',
-        'js/sky/templates/templates.js.tmp',
-        'js/sky/test/config.js',
-        'js/**/*.spec.js'
+//        'js/src/*/*.module.js',
+        'js/src/*/*.js',
+        'js/templates/templates.js.tmp',
+        'js/test/config.js',
+//        'js/**/*.spec.js'
     ],
     exclude: [
         'src/**/docs/*'
     ],
     preprocessors: {
-        'js/sky/src/*/*.js': [
+        'js/src/*/*.js': [
             'coverage'
         ]
     },
