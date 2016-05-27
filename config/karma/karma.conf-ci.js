@@ -27,11 +27,15 @@ module.exports = function (config) {
         singleRun: true,
         port: 9876,
         browsers: [
-            'Firefox'
+            'PhantomJS'
         ],
         browserDisconnectTimeout: 3e5,
         browserDisconnectTolerance: 3,
         browserNoActivityTimeout: 3e5,
-        captureTimeout: 3e5
+        captureTimeout: 3e5,
+        
+        phantomjsLauncher: {
+            exitOnResourceError: true
+        }
     });
 };
