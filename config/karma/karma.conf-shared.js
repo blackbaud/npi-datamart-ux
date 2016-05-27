@@ -31,11 +31,11 @@ module.exports = {
         'node_modules/angular-mocks/angular-mocks.js',
         'node_modules/jasmine-jquery/lib/jasmine-jquery.js',
         'node_modules/ng-file-upload/dist/ng-file-upload.js',
-//        'js/src/*/*.module.js',
+        'js/src/*/*.module.js',
         'js/src/*/*.js',
         'js/templates/templates.js.tmp',
         'js/test/config.js',
-//        'js/**/*.spec.js'
+        'js/**/*.spec.js'
     ],
     exclude: [
         'src/**/docs/*'

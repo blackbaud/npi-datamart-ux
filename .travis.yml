@@ -19,9 +19,9 @@ before_install:
   - rvm install ruby-2.3.0
 
   # Make our three scripts executable
-  #- chmod +x ./scripts/update-skyux.sh
-  #- chmod +x ./scripts/update-skyux-docs.sh
-  #- chmod +x ./scripts/update-skyux-releases.sh
+  #- chmod +x ./scripts/update-npi-datamart-ux.sh
+  #- chmod +x ./scripts/update-npi-datamart-ux-docs.sh
+  #- chmod +x ./scripts/update-npi-datamart-ux-releases.sh
 
   # https://github.com/npm/npm/issues/11283
   - npm set progress=false
@@ -55,8 +55,6 @@ branches:
 cache:
   directories:
     - node_modules
-#    - bower_components
-#    - $BROWSER_STACK_BINARY_BASE_PATH
 
 notifications:
   slack:

@@ -204,3 +204,4 @@ coverage/
 web.config
 .slimerjs-cache/
 /.coveralls.yml
+unversioned/

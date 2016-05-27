@@ -65,7 +65,7 @@ module.exports = function (grunt, utils) {
                     environment = SUPPORTED.CI_PR_BRANCH;
                 }
             } else {
-                environment = SUPPORTED.CI_PUSH;//CI_PR_FORK;
+                environment = SUPPORTED.CI_PR_FORK;
             }
         }
         set(environment);
