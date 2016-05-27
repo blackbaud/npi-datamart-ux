@@ -27,7 +27,7 @@ module.exports = function (config) {
         singleRun: true,
         port: 9876,
         browsers: [
-            'firefox'
+            'Firefox'
         ],
         browserDisconnectTimeout: 3e5,
         browserDisconnectTolerance: 3,
