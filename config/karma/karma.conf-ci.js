@@ -24,9 +24,14 @@ module.exports = function (config) {
     
     config.set(shared);
     config.set({
+        singleRun: true,
         port: 9876,
         browsers: [
-            'Firefox'
-        ]
+            'firefox'
+        ],
+        browserDisconnectTimeout: 3e5,
+        browserDisconnectTolerance: 3,
+        browserNoActivityTimeout: 3e5,
+        captureTimeout: 3e5
     });
 };
