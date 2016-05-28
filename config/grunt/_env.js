@@ -1,4 +1,4 @@
-/*global module,require,process*/
+/*global module,process*/
 module.exports = function (grunt, utils) {
     'use strict';
 

@@ -54,48 +54,6 @@ module.exports = function (grunt, env, utils) {
         }
     });
 
-    function buildTestFixtures(root) {
-        var pathDist = grunt.config.get('npiux.paths.dist'),
-            template = grunt.file.read((root + '/fixtures/template.html')),
-            pattern = root + '/test/**/fixtures/*.html',
-            options = {
-                filter: 'isFile',
-                cwd: '.'
-            };
-
-        grunt.file.expand(options, pattern).forEach(function (file) {
-            var destFile,
-                html;
-
-            // Avoid processing already-built files in case the cleanup step failed to run.
-            if (file.indexOf('.full.html') < 0) {
-                html = grunt.file.read(file);
-                html = template.replace(/##TEST_HTML##/gi, html);
-                html = html.replace(/##DIST_PATH##/gi, pathDist);
-                destFile = file.replace('.html', '.full.html');
-                grunt.file.write(destFile, html);
-
-                utils.log('File "' + destFile + '" created.');
-            }
-        });
-    }
-
-    function cleanupTestFixtures(root) {
-        var pattern = root + '/test/**/fixtures/*.full.html';
-
-        grunt.file.expand(
-            {
-                filter: 'isFile',
-                cwd: '.'
-            },
-            pattern
-        ).forEach(function (file) {
-            grunt.file.delete(file);
-        });
-
-        utils.log('Visual test fixture temp files deleted.');
-    }
-
     grunt.registerTask('lint', ['jshint', 'jscs']);
 
     grunt.registerTask('unittest', function () {
@@ -132,7 +90,7 @@ module.exports = function (grunt, env, utils) {
         case env.SUPPORTED.LOCAL:
         case env.SUPPORTED.LOCAL_BS:
         case env.SUPPORTED.CI_PUSH:
-            //tasks.push('docs');
+//            tasks.push('docs');
             break;
         case env.SUPPORTED.CI_PR_FORK:
             utils.log('Pull requests from forks are ran via blackbaud-npi-datamart-savage.');

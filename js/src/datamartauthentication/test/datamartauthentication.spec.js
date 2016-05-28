@@ -1,4 +1,4 @@
-/*global jasmine, angular, describe, afterEach, beforeEach, it, module, inject, expect */
+/*global jasmine, describe, afterEach, beforeEach, it, module, inject, expect */
 /*jslint nomen: true */
 
 (function () {

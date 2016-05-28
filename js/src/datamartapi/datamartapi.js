@@ -372,9 +372,14 @@
                         $q.all(tasks).then(function (taskResults) {
                             response = taskResults[0];
 
-                            if (response && response.reportDefinition && response.reportDefinition.content
-                                    && response.reportDefinition.content.grid && response.reportDefinition.content.grid.metrics
-                                    && response.reportDefinition.content.grid.metrics[0] && response.reportDefinition.content.grid.metrics[0].uri) {
+                            if (response &&
+                                    response.reportDefinition &&
+                                    response.reportDefinition.content &&
+                                    response.reportDefinition.content.grid &&
+                                    response.reportDefinition.content.grid.metrics &&
+                                    response.reportDefinition.content.grid.metrics[0] &&
+                                    response.reportDefinition.content.grid.metrics[0].uri
+                                    ) {
                                 metricUri = response.reportDefinition.content.grid.metrics[0].uri;
                                 drillAttribute = response.reportDefinition.content.grid.metrics[0].drillAcrossStepAttributeDF;
                             }
