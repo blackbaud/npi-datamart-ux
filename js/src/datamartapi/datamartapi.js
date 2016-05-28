@@ -5,7 +5,7 @@
     'use strict';
 
     //Use this module (or something like it) in the library angular.module('npi-datamart.authentication', [])
-    angular.module('rex.datamart.views')
+    angular.module('npi-datamart.api', [])
         .factory('BBDataMartAPI', ['$q', '$timeout', '$http', function ($q, $timeout, $http) {
             var BBDataMartAPI = function (options) {
                 var apiContextPromise,

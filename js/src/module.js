@@ -4,10 +4,11 @@
 (function () {
     'use strict';
     
-//    var modules = [
+    var modules = [
 //        'sky',
-//        'npi-datamart.authentication'
-//    ];
+        'npi-datamart.authentication',
+        'npi-datamart.api'
+    ];
 
-    angular.module('npi-datamart', ['npi-datamart.authentication']);
+    angular.module('npi-datamart', modules);
 }());

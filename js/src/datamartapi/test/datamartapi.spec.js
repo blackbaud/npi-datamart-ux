@@ -107,8 +107,7 @@
         }
 
         beforeEach(function () {
-            module('rex.shell');
-            module('rex.datamart.views');
+            module('npi-datamart.api');
         });
 
         beforeEach(inject(['BBDataMartAPI', '$httpBackend', '$q', function ($BBDataMartAPI, httpBackend, q) {
