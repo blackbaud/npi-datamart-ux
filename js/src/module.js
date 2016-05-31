@@ -5,7 +5,7 @@
     'use strict';
     
     var modules = [
-//        'sky',
+        //'sky',
         'npi-datamart.authentication',
         'npi-datamart.api'
     ];

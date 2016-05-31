@@ -5,11 +5,11 @@ module.exports = function (grunt) {
         utils;
 
     // Load Stache here so we can rename it's build task before we define our own.
-//    grunt.loadNpmTasks('blackbaud-stache');
-//    grunt.task.renameTask('build', 'stache-build');
+    //grunt.loadNpmTasks('blackbaud-stache');
+    //grunt.task.renameTask('build', 'stache-build');
 
     // Overloading the watch task as well
-//    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.task.renameTask('watch', 'watchRenamed');
 
     // env + utils are shared
@@ -18,9 +18,8 @@ module.exports = function (grunt) {
 
     // Load remaining modules
     require('./config/grunt/build')(grunt, env, utils);
-//    require('./config/grunt/docs')(grunt, env, utils);
-//    require('./config/grunt/locale')(grunt, env, utils);
-//    require('./config/grunt/release')(grunt, env, utils);
+    //require('./config/grunt/docs')(grunt, env, utils);
+    //require('./config/grunt/release')(grunt, env, utils);
     require('./config/grunt/test')(grunt, env, utils);
 
     // Load required external modules
@@ -34,6 +33,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-jscs');
     grunt.loadNpmTasks('grunt-karma');
     grunt.loadNpmTasks('grunt-mkdir');
-//    grunt.loadNpmTasks('grunt-ngdocs');
-//    grunt.loadNpmTasks('grunt-sri');
+    //grunt.loadNpmTasks('grunt-ngdocs');
+    //grunt.loadNpmTasks('grunt-sri');
 };

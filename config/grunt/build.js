@@ -10,7 +10,7 @@ module.exports = function (grunt, env, utils) {
                 templates: 'js/templates/',
                 npiDatamartJs: [
                     '<%= npiux.paths.src %>*/*.js',
-//                    '<%= npiux.paths.src %>module.js',
+                    '<%= npiux.paths.src %>module.js',
                     '<%= npiux.paths.templates %>templates.js.tmp'
                 ],
                 libsJs: [
@@ -30,8 +30,8 @@ module.exports = function (grunt, env, utils) {
                     'node_modules/angular-toastr/dist/angular-toastr.tpls.js',
                     'node_modules/block-ui/jquery.blockUI.js',
                     'node_modules/fastclick/lib/fastclick.js',
-                    'node_modules/ng-file-upload/dist/ng-file-upload.js',
-                    'libs/easyXDM.js'
+                    'node_modules/ng-file-upload/dist/ng-file-upload.js'
+                    //'libs/easyXDM.js'
                 ]
             }
         },
@@ -85,15 +85,10 @@ module.exports = function (grunt, env, utils) {
             scripts: {
                 files: [
                     '<%= npiux.paths.npiDatamartJs %>',
-//                    '<%= npiux.paths.locales %>**/*.*',
                     '<%= npiux.paths.templates %>**/*.html'
                 ],
                 tasks: ['watch-scripts']
             },
-//            skylint: {
-//                files: ['js/linter/skylint.js'],
-//                tasks: ['uglify:skylint']
-//            },
             jshint: {
                 files: ['gruntfile.js', 'js/**/*.js'],
                 tasks: ['lint']
@@ -126,10 +121,6 @@ module.exports = function (grunt, env, utils) {
                 },
                 src: ['<%= npiux.paths.dist %>js/npi-bundle.js'],
                 dest: '<%= npiux.paths.dist %>js/npi-bundle.min.js'
-//            },
-//            skylint: {
-//                src: ['js/linter/skylint.js'],
-//                dest: '<%= npiux.paths.dist %>js/skylint.min.js'
             }
         }
     });

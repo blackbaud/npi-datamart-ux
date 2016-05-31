@@ -88,7 +88,7 @@
                 expect(error).toBe(null);
             });
 
-            it('requires ssoProvider or geSSOProvider', function () {
+            it('requires ssoProvider or getSSOProvider', function () {
                 var error,
                     options;
                 try {

@@ -9,10 +9,6 @@ module.exports = function (config) {
 
     var shared = require('./karma.conf-shared.js');
 
-//    shared.files.push(
-//        'dist/js/locales/sky-locale-en-US.js'
-//    );
-
     // Add new reporters
     shared.reporters.push('coveralls');
 

@@ -54,7 +54,8 @@ module.exports = function (grunt, env, utils) {
         }
     });
 
-    grunt.registerTask('lint', ['jshint', 'jscs']);
+    //grunt.registerTask('lint', ['jshint', 'jscs']);
+    grunt.registerTask('lint', ['jshint']);
 
     grunt.registerTask('unittest', function () {
         var tasks = [];
@@ -90,7 +91,7 @@ module.exports = function (grunt, env, utils) {
         case env.SUPPORTED.LOCAL:
         case env.SUPPORTED.LOCAL_BS:
         case env.SUPPORTED.CI_PUSH:
-//            tasks.push('docs');
+            //tasks.push('docs');
             break;
         case env.SUPPORTED.CI_PR_FORK:
             utils.log('Pull requests from forks are ran via blackbaud-npi-datamart-savage.');

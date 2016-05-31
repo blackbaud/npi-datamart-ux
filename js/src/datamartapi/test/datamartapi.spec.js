@@ -20,7 +20,9 @@
                         });
                     },
                     ensureAuthenticated: function () {
-                        return $q(function (resolve) { resolve(); });
+                        return $q(function (resolve) {
+                            resolve();
+                        });
                     }
                 },
                 dataMartId: sampleDataMartId
@@ -146,7 +148,9 @@
                 try {
                     options = getAPIOptions();
                     options.dataMartId = null;
-                    options.getDataMartId = function () { return false; };
+                    options.getDataMartId = function () {
+                        return false;
+                    };
                     api = new BBDataMartAPI(options);
                 } catch (err) {
                     error = err;

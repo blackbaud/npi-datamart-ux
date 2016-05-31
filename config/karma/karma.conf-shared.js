@@ -21,7 +21,7 @@ module.exports = {
         'node_modules/angular-animate/angular-animate.js',
         'node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js',
         'node_modules/angular-ui-router/release/angular-ui-router.js',
-//        'libs/easyXDM.js',
+        //'libs/easyXDM.js',
         'node_modules/moment/moment.js',
         'node_modules/autonumeric/autonumeric.js',
         'node_modules/free-jqgrid/js/jquery.jqGrid.js',

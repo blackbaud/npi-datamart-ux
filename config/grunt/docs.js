@@ -18,7 +18,7 @@ module.exports = function (grunt) {
         copy: {
             docs: {
                 expand: true,
-                src: '<%= skyux.paths.dist %>**',
+                src: '<%= npiux.paths.dist %>**',
                 dest: '<%= stacheConfig.build %>'
             }
         },
@@ -39,14 +39,14 @@ module.exports = function (grunt) {
         var json = [],
             options = {
                 filter: 'isFile',
-                cwd: grunt.config.get('skyux.paths.src')
+                cwd: grunt.config.get('npiux.paths.src')
             },
             pages = {},
             pattern = '/docs/demo.',
             yfm = require('assemble-yaml');
 
         function addDemo(fm, component, ext) {
-            var demo = grunt.config.get('skyux.paths.src') + component + pattern + ext;
+            var demo = grunt.config.get('npiux.paths.src') + component + pattern + ext;
             if (grunt.file.exists(demo)) {
                 fm['example-' + ext] = grunt.file.read(demo);
             }
@@ -62,7 +62,7 @@ module.exports = function (grunt) {
                 pathMarkdown;
 
             component = filename.substr(0, filename.indexOf('/'));
-            pathMarkdown = grunt.config.get('skyux.paths.src') + filename;
+            pathMarkdown = grunt.config.get('npiux.paths.src') + filename;
             frontmatter = yfm.extractJSON(pathMarkdown) || {};
             content = grunt.file.read(pathMarkdown);
             jsonItem = {};
@@ -83,14 +83,14 @@ module.exports = function (grunt) {
             json.push(jsonItem);
 
             // Layout does not need to be in legacy JSON
-            frontmatter.layout = '../../../../demo/layouts/layout-skyux';
+            frontmatter.layout = '../../../../demo/layouts/layout-npiux';
             pages['components/' + component + '/index.md'] = {
                 content: content,
                 data: frontmatter
             };
         });
 
-        grunt.file.write('demo/data/sky.json', JSON.stringify(json, null, 2));
+        grunt.file.write('demo/data/npi-dm.json', JSON.stringify(json, null, 2));
         grunt.config.set('assemble.custom.options.pages', pages);
         grunt.config.set('stache.config.build', '<%= stache.config.demo %>' + status + '/');
     });

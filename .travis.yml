@@ -19,7 +19,7 @@ before_install:
   - rvm install ruby-2.3.0
 
   # Make our three scripts executable
-  #- chmod +x ./scripts/update-npi-datamart-ux.sh
+  - chmod +x ./scripts/update-npi-datamart-ux.sh
   #- chmod +x ./scripts/update-npi-datamart-ux-docs.sh
   #- chmod +x ./scripts/update-npi-datamart-ux-releases.sh
 
@@ -29,18 +29,15 @@ before_install:
 # Install a few additional things outside those listed in package.json
 before_script:
   - npm install -g grunt-cli
-#  - npm install -g bower
-#  - bower install
 
 # We want deployment failures to fail the build
-script: npm test #&& ./scripts/update-npi-datamart-ux.sh && ./scripts/update-npi-datamart-ux-releases.sh #&& ./scripts/update-npi-datamart-ux-docs.sh
+script: npm test && ./scripts/update-npi-datamart-ux.sh #&& ./scripts/update-npi-datamart-ux-releases.sh #&& ./scripts/update-npi-datamart-ux-docs.sh
 
 # Kill any remaining BrowserStack sessions.
 #after_script: ./scripts/browserstack-local-stop.sh
 
 # Store any visual regressions
 after_failure:
-  #- ./scripts/update-skyux-visualtest-results.sh
   - if [ -e ./npm-debug.log ]; then cat ./npm-debug.log; fi
 
 # When a push, only care about the master, rc-, and savage- branches.

@@ -30,7 +30,7 @@ if [[ "$IS_RELEASE" == "true" && "$IS_PRERELEASE" == "false" ]]; then
   # Commit and push all our changes to the repo
   cd docs
   git add -f .
-  git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed $RELEASE_VERSION to skyux-docs"
+  git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed $RELEASE_VERSION to npi-datamart-ux-docs"
   git push -fq origin $branch > /dev/null
 
   echo -e "NPI Datamart UX Docs successfully updated.\n"
