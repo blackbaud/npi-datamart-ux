@@ -54,8 +54,8 @@ module.exports = function (grunt, env, utils) {
         }
     });
 
-    //grunt.registerTask('lint', ['jshint', 'jscs']);
-    grunt.registerTask('lint', ['jshint']);
+    grunt.registerTask('lint', ['jshint', 'jscs']);
+    //grunt.registerTask('lint', ['jshint']);
 
     grunt.registerTask('unittest', function () {
         var tasks = [];
