@@ -80,7 +80,9 @@
                 try {
                     options = getAuthOptions();
                     options.domain = null;
-                    options.getDomain = function () { return false; };
+                    options.getDomain = function () {
+                        return false;
+                    };
                     auth = new BBDataMartAuthentication(options);
                 } catch (err) {
                     error = err;
@@ -116,7 +118,9 @@
                 try {
                     options = getAuthOptions();
                     options.ssoProvider = null;
-                    options.getSSOProvider = function () { return false; };
+                    options.getSSOProvider = function () {
+                        return false;
+                    };
                     auth = new BBDataMartAuthentication(options);
                 } catch (err) {
                     error = err;
