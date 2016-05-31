@@ -203,5 +203,4 @@ demo/data/sky.json
 coverage/
 web.config
 .slimerjs-cache/
-/.coveralls.yml
 unversioned/
