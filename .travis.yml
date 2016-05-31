@@ -31,7 +31,7 @@ before_script:
   - npm install -g grunt-cli
 
 # We want deployment failures to fail the build
-script: npm test #&& ./scripts/update-npi-datamart-ux.sh #&& ./scripts/update-npi-datamart-ux-releases.sh #&& ./scripts/update-npi-datamart-ux-docs.sh
+script: npm test && ./scripts/update-npi-datamart-ux.sh #&& ./scripts/update-npi-datamart-ux-releases.sh #&& ./scripts/update-npi-datamart-ux-docs.sh
 
 # Kill any remaining BrowserStack sessions.
 #after_script: ./scripts/browserstack-local-stop.sh
