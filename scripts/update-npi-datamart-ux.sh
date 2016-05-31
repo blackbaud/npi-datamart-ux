@@ -38,7 +38,7 @@ if [[ "$TRAVIS_PULL_REQUEST" == "false" && ! $TRAVIS_BRANCH =~ $SAVAGE_BRANCH ]]
 #        git push -fq origin master > /dev/null
 #        echo -e "npi-datamart-ux-releases dev folder successfully updated.\n"
 #      fi
-#
+
 #    fi
 
   fi
