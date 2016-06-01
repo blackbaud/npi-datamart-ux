@@ -203,4 +203,4 @@ demo/data/sky.json
 coverage/
 web.config
 .slimerjs-cache/
-unversioned/
+update.ps1
