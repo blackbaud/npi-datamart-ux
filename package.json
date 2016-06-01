@@ -34,7 +34,6 @@
     "grunt-karma": "0.12.2",
     "grunt-karma-coveralls": "^2.5.4",
     "grunt-mkdir": "1.0.0",
-    "grunt-ngdocs": "0.2.9",
     "grunt-sri": "0.0.5",
     "install": "0.6.0",
     "istanbul": "0.4.2",

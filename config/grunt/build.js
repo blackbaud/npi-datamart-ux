@@ -156,5 +156,5 @@ module.exports = function (grunt, env, utils) {
     });
 
     // Main build task
-    grunt.registerTask('build', ['scripts'/*, 'sri'*/]);
+    grunt.registerTask('build', ['scripts', 'sri']);
 };

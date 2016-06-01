@@ -33,6 +33,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-jscs');
     grunt.loadNpmTasks('grunt-karma');
     grunt.loadNpmTasks('grunt-mkdir');
-    //grunt.loadNpmTasks('grunt-ngdocs');
-    //grunt.loadNpmTasks('grunt-sri');
+    grunt.loadNpmTasks('grunt-ngdocs');
+    grunt.loadNpmTasks('grunt-sri');
 };
