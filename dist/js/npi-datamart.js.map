@@ -1,0 +1,15 @@
+{
+  "version": 3,
+  "file": "npi-datamart.js",
+  "sources": [
+    "js/src/module.js",
+    "js/templates/templates.js.tmp"
+  ],
+  "names": [],
+  "mappings": "AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA,K;ACbA;AACA;AACA;A",
+  "sourceRoot": "../..",
+  "sourcesContent": [
+    "/*jslint browser: false */\n/*global angular*/\n\n(function () {\n    'use strict';\n    \n    var modules = [\n        //'sky',\n        'npi-datamart.authentication',\n        'npi-datamart.api'\n    ];\n\n    angular.module('npi-datamart', modules);\n}());",
+    "angular.module('npi-datamart.templates', []).run(['$templateCache', function($templateCache) {\n\n}]);\n"
+  ]
+}
