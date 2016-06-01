@@ -6,7 +6,7 @@ if [[ "$TRAVIS_PULL_REQUEST" == "false" && ! $TRAVIS_BRANCH =~ $SAVAGE_BRANCH ]]
   echo -e "Starting to update npi-datamart-ux.\n"
 
   git config --global user.email "sky-build-user@blackbaud.com"
-  git config --global user.name "blackbaud-sky-build-user"
+  git config --global user.name "Blackbaud Sky Build User"
   git clone --quiet --branch=$TRAVIS_BRANCH https://${GH_TOKEN}@github.com/blackbaud/npi-datamart-ux.git npiux > /dev/null
 
   cp -rf dist/ npiux/
@@ -38,7 +38,7 @@ if [[ "$TRAVIS_PULL_REQUEST" == "false" && ! $TRAVIS_BRANCH =~ $SAVAGE_BRANCH ]]
 #        git push -fq origin master > /dev/null
 #        echo -e "npi-datamart-ux-releases dev folder successfully updated.\n"
 #      fi
-
+#
 #    fi
 
   fi
