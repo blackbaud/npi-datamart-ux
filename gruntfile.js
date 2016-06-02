@@ -6,10 +6,10 @@ module.exports = function (grunt) {
     grunt.initConfig({
         jsdoc: {
             dist: {
-                src: ['./js/src/datamartauthentication/*.js'],
+                //src: ['./js/src/datamartauthentication/*.js'],
                 options: {
                     destination: 'docs/',
-                    //configure: './config/jsdoc/conf.json',
+                    configure: './config/jsdoc/conf.json',
                 }
             }
         }
