@@ -1,6 +1,8 @@
 # Fail the build if this step fails
 set -e
 
+echo -e $RELEASE_VERSION + " " $IS_RELEASE
+
 # Update the dist folder of the current branch, as long as it's a push and not a savage- branch.
 if [[ "$TRAVIS_PULL_REQUEST" == "false" && ! $TRAVIS_BRANCH =~ $SAVAGE_BRANCH ]]; then
   echo -e "Starting to update npi-datamart-ux.\n"
