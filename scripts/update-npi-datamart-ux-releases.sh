@@ -10,7 +10,7 @@ if [[ "$IS_RELEASE" == "true" ]]; then
   git config --global user.name "Blackbaud Sky Build User"
 
   # Clones the npi-datamart-ux-docs repo into a "gh/" folder
-  git clone --quiet https://${GH_TOKEN}@github.com/blackbaud/npi-datamart-ux-releases.git gh > /dev/null
+  git clone --quiet https://${GH_TOKEN}@github.com/blackbaud/npi-datamart-ux.git gh > /dev/null
 
   # Verify the version doesn't already exist
   if [[ -d "gh/releases/npiux/$RELEASE_VERSION" ]]; then

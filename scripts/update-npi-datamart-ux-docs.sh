@@ -12,7 +12,7 @@ if [[ "$IS_RELEASE" == "true" && "$IS_PRERELEASE" == "false" ]]; then
   git config --global user.email "sky-build-user@blackbaud.com"
   git config --global user.name "Blackbaud Sky Build User"
 
-  # Clones the sky-docs repo into a "docs/" folder
+  # Clones the npi-datamart-ux-docs repo into a "docs/" folder
   git clone --quiet --branch=$branch https://${GH_TOKEN}@github.com/blackbaud/npi-datamart-ux-docs.git docs > /dev/null
 
   # Copy jsdoc output
