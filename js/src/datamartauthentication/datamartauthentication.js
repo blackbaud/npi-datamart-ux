@@ -3,7 +3,10 @@
 
 (function () {
     'use strict';
-
+    /**
+     * @module npi-datamart.authentication
+     * @description Authentication module for NPI Datamart
+     */
     angular.module('npi-datamart.authentication', [])
         .factory('BBDataMartAuthentication', ['$q', '$http', '$rootScope', function ($q, $http, $rootScope) {
             var BBDataMartAuthentication = function (options) {
@@ -26,7 +29,8 @@
                     throw 'An option for getSSOToken must be provided.  This should be a function returning a promise for an SSO token to be used to authenticate with the data mart API.';
                 }
                 /**
-                 * Gets the domain of the environment
+                 * @function getDomain
+                 * @description Gets the domain of the environment
                  * 
                  * @return {string} Domain
                  */
@@ -41,7 +45,8 @@
                 }
                 
                 /**
-                 * Gets the SSO Provider
+                 * @function getSSOProvider
+                 * @description Gets the SSO Provider
                  * 
                  * @return {string} SSO Provider
                  */
@@ -56,8 +61,10 @@
                 }
 
                 /**
-                 * Gets the SSO URL based on the Provider and the Domain
+                 * @function getSSOUrl
+                 * @description Gets the SSO URL based on the Provider and the Domain
                  * 
+                 * @param {string} targetUrl Url of the target for SSO
                  * @return {string} SSO URL
                  */
                 function getSSOUrl(targetUrl) {
@@ -94,8 +101,10 @@
                 }
 
                 /**
-                 * Checks if a failure reason corresponds to a 401 unauthorized response
+                 * @function isUnauthorizedFailure
+                 * @description Checks if a failure reason corresponds to a 401 unauthorized response
                  *
+                 * @param reason Reason for failure
                  * @return {boolean} Unauthorized Failure
                  */
                 function isUnauthorizedFailure(reason) {
@@ -103,7 +112,8 @@
                 }
 
                 /**
-                 * Requests a temporary token for use with the API
+                 * @function getTemporaryToken
+                 * @description Requests a temporary token for use with the API
                  *
                  * @return {string} token
                  */
@@ -119,7 +129,8 @@
                 }
 
                 /**
-                 * Performs an SSO with the API, retreiving both a long lived authentication token and a temporary token
+                 * @function authenticate
+                 * @description Performs an SSO with the API, retreiving both a long lived authentication token and a temporary token
                  *
                  * @return {string[]} [Authentication Token, Temporary Token]
                  */
@@ -146,7 +157,8 @@
                 }
 
                 /**
-                 * Ensures that the browser has a temporary token by requesting one, and then authenticating if the request fails with a 401
+                 * @function ensureTemporaryToken
+                 * @description Ensures that the browser has a temporary token by requesting one, and then authenticating if the request fails with a 401
                  * 
                  * @return {string} Temporary token
                  */
@@ -167,7 +179,8 @@
                 }
                 
                 /**
-                 * Ensures that the client maintains an authenticated token
+                 * @function ensureAuthenticated
+                 * @description Ensures that the client maintains an authenticated token
                  * 
                  * @return {Promise} 
                  */
@@ -218,8 +231,10 @@
                 }
 
                 /**
-                 * Ensures that the API is currently authenticated and will ensure the API maintains authentication tokens until the specified scope is destroyed
+                 * @function maintainAuthentication
+                 * @description Ensures that the API is currently authenticated and will ensure the API maintains authentication tokens until the specified scope is destroyed
                  *
+                 * @param scope Scope of the authentication
                  * @return {Promise} 
                  */
                 function maintainAuthentication($scope) {

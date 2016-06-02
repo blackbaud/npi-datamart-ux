@@ -1,5 +1,5 @@
 {
     "source": {
-        "include": ["/js/src/datamartauthentication/datamartauthentication.js"]
+        "include": ["./js/src/datamartauthentication/datamartauthentication.js"]
     }
 }
