@@ -9,7 +9,7 @@ if [[ "$IS_RELEASE" == "true" ]]; then
   git config --global user.email "sky-build-user@blackbaud.com"
   git config --global user.name "Blackbaud Sky Build User"
   
-  git clone --quiet https://${GH_TOKEN}@github.com/blackbaud/npi-datamart-ux.git npiux > /dev/null
+  #git clone --quiet https://${GH_TOKEN}@github.com/blackbaud/npi-datamart-ux.git npiux > /dev/null
 
   # Verify the version doesn't already exist
   if [[ -d "npiux/releases/$RELEASE_VERSION" ]]; then
