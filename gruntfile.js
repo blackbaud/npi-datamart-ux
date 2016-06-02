@@ -10,7 +10,6 @@ module.exports = function (grunt) {
                 options: {
                     destination: 'docs/',
                     //configure: './config/jsdoc/conf.json',
-                    explain:true
                 }
             }
         }
