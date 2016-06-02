@@ -25,7 +25,11 @@
                 if (!options.getSSOToken) {
                     throw 'An option for getSSOToken must be provided.  This should be a function returning a promise for an SSO token to be used to authenticate with the data mart API.';
                 }
-
+                /**
+                 * Gets the domain of the environment
+                 * 
+                 * @return {string} Domain
+                 */
                 function getDomain() {
                     return $q(function (resolve, reject) {
                         if (options.domain) {
@@ -35,7 +39,12 @@
                         }
                     });
                 }
-
+                
+                /**
+                 * Gets the SSO Provider
+                 * 
+                 * @return {string} SSO Provider
+                 */
                 function getSSOProvider() {
                     return $q(function (resolve, reject) {
                         if (options.ssoProvider) {
@@ -46,6 +55,11 @@
                     });
                 }
 
+                /**
+                 * Gets the SSO URL based on the Provider and the Domain
+                 * 
+                 * @return {string} SSO URL
+                 */
                 function getSSOUrl(targetUrl) {
                     return $q(function (resolve, reject) {
                         var tasks = [
@@ -79,12 +93,20 @@
                     });
                 }
 
-                /*Checks if a failure reason corresponds to a 401 unauthorized response*/
+                /**
+                 * Checks if a failure reason corresponds to a 401 unauthorized response
+                 *
+                 * @return {boolean} Unauthorized Failure
+                 */
                 function isUnauthorizedFailure(reason) {
                     return reason && reason.status === 401;
                 }
 
-                /*Requests a temporary token for use with the API*/
+                /**
+                 * Requests a temporary token for use with the API
+                 *
+                 * @return {string} token
+                 */
                 function getTemporaryToken() {
                     return $q(function (resolve, reject) {
                         getDomain().then(function (domain) {
@@ -96,7 +118,11 @@
                     });
                 }
 
-                /*Performs an SSO with the API, retreiving both a long lived authentication token and a temporary token*/
+                /**
+                 * Performs an SSO with the API, retreiving both a long lived authentication token and a temporary token
+                 *
+                 * @return {string[]} [Authentication Token, Temporary Token]
+                 */
                 function authenticate() {
                     return $q(function (resolve, reject) {
                         getSSOUrl('/gdc/account/token').then(function (ssoUrl) {
@@ -119,7 +145,11 @@
                     });
                 }
 
-                /*Ensures that the browser has a temporary token by requesting one, and then authenticating if the request fails with a 401*/
+                /**
+                 * Ensures that the browser has a temporary token by requesting one, and then authenticating if the request fails with a 401
+                 * 
+                 * @return {string} Temporary token
+                 */
                 function ensureTemporaryToken() {
                     return $q(function (resolve, reject) {
                         getTemporaryToken().then(function () {
@@ -135,7 +165,12 @@
                         });
                     });
                 }
-
+                
+                /**
+                 * Ensures that the client maintains an authenticated token
+                 * 
+                 * @return {Promise} 
+                 */
                 function ensureAuthenticated() {
                     if (!ensureAuthenticatedPromise) {
                         ensureAuthenticatedPromise = $q(function (resolve, reject) {
@@ -182,7 +217,11 @@
                     return ensureAuthenticatedPromise;
                 }
 
-                /*Ensures that the API is currently authenticated and will ensure the API maintains authentication tokens until the specified scope is destroyed*/
+                /**
+                 * Ensures that the API is currently authenticated and will ensure the API maintains authentication tokens until the specified scope is destroyed
+                 *
+                 * @return {Promise} 
+                 */
                 function maintainAuthentication($scope) {
                     //Increment the number of scopes requesting that authentication be maintained.
                     maintainAuthScopeCount += 1;
