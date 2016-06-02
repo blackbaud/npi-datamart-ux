@@ -21,26 +21,6 @@ if [[ "$TRAVIS_PULL_REQUEST" == "false" && ! $TRAVIS_BRANCH =~ $SAVAGE_BRANCH ]]
     git push -fq origin $TRAVIS_BRANCH > /dev/null
     echo -e "npi-datamart-ux successfully updated.\n"
 
-    # Update "dev" in npi-datamart-ux-releases
-#    if [[ "$IS_RELEASE" == "false" ]]; then
-#
-#      echo -e "Starting to update npiux-releases dev folder.\n"
-#      cd ../
-#      git clone --quiet https://${GH_TOKEN}@github.com/blackbaud/npi-datamart-ux-releases.git npi-datamart-ux-releases-repo > /dev/null
-#      cp -rf dist/. npi-datamart-ux-releases-repo/releases/npiux/dev/
-#      cd npi-datamart-ux-releases-repo
-#      git add -f .
-#
-#      if [ -z "$(git status --porcelain)" ]; then
-#        echo -e "No changes to commit to npi-datamart-ux-releases dev folder."
-#      else
-#        git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed to npi-datamart-ux-releases"
-#        git push -fq origin master > /dev/null
-#        echo -e "npi-datamart-ux-releases dev folder successfully updated.\n"
-#      fi
-#
-#    fi
-
   fi
 
 fi

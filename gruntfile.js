@@ -30,7 +30,7 @@ module.exports = function (grunt) {
     // Load remaining modules
     require('./config/grunt/build')(grunt, env, utils);
     //require('./config/grunt/docs')(grunt, env, utils);
-    //require('./config/grunt/release')(grunt, env, utils);
+    require('./config/grunt/release')(grunt, env, utils);
     require('./config/grunt/test')(grunt, env, utils);
 
     // Load required external modules
