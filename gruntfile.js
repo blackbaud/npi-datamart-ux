@@ -13,7 +13,7 @@ module.exports = function (grunt) {
                 }
             }
         }
-    })
+    });
     // Load Stache here so we can rename it's build task before we define our own.
     //grunt.loadNpmTasks('blackbaud-stache');
     //grunt.task.renameTask('build', 'stache-build');
