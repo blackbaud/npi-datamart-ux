@@ -2,9 +2,9 @@
 module.exports = function (grunt) {
     'use strict';
 
-    var prefix = 'NPI Datamart UX '.blue;
+    var prefix = 'NPI DataMart UX '.green;
 
-    // Adds the colorized SKYUX prefix to any message.
+    // Adds the colorized NPI DatMart UX prefix to any message.
     function log(message) {
         grunt.log.writeln(prefix + message);
     }
