@@ -3,7 +3,17 @@ module.exports = function (grunt) {
     'use strict';
     var env,
         utils;
-
+    grunt.initConfig({
+        jsdoc: {
+            dist: {
+                src: ['js/src/datamartauthentication/*.js'],
+                options: {
+                    destination: 'docs',
+                    configure: 'config/jsdoc/conf.json'
+                }
+            }
+        }
+    })
     // Load Stache here so we can rename it's build task before we define our own.
     //grunt.loadNpmTasks('blackbaud-stache');
     //grunt.task.renameTask('build', 'stache-build');
@@ -34,4 +44,5 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-karma');
     grunt.loadNpmTasks('grunt-mkdir');
     grunt.loadNpmTasks('grunt-sri');
+    grunt.loadNpmTasks('grunt-jsdoc');
 };
