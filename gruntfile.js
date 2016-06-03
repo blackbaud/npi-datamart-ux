@@ -4,6 +4,12 @@ module.exports = function (grunt) {
     var env,
         utils;
     grunt.initConfig({
+        jsdoc2md: {
+            oneOutputFile: {
+                src: 'src/datamartauthentication/datamartauthentication.js',
+                dest: 'docs/documentation.md'
+            }
+        },
         jsdoc: {
             dist: {
                 //src: ['./js/src/datamartauthentication/*.js'],
@@ -14,6 +20,7 @@ module.exports = function (grunt) {
             }
         }
     });
+
     // Load Stache here so we can rename it's build task before we define our own.
     //grunt.loadNpmTasks('blackbaud-stache');
     //grunt.task.renameTask('build', 'stache-build');
@@ -45,4 +52,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-mkdir');
     grunt.loadNpmTasks('grunt-sri');
     grunt.loadNpmTasks('grunt-jsdoc');
+    grunt.loadNpmTasks('grunt-jsdoc-to-markdown');
+
 };
