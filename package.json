@@ -1,12 +1,16 @@
 {
   "name": "blackbaud-npi-datamart-ux",
-  "description": "NPI Datamart UX is a framework for embedding interactive reports in dashboards.",
-  "version": "0.2.2",
+  "description": "Library for embedding interactive reports in BB dashboards. This Library is currently under construction.",
+  "version": "0.2.3",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/blackbaud/npi-datamart-ux.git"
   },
+  "homepage": "https://github.com/blackbaud/npi-datamart-ux#readme",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/blackbaud/npi-datamart-ux/issues"
+  },
   "files": [
     "dist"
   ],
@@ -57,11 +61,5 @@
   },
   "scripts": {
     "test": "grunt test"
-  },
-  "bugs": {
-    "url": "https://github.com/blackbaud/npi-datamart-ux/issues"
-  },
-  "homepage": "https://github.com/blackbaud/npi-datamart-ux#readme",
-  "main": "gruntfile.js",
-  "author": "Blackbaud NPI"
+  }
 }

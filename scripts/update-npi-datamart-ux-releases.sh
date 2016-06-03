@@ -13,7 +13,7 @@ if [[ "$IS_RELEASE" == "true" ]]; then
 
   # Verify the version doesn't already exist
   if [[ -d "npiux/releases/$RELEASE_VERSION" ]]; then
-    echo "npi-datamart-ux-releases already contains version $RELEASE_VERSION"
+    echo "npi-datamart-ux releases already contains version $RELEASE_VERSION"
     exit 1
   else
 
