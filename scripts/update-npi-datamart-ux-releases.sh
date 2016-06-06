@@ -30,7 +30,7 @@ if [[ "$IS_RELEASE" == "true" ]]; then
 
     # Publish to NPM
     cd ../
-    echo -e "blackbaud-npi-datamart-ux\n$NPM_PASSWORD\nsky-build-user@blackbaud.com" | npm login
+    echo -e "blackbaud-skyux\n$NPM_PASSWORD\nsky-build-user@blackbaud.com" | npm login
     npm whoami
     npm publish
     echo -e "npi-datamart-ux successfully deployed to NPM.\n"
