@@ -23,7 +23,7 @@ if [[ "$IS_RELEASE" == "true" ]]; then
     # Commit and push all our changes to the repo
     cd npiux
     git add -f .
-    git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed $RELEASE_VERSION to npi-datamart-ux releases"
+    git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed $RELEASE_VERSION to npi-datamart-ux releases [ci skip]"
     git push -fq origin master > /dev/null
 
     echo -e "npi-datamrt-ux releases successfully updated.\n"
