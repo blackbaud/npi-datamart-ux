@@ -1,7 +1,7 @@
 # Fail the build if this step fails
 set -e
 
-# Only run for a release
+# Only run for releases
 if [[ "$IS_RELEASE" == "true" ]]; then
   echo -e "Starting to update npi-datamart-ux releases.\n"
 
