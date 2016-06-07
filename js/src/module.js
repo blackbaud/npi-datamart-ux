@@ -7,7 +7,9 @@
     var modules = [
         //'sky',
         'npi-datamart.authentication',
-        'npi-datamart.api'
+        'npi-datamart.api',
+        'npi-datamart.report',
+        'npi-datamart.templates'
     ];
 
     angular.module('npi-datamart', modules);

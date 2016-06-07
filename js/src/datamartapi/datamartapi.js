@@ -4,8 +4,7 @@
 (function () {
     'use strict';
 
-    //Use this module (or something like it) in the library angular.module('npi-datamart.authentication', [])
-    angular.module('npi-datamart.api', [])
+    angular.module('npi-datamart.api', ['npi-datamart.authentication'])
         .factory('BBDataMartAPI', ['$q', '$timeout', '$http', function ($q, $timeout, $http) {
             var BBDataMartAPI = function (options) {
                 var apiContextPromise,
@@ -516,6 +515,14 @@
                         }).catch(reject);
                     });
                 };
+                
+                self.maintainAuthentication = function (scope) {
+                    return authentication.maintainAuthentication(scope);
+                };
+
+                self.getDataMartId = getDataMartId;
+
+                self.getApiRoot = getApiRoot;
             };
 
             return BBDataMartAPI;

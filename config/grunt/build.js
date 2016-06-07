@@ -14,29 +14,16 @@ module.exports = function (grunt, env, utils) {
                     '<%= npiux.paths.templates %>templates.js.tmp'
                 ],
                 libsJs: [
-                    'node_modules/jquery/dist/jquery.js',
-                    'node_modules/jquery-ui-bundle/jquery-ui.js',
-                    'node_modules/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js',
-                    'node_modules/bootstrap/dist/js/bootstrap.js',
-                    'node_modules/enquire.js/dist/enquire.js',
-                    'node_modules/angular/angular.js',
-                    'node_modules/angular-animate/angular-animate.js',
-                    'node_modules/angular-messages/angular-messages.js',
-                    'node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js',
-                    'node_modules/angular-ui-router/release/angular-ui-router.js',
-                    'node_modules/moment/moment.js',
-                    'node_modules/autonumeric/autonumeric.js',
-                    'node_modules/free-jqgrid/js/jquery.jqGrid.js',
-                    'node_modules/angular-toastr/dist/angular-toastr.tpls.js',
-                    'node_modules/block-ui/jquery.blockUI.js',
-                    'node_modules/fastclick/lib/fastclick.js',
-                    'node_modules/ng-file-upload/dist/ng-file-upload.js'
-                    //'libs/easyXDM.js'
+                    'node_modules/blackbaud-skyux/dist/js/sky-bundle.js'
                 ]
             }
         },
         concat_sourcemap: {
             options: {
+                process: function (src) {
+                    //Remove source map on input, as the process cant handle that and it will fail.
+                    return src.replace("//# sourceMappingURL=sky-bundle.js.map", "");
+                },
                 sourcesContent: true,
                 sourceRoot: '../..'
             },
