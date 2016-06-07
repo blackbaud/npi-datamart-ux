@@ -4,6 +4,14 @@ module.exports = function (grunt) {
 
     grunt.config.merge({
         stacheConfig: grunt.file.readYAML('stache.yml'),
+        jsdoc2md: {
+            separateOutputFilePerInput: {
+                files: [
+                    { src: 'src/jacket.js', dest: 'api/jacket.md' },
+                    { src: 'src/shirt.js', dest: 'api/shirt.md' }
+                ]
+            }
+        },
         connect: {
             docs: {
                 options: {
@@ -28,7 +36,7 @@ module.exports = function (grunt) {
                 options: {
                     livereload: true
                 },
-                files: ['<%= skyux.paths.src %>*/docs/*.*'],
+                files: ['<%= npiux.paths.src %>*/docs/*.*'],
                 tasks: ['docs']
             }
         }
