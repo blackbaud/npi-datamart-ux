@@ -1,0 +1,11 @@
+<div style="text-align:center">
+  <div ng-if="breakPoints.xs">
+    <bb-data-mart-dashboard bb-data-mart-dashboard-drill-handler="drillHandler" bb-data-mart-dashboard-id="xsId" width="340px"></bb-data-mart-dashboard>
+  </div>
+  <div ng-if="breakPoints.sm">
+    <bb-data-mart-dashboard bb-data-mart-dashboard-drill-handler="drillHandler" bb-data-mart-dashboard-id="smId" width="776px"></bb-data-mart-dashboard>
+  </div>
+  <div ng-if="breakPoints.lg || breakPoints.md">
+    <bb-data-mart-dashboard bb-data-mart-dashboard-drill-handler="drillHandler" bb-data-mart-dashboard-id="lgId" width="100%"></bb-data-mart-dashboard>
+  </div>
+</div>
