@@ -98940,7 +98940,24 @@ ngFileUpload.service('UploadExif', ['UploadResize', '$q', function (UploadResize
     angular.module('npi-datamart', modules);
 }());
 angular.module('npi-datamart.templates', []).run(['$templateCache', function($templateCache) {
-
+    $templateCache.put('templates/datamartreport/embedtemplate.html',
+        '<div>\n' +
+        '  <iframe height="{{frameHeight}}" width="{{frameWidth}}" ng-if="frameUrl" ng-src="{{frameUrl}}" frameborder="0" allowtransparency="false"></iframe>\n' +
+        '</div>\n' +
+        '');
+    $templateCache.put('templates/datamartreport/responsivedashboard.html',
+        '<div style="text-align:center">\n' +
+        '  <div ng-if="breakPoints.xs">\n' +
+        '    <bb-data-mart-dashboard bb-data-mart-dashboard-drill-handler="drillHandler" bb-data-mart-dashboard-id="xsId" width="340px"></bb-data-mart-dashboard>\n' +
+        '  </div>\n' +
+        '  <div ng-if="breakPoints.sm">\n' +
+        '    <bb-data-mart-dashboard bb-data-mart-dashboard-drill-handler="drillHandler" bb-data-mart-dashboard-id="smId" width="776px"></bb-data-mart-dashboard>\n' +
+        '  </div>\n' +
+        '  <div ng-if="breakPoints.lg || breakPoints.md">\n' +
+        '    <bb-data-mart-dashboard bb-data-mart-dashboard-drill-handler="drillHandler" bb-data-mart-dashboard-id="lgId" width="100%"></bb-data-mart-dashboard>\n' +
+        '  </div>\n' +
+        '</div>\n' +
+        '');
 }]);
 
 //# sourceMappingURL=npi-bundle.js.map
