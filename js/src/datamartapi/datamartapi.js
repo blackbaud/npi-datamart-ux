@@ -6,6 +6,12 @@
 
     angular.module('npi-datamart.api', ['npi-datamart.authentication'])
         .factory('BBDataMartAPI', ['$q', '$timeout', '$http', function ($q, $timeout, $http) {
+            /**
+             * Description
+             * @method BBDataMartAPI
+             * @param {} options
+             * @return 
+             */
             var BBDataMartAPI = function (options) {
                 var apiContextPromise,
                     authentication,
@@ -23,6 +29,11 @@
                     throw 'An option for dataMartId or getDataMartId must be provided';
                 }
 
+                /**
+                 * Description
+                 * @method getDataMartId
+                 * @return CallExpression
+                 */
                 function getDataMartId() {
                     return $q(function (resolve, reject) {
                         if (options.dataMartId) {
@@ -33,10 +44,20 @@
                     });
                 }
 
+                /**
+                 * Description
+                 * @method getApiRoot
+                 * @return CallExpression
+                 */
                 function getApiRoot() {
                     return authentication.getDomain();
                 }
 
+                /**
+                 * Description
+                 * @method getAPIContext
+                 * @return apiContextPromise
+                 */
                 function getAPIContext() {
                     if (!apiContextPromise) {
                         apiContextPromise = $q(function (resolve, reject) {
@@ -53,6 +74,11 @@
                     return apiContextPromise;
                 }
 
+                /**
+                 * Description
+                 * @method ensureAuthenticatedContext
+                 * @return CallExpression
+                 */
                 function ensureAuthenticatedContext() {
                     return $q(function (resolve, reject) {
                         authentication.ensureAuthenticated().then(function () {
@@ -63,9 +89,22 @@
                     });
                 }
 
+                /**
+                 * Description
+                 * @method getObjectUriFromIdentifier
+                 * @param {} context
+                 * @param {} objectIdentifier
+                 * @return MemberExpression
+                 */
                 function getObjectUriFromIdentifier(context, objectIdentifier) {
                     if (!objectUriPromises[objectIdentifier]) {
                         objectUriPromises[objectIdentifier] = $q(function (resolve, reject) {
+                            /**
+                             * Description
+                             * @method lookupUriForObjectId
+                             * @param {} id
+                             * @return 
+                             */
                             function lookupUriForObjectId(id) {
                                 var postData = {
                                     identifierToUri: [id]
@@ -95,6 +134,13 @@
                     return objectUriPromises[objectIdentifier];
                 }
 
+                /**
+                 * Description
+                 * @method getObjectDefinitionByUri
+                 * @param {} context
+                 * @param {} objectUri
+                 * @return CallExpression
+                 */
                 function getObjectDefinitionByUri(context, objectUri) {
                     return $q(function (resolve, reject) {
                         $http.get(context.apiRoot + objectUri, {
@@ -109,6 +155,14 @@
                     });
                 }
 
+                /**
+                 * Description
+                 * @method getSingleElementUri
+                 * @param {} context
+                 * @param {} elementsUri
+                 * @param {} elementValue
+                 * @return CallExpression
+                 */
                 function getSingleElementUri(context, elementsUri, elementValue) {
                     var i,
                         el,
@@ -134,6 +188,12 @@
                     });
                 }
 
+                /**
+                 * Description
+                 * @method getAttributeName
+                 * @param {} attribute
+                 * @return attribute
+                 */
                 function getAttributeName(attribute) {
                     if (options.translateAttributeName) {
                         return options.translateAttributeName(attribute);
@@ -142,6 +202,12 @@
                     return attribute;
                 }
 
+                /**
+                 * Description
+                 * @method getObjectIdentifierDisplayForm
+                 * @param {} attribute
+                 * @return identifier
+                 */
                 function getObjectIdentifierDisplayForm(attribute) {
                     var identifier = null;
 
@@ -156,6 +222,14 @@
                     return identifier;
                 }
 
+                /**
+                 * Description
+                 * @method getDataResults
+                 * @param {} context
+                 * @param {} dataResultsUri
+                 * @param {} skipRetry
+                 * @return CallExpression
+                 */
                 function getDataResults(context, dataResultsUri, skipRetry) {
                     return $q(function (resolve, reject) {
                         $http.get(context.apiRoot + dataResultsUri, {
@@ -172,6 +246,13 @@
                     });
                 }
 
+                /**
+                 * Description
+                 * @method executeReportByPostData
+                 * @param {} context
+                 * @param {} postData
+                 * @return CallExpression
+                 */
                 function executeReportByPostData(context, postData) {
                     return $q(function (resolve, reject) {
                         $http.post(context.apiRoot + '/gdc/app/projects/' + context.dataMartId + '/execute', postData, {
@@ -186,6 +267,14 @@
                     });
                 }
 
+                /**
+                 * Description
+                 * @method buildElementFilter
+                 * @param {} context
+                 * @param {} filter
+                 * @param {} objectDisplayFormUri
+                 * @return CallExpression
+                 */
                 function buildElementFilter(context, filter, objectDisplayFormUri) {
                     var filterObj = {
                         uri: objectDisplayFormUri,
@@ -222,12 +311,25 @@
                     });
                 }
 
+                /**
+                 * Description
+                 * @method buildReportRequestContext
+                 * @param {} context
+                 * @param {} filters
+                 * @return CallExpression
+                 */
                 function buildReportRequestContext(context, filters) {
                     return $q(function (resolve, reject) {
                         var attributeDisplayForm,
                             i,
                             tasks = [];
 
+                        /**
+                         * Description
+                         * @method buildContext
+                         * @param {} filters
+                         * @return 
+                         */
                         function buildContext(filters) {
                             var reportRequestContext = {};
 
@@ -280,6 +382,14 @@
                     });
                 }
 
+                /**
+                 * Description
+                 * @method executeReport
+                 * @param {} context
+                 * @param {} reportIdentifier
+                 * @param {} filters
+                 * @return CallExpression
+                 */
                 function executeReport(context, reportIdentifier, filters) {
                     return $q(function (resolve, reject) {
                         $q.all([getObjectUriFromIdentifier(context, reportIdentifier), buildReportRequestContext(context, filters)]).then(function (taskResults) {
@@ -299,8 +409,21 @@
                     });
                 }
 
+                /**
+                 * Description
+                 * @method executeReportRaw
+                 * @param {} context
+                 * @param {} postData
+                 * @return CallExpression
+                 */
                 function executeReportRaw(context, postData) {
                     return $q(function (resolve, reject) {
+                        /**
+                         * Description
+                         * @method loadReport
+                         * @param {} uri
+                         * @return 
+                         */
                         function loadReport(uri) {
                             $http.get(uri, {
                                 withCredentials: true
@@ -325,6 +448,12 @@
                     });
                 }
 
+                /**
+                 * Description
+                 * @method getHeadlineDataResults
+                 * @param {} result
+                 * @return reportData
+                 */
                 function getHeadlineDataResults(result) {
                     var reportData = null,
                         xtabData;
@@ -339,6 +468,13 @@
                     return reportData;
                 }
 
+                /**
+                 * Description
+                 * @method getLatestReportDefinition
+                 * @param {} context
+                 * @param {} reportIdentifier
+                 * @return CallExpression
+                 */
                 function getLatestReportDefinition(context, reportIdentifier) {
                     return $q(function (resolve, reject) {
                         getObjectUriFromIdentifier(context, reportIdentifier).then(function (reportUri) {
@@ -355,6 +491,14 @@
                     });
                 }
 
+                /**
+                 * Description
+                 * @method getHeadlineReportDrillContext
+                 * @param {} context
+                 * @param {} reportIdentifier
+                 * @param {} filters
+                 * @return CallExpression
+                 */
                 function getHeadlineReportDrillContext(context, reportIdentifier, filters) {
                     return $q(function (resolve, reject) {
                         var drillAttribute,
@@ -406,6 +550,13 @@
                     });
                 }
 
+                /**
+                 * Description
+                 * @method loadDrillInRecordIds
+                 * @param {} context
+                 * @param {} drillContext
+                 * @return CallExpression
+                 */
                 function loadDrillInRecordIds(context, drillContext) {
                     return $q(function (resolve, reject) {
                         var postData = {
@@ -442,6 +593,11 @@
                     });
                 }
 
+                /**
+                 * Description
+                 * @method platformIsAvailable
+                 * @return CallExpression
+                 */
                 function platformIsAvailable() {
                     return $q(function (resolve) {
                         getApiRoot().then(function (apiRoot) {
@@ -458,6 +614,12 @@
 
                 self.platformIsAvailable = platformIsAvailable;
 
+                /**
+                 * Description
+                 * @method getObjectUriFromIdentifier
+                 * @param {} identifier
+                 * @return CallExpression
+                 */
                 self.getObjectUriFromIdentifier = function (identifier) {
                     return $q(function (resolve, reject) {
                         ensureAuthenticatedContext().then(function (context) {
@@ -466,6 +628,13 @@
                     });
                 };
 
+                /**
+                 * Description
+                 * @method executeReport
+                 * @param {} reportIdentifier
+                 * @param {} filters
+                 * @return CallExpression
+                 */
                 self.executeReport = function (reportIdentifier, filters) {
                     return $q(function (resolve, reject) {
                         ensureAuthenticatedContext().then(function (context) {
@@ -474,6 +643,13 @@
                     });
                 };
 
+                /**
+                 * Description
+                 * @method getHeadlineReportData
+                 * @param {} reportIdentifier
+                 * @param {} filters
+                 * @return CallExpression
+                 */
                 self.getHeadlineReportData = function (reportIdentifier, filters) {
                     return $q(function (resolve, reject) {
                         ensureAuthenticatedContext().then(function (context) {
@@ -484,6 +660,13 @@
                     });
                 };
 
+                /**
+                 * Description
+                 * @method getHeadlineReportDrillContext
+                 * @param {} reportIdentifier
+                 * @param {} filters
+                 * @return CallExpression
+                 */
                 self.getHeadlineReportDrillContext = function (reportIdentifier, filters) {
                     return $q(function (resolve, reject) {
                         ensureAuthenticatedContext().then(function (context) {
@@ -492,6 +675,12 @@
                     });
                 };
 
+                /**
+                 * Description
+                 * @method loadDrillInRecordIds
+                 * @param {} drillContext
+                 * @return CallExpression
+                 */
                 self.loadDrillInRecordIds = function (drillContext) {
                     return $q(function (resolve, reject) {
                         ensureAuthenticatedContext().then(function (context) {
@@ -500,6 +689,12 @@
                     });
                 };
 
+                /**
+                 * Description
+                 * @method getLatestReportDefinition
+                 * @param {} reportIdentifier
+                 * @return CallExpression
+                 */
                 self.getLatestReportDefinition = function (reportIdentifier) {
                     return $q(function (resolve, reject) {
                         ensureAuthenticatedContext().then(function (context) {
@@ -508,6 +703,12 @@
                     });
                 };
 
+                /**
+                 * Description
+                 * @method getObjectDefinitionByUri
+                 * @param {} objectUri
+                 * @return CallExpression
+                 */
                 self.getObjectDefinitionByUri = function (objectUri) {
                     return $q(function (resolve, reject) {
                         ensureAuthenticatedContext().then(function (context) {
@@ -516,6 +717,12 @@
                     });
                 };
                 
+                /**
+                 * Description
+                 * @method maintainAuthentication
+                 * @param {} scope
+                 * @return CallExpression
+                 */
                 self.maintainAuthentication = function (scope) {
                     return authentication.maintainAuthentication(scope);
                 };
