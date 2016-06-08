@@ -20,7 +20,7 @@ before_install:
 
   # Make our three scripts executable
   - chmod +x ./scripts/update-npi-datamart-ux.sh
-  #- chmod +x ./scripts/update-npi-datamart-ux-docs.sh
+  - chmod +x ./scripts/update-npi-datamart-ux-docs.sh
   - chmod +x ./scripts/update-npi-datamart-ux-releases.sh
 
   # https://github.com/npm/npm/issues/11283
