@@ -6,7 +6,7 @@ module.exports = function (grunt) {
         jsdoc2md: {
             options: {
                 'heading-depth': 1,
-                'param-list-format': 'list',
+                'param-list-format': 'list'
             },
             separateOutputFilePerInput: {
                 files: [
@@ -37,7 +37,7 @@ module.exports = function (grunt) {
         }
     });
     
-    grunt.registerTask('testDocs', function() {
+    grunt.registerTask('testDocs', function () {
         var options = {
                 filter: 'isFile',
                 cwd: grunt.config.get('npiux.paths.src')
