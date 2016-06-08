@@ -6,7 +6,7 @@ if [[ "$IS_RELEASE" == "true" && "$IS_PRERELEASE" == "false" ]]; then
   echo -e "Starting to update npi-datamart-ux docs\n"
 
   # This is normally master
-  branch="master"
+  branch="carcher"
 
   # What user will be committing to the sky-docs repo
   git config --global user.email "sky-build-user@blackbaud.com"
