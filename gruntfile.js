@@ -1,57 +1,36 @@
 /*global module,require*/
 module.exports = function (grunt) {
-  'use strict';
-  var env,
-    utils;
-  grunt.initConfig({
-    jsdoc2md: {
-      oneOutputFile: {
-        src: 'js/src/datamartauthentication/datamartauthentication.js',
-        dest: 'docs/documentation.md'
-      }
-    },
-    jsdoc: {
-      dist: {
-        //src: ['./js/src/datamartauthentication/*.js'],
-        options: {
-          destination: 'docs/',
-          configure: './config/jsdoc/conf.json'
-        }
-      }
-    }
-  });
+    'use strict';
+    var env,
+        utils;
 
-  // Load Stache here so we can rename it's build task before we define our own.
-  //grunt.loadNpmTasks('blackbaud-stache');
-  //grunt.task.renameTask('build', 'stache-build');
+    // Overloading the watch task
+    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.task.renameTask('watch', 'watchRenamed');
 
-  // Overloading the watch task as well
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.task.renameTask('watch', 'watchRenamed');
+    // env + utils are shared
+    utils = require('./config/grunt/_utils')(grunt);
+    env = require('./config/grunt/_env')(grunt, utils);
 
-  // env + utils are shared
-  utils = require('./config/grunt/_utils')(grunt);
-  env = require('./config/grunt/_env')(grunt, utils);
+    // Load remaining modules
+    require('./config/grunt/build')(grunt, env, utils);
+    require('./config/grunt/docs')(grunt, env, utils);
+    require('./config/grunt/release')(grunt, env, utils);
+    require('./config/grunt/test')(grunt, env, utils);
 
-  // Load remaining modules
-  require('./config/grunt/build')(grunt, env, utils);
-  //require('./config/grunt/docs')(grunt, env, utils);
-  require('./config/grunt/release')(grunt, env, utils);
-  require('./config/grunt/test')(grunt, env, utils);
-
-  // Load required external modules
-  grunt.loadNpmTasks('grunt-bump');
-  grunt.loadNpmTasks('grunt-concat-sourcemap');
-  grunt.loadNpmTasks('grunt-contrib-connect');
-  grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-html2js');
-  grunt.loadNpmTasks('grunt-jscs');
-  grunt.loadNpmTasks('grunt-karma');
-  grunt.loadNpmTasks('grunt-mkdir');
-  grunt.loadNpmTasks('grunt-sri');
-  grunt.loadNpmTasks('grunt-jsdoc');
-  grunt.loadNpmTasks('grunt-jsdoc-to-markdown');
+    // Load required external modules
+    grunt.loadNpmTasks('grunt-bump');
+    grunt.loadNpmTasks('grunt-concat-sourcemap');
+    grunt.loadNpmTasks('grunt-contrib-connect');
+    grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-html2js');
+    grunt.loadNpmTasks('grunt-jscs');
+    grunt.loadNpmTasks('grunt-karma');
+    grunt.loadNpmTasks('grunt-mkdir');
+    grunt.loadNpmTasks('grunt-sri');
+    grunt.loadNpmTasks('grunt-jsdoc');
+    grunt.loadNpmTasks('grunt-jsdoc-to-markdown');
 
 };

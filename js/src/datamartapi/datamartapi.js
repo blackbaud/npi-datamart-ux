@@ -10,7 +10,6 @@
              * Description
              * @method BBDataMartAPI
              * @param {} options
-             * @return 
              */
             var BBDataMartAPI = function (options) {
                 var apiContextPromise,

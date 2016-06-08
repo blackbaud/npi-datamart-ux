@@ -1,6 +1,13 @@
+---
+layout: layout-sidebar
+order: 20
+name: datamartauthentication
+description: Authentication module for NPI Datamart
+---
+
 <a name="npi-datamart.module_authentication"></a>
 
-## authentication
+# authentication
 Authentication module for NPI Datamart
 
 
@@ -17,77 +24,74 @@ Authentication module for NPI Datamart
 
 <a name="npi-datamart.module_authentication..getDomain"></a>
 
-### authentication~getDomain() ⇒ <code>string</code>
+## authentication~getDomain() ⇒ <code>string</code>
 Gets the domain of the environment
 
 **Kind**: inner method of <code>[authentication](#npi-datamart.module_authentication)</code>  
 **Returns**: <code>string</code> - Domain  
 <a name="npi-datamart.module_authentication..getSSOProvider"></a>
 
-### authentication~getSSOProvider() ⇒ <code>string</code>
+## authentication~getSSOProvider() ⇒ <code>string</code>
 Gets the SSO Provider
 
 **Kind**: inner method of <code>[authentication](#npi-datamart.module_authentication)</code>  
 **Returns**: <code>string</code> - SSO Provider  
 <a name="npi-datamart.module_authentication..getSSOUrl"></a>
 
-### authentication~getSSOUrl(targetUrl) ⇒ <code>string</code>
+## authentication~getSSOUrl(targetUrl) ⇒ <code>string</code>
 Gets the SSO URL based on the Provider and the Domain
 
 **Kind**: inner method of <code>[authentication](#npi-datamart.module_authentication)</code>  
 **Returns**: <code>string</code> - SSO URL  
+**Params**
 
-| Param | Type | Description |
-| --- | --- | --- |
-| targetUrl | <code>string</code> | Url of the target for SSO |
+- targetUrl <code>string</code> - Url of the target for SSO
 
 <a name="npi-datamart.module_authentication..isUnauthorizedFailure"></a>
 
-### authentication~isUnauthorizedFailure(reason) ⇒ <code>boolean</code>
+## authentication~isUnauthorizedFailure(reason) ⇒ <code>boolean</code>
 Checks if a failure reason corresponds to a 401 unauthorized response
 
 **Kind**: inner method of <code>[authentication](#npi-datamart.module_authentication)</code>  
 **Returns**: <code>boolean</code> - Unauthorized Failure  
+**Params**
 
-| Param | Description |
-| --- | --- |
-| reason | Reason for failure |
+- reason - Reason for failure
 
 <a name="npi-datamart.module_authentication..getTemporaryToken"></a>
 
-### authentication~getTemporaryToken() ⇒ <code>string</code>
+## authentication~getTemporaryToken() ⇒ <code>string</code>
 Requests a temporary token for use with the API
 
 **Kind**: inner method of <code>[authentication](#npi-datamart.module_authentication)</code>  
 **Returns**: <code>string</code> - token  
 <a name="npi-datamart.module_authentication..authenticate"></a>
 
-### authentication~authenticate() ⇒ <code>Array.&lt;string&gt;</code>
+## authentication~authenticate() ⇒ <code>Array.&lt;string&gt;</code>
 Performs an SSO with the API, retreiving both a long lived authentication token and a temporary token
 
 **Kind**: inner method of <code>[authentication](#npi-datamart.module_authentication)</code>  
 **Returns**: <code>Array.&lt;string&gt;</code> - [Authentication Token, Temporary Token]  
 <a name="npi-datamart.module_authentication..ensureTemporaryToken"></a>
 
-### authentication~ensureTemporaryToken() ⇒ <code>string</code>
+## authentication~ensureTemporaryToken() ⇒ <code>string</code>
 Ensures that the browser has a temporary token by requesting one, and then authenticating if the request fails with a 401
 
 **Kind**: inner method of <code>[authentication](#npi-datamart.module_authentication)</code>  
 **Returns**: <code>string</code> - Temporary token  
 <a name="npi-datamart.module_authentication..ensureAuthenticated"></a>
 
-### authentication~ensureAuthenticated() ⇒ <code>Promise</code>
+## authentication~ensureAuthenticated() ⇒ <code>Promise</code>
 Ensures that the client maintains an authenticated token
 
 **Kind**: inner method of <code>[authentication](#npi-datamart.module_authentication)</code>  
 <a name="npi-datamart.module_authentication..maintainAuthentication"></a>
 
-### authentication~maintainAuthentication(scope) ⇒ <code>Promise</code>
+## authentication~maintainAuthentication(scope) ⇒ <code>Promise</code>
 Ensures that the API is currently authenticated and will ensure the API maintains authentication tokens until the specified scope is destroyed
 
 **Kind**: inner method of <code>[authentication](#npi-datamart.module_authentication)</code>  
+**Params**
 
-| Param | Description |
-| --- | --- |
-| scope | Scope of the authentication |
+- scope - Scope of the authentication
 

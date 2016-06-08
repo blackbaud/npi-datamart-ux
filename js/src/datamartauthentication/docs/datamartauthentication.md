@@ -1,10 +1,3 @@
----
-layout: layout-sidebar
-order: 30
-name: <<component>>
-description: <<desc>>
----
-
 <a name="npi-datamart.module_authentication"></a>
 
 # authentication

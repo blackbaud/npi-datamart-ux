@@ -13,24 +13,18 @@ if [[ "$IS_RELEASE" == "true" && "$IS_PRERELEASE" == "false" ]]; then
   git config --global user.name "Blackbaud Sky Build User"
 
   # Clones the npi-datamart-ux-docs repo into a "docs/" folder
-  git clone --quiet --branch=$branch https://${GH_TOKEN}@github.com/blackbaud/npi-datamart-ux-docs.git docs > /dev/null
+  git clone --quiet --branch=$branch https://${GH_TOKEN}@github.com/blackbaud/npi-datamart.git docs > /dev/null
 
   # Copy jsdoc output
-#  cp -f demo/data/sky.json docs/npi-datamart-jsdoc/npi-datamart-$RELEASE_VERSION.json
+  cp -rf stache/. docs/content/API/npi-datamart-ux
 
   # Copy integrity hashes
 #  cp -f dist/sri.json docs/npi-datamart-sri/npi-datamart-$RELEASE_VERSION.json
 
-  # Updating this file will cause the documentation to be updated
-  echo "$RELEASE_VERSION" > docs/includes/latest-release.txt
-
-  # Create a timestamp file for stache to read
-  echo "`date -u`" > docs/includes/timestamp.txt
-
   # Commit and push all our changes to the repo
   cd docs
   git add -f .
-  git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed $RELEASE_VERSION to npi-datamart-ux-docs"
+  git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed $RELEASE_VERSION to npi-datamart-ux docs"
   git push -fq origin $branch > /dev/null
 
   echo -e "NPI Datamart UX Docs successfully updated.\n"
