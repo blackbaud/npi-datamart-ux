@@ -44,7 +44,6 @@ module.exports = function (grunt) {
             },
             order = 10;
         
-        
         grunt.file.expand(options, '*/docs/*.md').forEach(function (filename) {
             var content,
                 component,
