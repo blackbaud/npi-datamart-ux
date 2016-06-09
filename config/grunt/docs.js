@@ -73,3 +73,4 @@ module.exports = function (grunt) {
     // Main docs task
     grunt.registerTask('docs', ['jsdoc2md', 'testDocs']);
 };
+
