@@ -16,7 +16,7 @@ if [[ "$IS_RELEASE" == "true" && "$IS_PRERELEASE" == "false" ]]; then
   git clone --quiet --branch=$branch https://${GH_TOKEN}@github.com/blackbaud/npi-datamart.git docs > /dev/null
 
   # Copy jsdoc output
-  cp -rf stache/. docs/content/API/npi-datamart-ux
+  cp -rf stache/. docs/content/npi-datamart-ux
 
   # Copy integrity hashes
 #  cp -f dist/sri.json docs/npi-datamart-sri/npi-datamart-$RELEASE_VERSION.json
