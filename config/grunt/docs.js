@@ -37,7 +37,7 @@ module.exports = function (grunt) {
         }
     });
     
-    grunt.registerTask('testDocs', function () {
+    grunt.registerTask('prepareDocs', function () {
         var options = {
                 filter: 'isFile',
                 cwd: grunt.config.get('npiux.paths.src')
@@ -55,7 +55,7 @@ module.exports = function (grunt) {
             
             component = filename.substr(0, filename.indexOf('/'));
             pathMarkdown = grunt.config.get('npiux.paths.src') + filename;
-            pathFrontmatter = grunt.config.get('npiux.paths.src') + 'docs-header.hbs';
+            pathFrontmatter = grunt.config.get('npiux.paths.src') + 'docs-header.tmpl';
             frontmatter = grunt.file.read(pathFrontmatter);
             content = grunt.file.read(pathMarkdown);
             lines = content.split('\n');
@@ -66,11 +66,13 @@ module.exports = function (grunt) {
             frontmatter = frontmatter.replace('<<desc>>', lines[3]);
             newFile = frontmatter.concat(content);
             
+            utils.log('Writing markdown file to stache/' + component + ' directory.')
+            
             grunt.file.write('stache/' + component + '/index.md', newFile);
         });
     });
    
     // Main docs task
-    grunt.registerTask('docs', ['jsdoc2md', 'testDocs']);
+    grunt.registerTask('docs', ['jsdoc2md', 'prepareDocs']);
 };
 
