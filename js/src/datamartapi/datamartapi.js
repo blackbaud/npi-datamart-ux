@@ -3,13 +3,23 @@
 
 (function () {
     'use strict';
-
+    /**
+     * @module npi-datamart.BBDataMartAPI
+     * @description Service module for NPI Datamart
+     */
     angular.module('npi-datamart.api', ['npi-datamart.authentication'])
         .factory('BBDataMartAPI', ['$q', '$timeout', '$http', function ($q, $timeout, $http) {
             /**
-             * Description
+             * An object for interacting with the DataMart APIs
              * @method BBDataMartAPI
-             * @param {} options
+             * @param {Object} options Object containing the information for the authentication and datamart
+             * @param {BBDataMartAuthentication} options.authentication A BBDataMartAuthentication object
+             * @param {string} [options.dataMartId] ID of the datamart
+             * @param {Function} [options.getDataMartId] A promise to return the DataMart ID as a string. Required if dataMartId not provided.
+             * @param {Function} [options.translateObjectIdentifier] A funtion returning a promise that returns a data mart identifier based on a provided identifier.  This is a hook to allow custom identifier translation.
+             * @param {Function} [options.translateFilters] A funtion returning a promise that returns a filters object based on a provided filters object.  This is a hook to allow custom filters translation. 
+             * @param {Function} [options.translateAttributeName] A function that returns a translated attribute name based on a provided attribute name.
+             * @return {BBDataMartAPI} A class containing methods to handle interactions with the DataMart APIs
              */
             var BBDataMartAPI = function (options) {
                 var apiContextPromise,
@@ -29,11 +39,11 @@
                 }
 
                 /**
-                 * Description
+                 * Gets the datamart ID
                  * @method getDataMartId
-                 * @return CallExpression
+                 * @return {CallExpression} A promise to return the datamart ID as a string
                  */
-                function getDataMartId() {
+                self.getDataMartId = function getDataMartId() {
                     return $q(function (resolve, reject) {
                         if (options.dataMartId) {
                             resolve(options.dataMartId);
@@ -44,19 +54,14 @@
                 }
 
                 /**
-                 * Description
+                 * Get the root of the API
                  * @method getApiRoot
-                 * @return CallExpression
+                 * @return {CallExpression} A promise to return the root URL of the API as a string
                  */
-                function getApiRoot() {
+                self.getApiRoot = function getApiRoot() {
                     return authentication.getDomain();
                 }
 
-                /**
-                 * Description
-                 * @method getAPIContext
-                 * @return apiContextPromise
-                 */
                 function getAPIContext() {
                     if (!apiContextPromise) {
                         apiContextPromise = $q(function (resolve, reject) {
@@ -73,11 +78,6 @@
                     return apiContextPromise;
                 }
 
-                /**
-                 * Description
-                 * @method ensureAuthenticatedContext
-                 * @return CallExpression
-                 */
                 function ensureAuthenticatedContext() {
                     return $q(function (resolve, reject) {
                         authentication.ensureAuthenticated().then(function () {
@@ -88,22 +88,9 @@
                     });
                 }
 
-                /**
-                 * Description
-                 * @method getObjectUriFromIdentifier
-                 * @param {} context
-                 * @param {} objectIdentifier
-                 * @return MemberExpression
-                 */
                 function getObjectUriFromIdentifier(context, objectIdentifier) {
                     if (!objectUriPromises[objectIdentifier]) {
                         objectUriPromises[objectIdentifier] = $q(function (resolve, reject) {
-                            /**
-                             * Description
-                             * @method lookupUriForObjectId
-                             * @param {} id
-                             * @return 
-                             */
                             function lookupUriForObjectId(id) {
                                 var postData = {
                                     identifierToUri: [id]
@@ -133,13 +120,6 @@
                     return objectUriPromises[objectIdentifier];
                 }
 
-                /**
-                 * Description
-                 * @method getObjectDefinitionByUri
-                 * @param {} context
-                 * @param {} objectUri
-                 * @return CallExpression
-                 */
                 function getObjectDefinitionByUri(context, objectUri) {
                     return $q(function (resolve, reject) {
                         $http.get(context.apiRoot + objectUri, {
@@ -154,14 +134,6 @@
                     });
                 }
 
-                /**
-                 * Description
-                 * @method getSingleElementUri
-                 * @param {} context
-                 * @param {} elementsUri
-                 * @param {} elementValue
-                 * @return CallExpression
-                 */
                 function getSingleElementUri(context, elementsUri, elementValue) {
                     var i,
                         el,
@@ -187,12 +159,6 @@
                     });
                 }
 
-                /**
-                 * Description
-                 * @method getAttributeName
-                 * @param {} attribute
-                 * @return attribute
-                 */
                 function getAttributeName(attribute) {
                     if (options.translateAttributeName) {
                         return options.translateAttributeName(attribute);
@@ -201,12 +167,6 @@
                     return attribute;
                 }
 
-                /**
-                 * Description
-                 * @method getObjectIdentifierDisplayForm
-                 * @param {} attribute
-                 * @return identifier
-                 */
                 function getObjectIdentifierDisplayForm(attribute) {
                     var identifier = null;
 
@@ -221,14 +181,6 @@
                     return identifier;
                 }
 
-                /**
-                 * Description
-                 * @method getDataResults
-                 * @param {} context
-                 * @param {} dataResultsUri
-                 * @param {} skipRetry
-                 * @return CallExpression
-                 */
                 function getDataResults(context, dataResultsUri, skipRetry) {
                     return $q(function (resolve, reject) {
                         $http.get(context.apiRoot + dataResultsUri, {
@@ -245,13 +197,6 @@
                     });
                 }
 
-                /**
-                 * Description
-                 * @method executeReportByPostData
-                 * @param {} context
-                 * @param {} postData
-                 * @return CallExpression
-                 */
                 function executeReportByPostData(context, postData) {
                     return $q(function (resolve, reject) {
                         $http.post(context.apiRoot + '/gdc/app/projects/' + context.dataMartId + '/execute', postData, {
@@ -266,14 +211,6 @@
                     });
                 }
 
-                /**
-                 * Description
-                 * @method buildElementFilter
-                 * @param {} context
-                 * @param {} filter
-                 * @param {} objectDisplayFormUri
-                 * @return CallExpression
-                 */
                 function buildElementFilter(context, filter, objectDisplayFormUri) {
                     var filterObj = {
                         uri: objectDisplayFormUri,
@@ -310,25 +247,12 @@
                     });
                 }
 
-                /**
-                 * Description
-                 * @method buildReportRequestContext
-                 * @param {} context
-                 * @param {} filters
-                 * @return CallExpression
-                 */
                 function buildReportRequestContext(context, filters) {
                     return $q(function (resolve, reject) {
                         var attributeDisplayForm,
                             i,
                             tasks = [];
 
-                        /**
-                         * Description
-                         * @method buildContext
-                         * @param {} filters
-                         * @return 
-                         */
                         function buildContext(filters) {
                             var reportRequestContext = {};
 
@@ -381,14 +305,6 @@
                     });
                 }
 
-                /**
-                 * Description
-                 * @method executeReport
-                 * @param {} context
-                 * @param {} reportIdentifier
-                 * @param {} filters
-                 * @return CallExpression
-                 */
                 function executeReport(context, reportIdentifier, filters) {
                     return $q(function (resolve, reject) {
                         $q.all([getObjectUriFromIdentifier(context, reportIdentifier), buildReportRequestContext(context, filters)]).then(function (taskResults) {
@@ -408,21 +324,8 @@
                     });
                 }
 
-                /**
-                 * Description
-                 * @method executeReportRaw
-                 * @param {} context
-                 * @param {} postData
-                 * @return CallExpression
-                 */
                 function executeReportRaw(context, postData) {
                     return $q(function (resolve, reject) {
-                        /**
-                         * Description
-                         * @method loadReport
-                         * @param {} uri
-                         * @return 
-                         */
                         function loadReport(uri) {
                             $http.get(uri, {
                                 withCredentials: true
@@ -447,12 +350,6 @@
                     });
                 }
 
-                /**
-                 * Description
-                 * @method getHeadlineDataResults
-                 * @param {} result
-                 * @return reportData
-                 */
                 function getHeadlineDataResults(result) {
                     var reportData = null,
                         xtabData;
@@ -467,13 +364,6 @@
                     return reportData;
                 }
 
-                /**
-                 * Description
-                 * @method getLatestReportDefinition
-                 * @param {} context
-                 * @param {} reportIdentifier
-                 * @return CallExpression
-                 */
                 function getLatestReportDefinition(context, reportIdentifier) {
                     return $q(function (resolve, reject) {
                         getObjectUriFromIdentifier(context, reportIdentifier).then(function (reportUri) {
@@ -490,14 +380,6 @@
                     });
                 }
 
-                /**
-                 * Description
-                 * @method getHeadlineReportDrillContext
-                 * @param {} context
-                 * @param {} reportIdentifier
-                 * @param {} filters
-                 * @return CallExpression
-                 */
                 function getHeadlineReportDrillContext(context, reportIdentifier, filters) {
                     return $q(function (resolve, reject) {
                         var drillAttribute,
@@ -549,13 +431,6 @@
                     });
                 }
 
-                /**
-                 * Description
-                 * @method loadDrillInRecordIds
-                 * @param {} context
-                 * @param {} drillContext
-                 * @return CallExpression
-                 */
                 function loadDrillInRecordIds(context, drillContext) {
                     return $q(function (resolve, reject) {
                         var postData = {
@@ -593,11 +468,11 @@
                 }
 
                 /**
-                 * Description
+                 * Check if the platform is available.
                  * @method platformIsAvailable
-                 * @return CallExpression
+                 * @return {CallExpression} A promise for if the platform is available as a boolean
                  */
-                function platformIsAvailable() {
+                self.platformIsAvailable = function platformIsAvailable() {
                     return $q(function (resolve) {
                         getApiRoot().then(function (apiRoot) {
                             $http.get(apiRoot + '/gdc/ping', {
@@ -611,13 +486,11 @@
                     });
                 }
 
-                self.platformIsAvailable = platformIsAvailable;
-
                 /**
-                 * Description
+                 * Gets the object URI from an identifier
                  * @method getObjectUriFromIdentifier
-                 * @param {} identifier
-                 * @return CallExpression
+                 * @param {string} identifier Identifier for a datamart report or dashboard
+                 * @return {CallExpression} A promise to return the relative URI for the datamart report or dashboard
                  */
                 self.getObjectUriFromIdentifier = function (identifier) {
                     return $q(function (resolve, reject) {
@@ -628,11 +501,14 @@
                 };
 
                 /**
-                 * Description
+                 * Execites a report based on an identifier and filters
                  * @method executeReport
-                 * @param {} reportIdentifier
-                 * @param {} filters
-                 * @return CallExpression
+                 * @param {string} reportIdentifier Identifier for the report
+                 * @param {Object[]} filters Filters for the report
+                 * @param {string} [filters[].attribute] The name of the attribute to be filtered
+                 * @param {string} [filters[].attributeDisplayForm] The display form of the attribute that will be filtered. This is required if you do not provide attribute
+                 * @param {string} filters[].value The filter value
+                 * @return {CallExpression} A promise to return the result of the report as an Object
                  */
                 self.executeReport = function (reportIdentifier, filters) {
                     return $q(function (resolve, reject) {
@@ -643,11 +519,14 @@
                 };
 
                 /**
-                 * Description
+                 * Executes a report that returns a single data value
                  * @method getHeadlineReportData
-                 * @param {} reportIdentifier
-                 * @param {} filters
-                 * @return CallExpression
+                 * @param {string} reportIdentifier Identifier for the report
+                 * @param {Object[]} filters Filters for the report
+                 * @param {string} [filters[].attribute] The name of the attribute to be filtered
+                 * @param {string} [filters[].attributeDisplayForm] The display form of the attribute that will be filtered. This is required if you do not provide attribute
+                 * @param {string} filters[].value The filter value
+                 * @return {CallExpression} A promise to return the result of the report as a single string
                  */
                 self.getHeadlineReportData = function (reportIdentifier, filters) {
                     return $q(function (resolve, reject) {
@@ -660,11 +539,14 @@
                 };
 
                 /**
-                 * Description
+                 * Gets an object that can be used to drill into the context of a headline report
                  * @method getHeadlineReportDrillContext
-                 * @param {} reportIdentifier
-                 * @param {} filters
-                 * @return CallExpression
+                 * @param {string} reportIdentifier Identifier for the report
+                 * @param {Object[]} filters Filters for the report
+                 * @param {string} [filters[].attribute] The name of the attribute to be filtered
+                 * @param {string} [filters[].attributeDisplayForm] The display form of the attribute that will be filtered. This is required if you do not provide attribute
+                 * @param {string} filters[].value The filter value
+                 * @return {CallExpression} A promise that will return an object to be used to drill into the context of a headline report
                  */
                 self.getHeadlineReportDrillContext = function (reportIdentifier, filters) {
                     return $q(function (resolve, reject) {
@@ -675,10 +557,10 @@
                 };
 
                 /**
-                 * Description
+                 * Load the drilled in records from a context
                  * @method loadDrillInRecordIds
-                 * @param {} drillContext
-                 * @return CallExpression
+                 * @param {Object} drillContext Context from the getHeadlineReportDrillContext or from a datamart directive
+                 * @return {CallExpression} A promise to return the drilled in records object
                  */
                 self.loadDrillInRecordIds = function (drillContext) {
                     return $q(function (resolve, reject) {
@@ -689,10 +571,10 @@
                 };
 
                 /**
-                 * Description
+                 * Gets the latest report definition
                  * @method getLatestReportDefinition
-                 * @param {} reportIdentifier
-                 * @return CallExpression
+                 * @param {string} reportIdentifier Identifier for the report
+                 * @return {CallExpression} A promise to return the most recent definition of the report as an object
                  */
                 self.getLatestReportDefinition = function (reportIdentifier) {
                     return $q(function (resolve, reject) {
@@ -703,10 +585,10 @@
                 };
 
                 /**
-                 * Description
+                 * Get an object definition by a URI
                  * @method getObjectDefinitionByUri
-                 * @param {} objectUri
-                 * @return CallExpression
+                 * @param {string} objectUri URI of the object
+                 * @return {CallExpression} A promise to return the object based on a URI
                  */
                 self.getObjectDefinitionByUri = function (objectUri) {
                     return $q(function (resolve, reject) {
@@ -717,18 +599,15 @@
                 };
                 
                 /**
-                 * Description
+                 * Maintains the authentication
                  * @method maintainAuthentication
-                 * @param {} scope
-                 * @return CallExpression
+                 * @param {Object} scope
+                 * @return {CallExpression} A promise to let you know when the authentication is maintained
                  */
                 self.maintainAuthentication = function (scope) {
                     return authentication.maintainAuthentication(scope);
                 };
 
-                self.getDataMartId = getDataMartId;
-
-                self.getApiRoot = getApiRoot;
             };
 
             return BBDataMartAPI;

@@ -9,6 +9,17 @@
      */
     angular.module('npi-datamart.authentication', [])
         .factory('BBDataMartAuthentication', ['$q', '$http', '$rootScope', function ($q, $http, $rootScope) {
+            /**
+             * An class to handle authentication with the DataMart APIs
+             * @method BBDataMartAuthentication
+             * @param {Object} options Object containing the information for domain and single sign on
+             * @param {string} options.domain The domain
+             * @param {Function} options.getDomain A promise returning the domain
+             * @param {string} options.ssoProvider the SSO provider
+             * @param {Function} options.getSSOProvider A promise returning the SSO provider
+             * @param {Function} options.getSSOToken A promise returning the SSO token
+             * @return {BBDataMartAuthentication} The class containing methods to handle authentication on the DataMart API
+             */
             var BBDataMartAuthentication = function (options) {
                 var ensureAuthenticatedPromise,
                     initialAuthPerformed,
@@ -28,13 +39,13 @@
                 if (!options.getSSOToken) {
                     throw 'An option for getSSOToken must be provided.  This should be a function returning a promise for an SSO token to be used to authenticate with the data mart API.';
                 }
+
                 /**
-                 * @function getDomain
-                 * @description Gets the domain of the environment
-                 * 
-                 * @return {string} Domain
+                 * Gets the domain of the environment 
+                 * @method getDomain
+                 * @return {CallExpression} A promise to get the domain of the environment
                  */
-                function getDomain() {
+                self.getDomain = function getDomain() {
                     return $q(function (resolve, reject) {
                         if (options.domain) {
                             resolve(options.domain);
@@ -44,12 +55,6 @@
                     });
                 }
                 
-                /**
-                 * @function getSSOProvider
-                 * @description Gets the SSO Provider
-                 * 
-                 * @return {string} SSO Provider
-                 */
                 function getSSOProvider() {
                     return $q(function (resolve, reject) {
                         if (options.ssoProvider) {
@@ -60,13 +65,6 @@
                     });
                 }
 
-                /**
-                 * @function getSSOUrl
-                 * @description Gets the SSO URL based on the Provider and the Domain
-                 * 
-                 * @param {string} targetUrl Url of the target for SSO
-                 * @return {string} SSO URL
-                 */
                 function getSSOUrl(targetUrl) {
                     return $q(function (resolve, reject) {
                         var tasks = [
@@ -100,23 +98,10 @@
                     });
                 }
 
-                /**
-                 * @function isUnauthorizedFailure
-                 * @description Checks if a failure reason corresponds to a 401 unauthorized response
-                 *
-                 * @param reason Reason for failure
-                 * @return {boolean} Unauthorized Failure
-                 */
                 function isUnauthorizedFailure(reason) {
                     return reason && reason.status === 401;
                 }
 
-                /**
-                 * @function getTemporaryToken
-                 * @description Requests a temporary token for use with the API
-                 *
-                 * @return {string} token
-                 */
                 function getTemporaryToken() {
                     return $q(function (resolve, reject) {
                         getDomain().then(function (domain) {
@@ -128,12 +113,6 @@
                     });
                 }
 
-                /**
-                 * @function authenticate
-                 * @description Performs an SSO with the API, retreiving both a long lived authentication token and a temporary token
-                 *
-                 * @return {string[]} [Authentication Token, Temporary Token]
-                 */
                 function authenticate() {
                     return $q(function (resolve, reject) {
                         getSSOUrl('/gdc/account/token').then(function (ssoUrl) {
@@ -156,12 +135,6 @@
                     });
                 }
 
-                /**
-                 * @function ensureTemporaryToken
-                 * @description Ensures that the browser has a temporary token by requesting one, and then authenticating if the request fails with a 401
-                 * 
-                 * @return {string} Temporary token
-                 */
                 function ensureTemporaryToken() {
                     return $q(function (resolve, reject) {
                         getTemporaryToken().then(function () {
@@ -179,12 +152,11 @@
                 }
                 
                 /**
-                 * @function ensureAuthenticated
-                 * @description Ensures that the client maintains an authenticated token
-                 * 
-                 * @return {Promise} 
+                 * Ensures that the client maintains an authenticated token 
+                 * @method ensureAuthenticated
+                 * @return {ensureAuthenticatedPromise} A promise to ensure authentication 
                  */
-                function ensureAuthenticated() {
+                self.ensureAuthenticated = function ensureAuthenticated() {
                     if (!ensureAuthenticatedPromise) {
                         ensureAuthenticatedPromise = $q(function (resolve, reject) {
                             var getTokenPromise;
@@ -231,13 +203,12 @@
                 }
 
                 /**
-                 * @function maintainAuthentication
-                 * @description Ensures that the API is currently authenticated and will ensure the API maintains authentication tokens until the specified scope is destroyed
-                 *
-                 * @param scope Scope of the authentication
-                 * @return {Promise} 
+                 * Ensures that the API is currently authenticated and will ensure the API maintains authentication tokens until the specified scope is destroyed
+                 * @method maintainAuthentication
+                 * @param {Object} $scope
+                 * @return {CallExpression} A promise to maintain authentication
                  */
-                function maintainAuthentication($scope) {
+                self.maintainAuthentication = function maintainAuthentication($scope) {
                     //Increment the number of scopes requesting that authentication be maintained.
                     maintainAuthScopeCount += 1;
 
@@ -254,9 +225,6 @@
                     });
                 }
 
-                self.getDomain = getDomain;
-                self.ensureAuthenticated = ensureAuthenticated;
-                self.maintainAuthentication = maintainAuthentication;
             };
 
             return BBDataMartAuthentication;

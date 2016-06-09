@@ -13,11 +13,11 @@ module.exports = function (grunt, env, utils) {
                     {
                         src: 'js/src/datamartauthentication/datamartauthentication.js',
                         dest: 'js/src/datamartauthentication/docs/datamartauthentication.md'
+                    },
+                    {
+                        src: 'js/src/datamartapi/datamartapi.js',
+                        dest: 'js/src/datamartapi/docs/datamartapi.md'
                     }//,
-                    //{
-                    //    src: 'js/src/datamartapi/datamartapi.js',
-                    //    dest: 'js/src/datamartapi/docs/datamartapi.md'
-                    //},
                     //{
                     //    src: 'js/src/datamartreport/datamartreport.js',
                     //    dest: 'js/src/datamartreport/docs/datamartreport.md'
