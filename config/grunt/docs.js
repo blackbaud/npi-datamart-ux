@@ -1,5 +1,5 @@
 /*global module */
-module.exports = function (grunt) {
+module.exports = function (grunt, env, utils) {
     'use strict';
 
     grunt.config.merge({
@@ -66,7 +66,7 @@ module.exports = function (grunt) {
             frontmatter = frontmatter.replace('<<desc>>', lines[3]);
             newFile = frontmatter.concat(content);
             
-            utils.log('Writing markdown file to stache/' + component + ' directory.')
+            utils.log('Writing markdown file to stache/' + component + ' directory.');
             
             grunt.file.write('stache/' + component + '/index.md', newFile);
         });
