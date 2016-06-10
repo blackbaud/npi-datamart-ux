@@ -1,6 +1,7 @@
 <a name="npi-datamart.module_authentication"></a>
 
-# DataMart AuthenticationAuthentication module for NPI DataMart UX
+# DataMart Authentication
+Authentication module for NPI DataMart UX
 
 
 * [authentication](#npi-datamart.module_authentication)

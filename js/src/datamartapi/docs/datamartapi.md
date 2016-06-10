@@ -1,6 +1,7 @@
 <a name="npi-datamart.module_api"></a>
 
-# DataMart APIAPI module for NPI DataMart UX
+# DataMart API
+API module for NPI DataMart UX
 
 
 * [api](#npi-datamart.module_api)
