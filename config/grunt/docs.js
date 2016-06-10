@@ -25,14 +25,6 @@ module.exports = function (grunt, env, utils) {
                 ]
             }
         },
-        ngdocs: {
-            reports: {
-                src: ['js/src/datamartreport/datamartreport.js'],
-            },
-            options: {
-                dest: 'js/src/datamartreport/docs'
-            }
-        },
         // Renamed the original grunt-contrib-watch task
         watchRenamed: {
             docs: {
@@ -84,6 +76,6 @@ module.exports = function (grunt, env, utils) {
     });
    
     // Main docs task
-    grunt.registerTask('docs', ['jsdoc2md', /*'ngdocs',*/ 'prepareDocs']);
+    grunt.registerTask('docs', ['jsdoc2md', 'prepareDocs']);
 };
 
