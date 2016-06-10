@@ -27,8 +27,6 @@ else
   echo -e "npi-datamart successfully updated.\n"
 
 fi
-git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed $RELEASE_VERSION to npi-datamart-ux docs"
-git push -fq origin $branch > /dev/null
 
 # Only run for a release
 if [[ "$IS_RELEASE" == "true" && "$IS_PRERELEASE" == "false" ]]; then
