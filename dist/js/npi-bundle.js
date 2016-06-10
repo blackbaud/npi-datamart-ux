@@ -113682,13 +113682,25 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
 
 (function () {
     'use strict';
-
+    //YAML Title, YAML Description, JSDoc Heading
+    /**
+     * DataMart API
+     * API module for NPI DataMart UX
+     * @module npi-datamart.api
+     */
     angular.module('npi-datamart.api', ['npi-datamart.authentication'])
         .factory('BBDataMartAPI', ['$q', '$timeout', '$http', function ($q, $timeout, $http) {
             /**
-             * Description
+             * An object for interacting with the DataMart APIs
              * @method BBDataMartAPI
-             * @param {} options
+             * @param {Object} options Object containing the information for the authentication and datamart
+             * @param {BBDataMartAuthentication} options.authentication A BBDataMartAuthentication object
+             * @param {string} [options.dataMartId] ID of the datamart
+             * @param {Function} [options.getDataMartId] A promise to return the DataMart ID as a string. Required if dataMartId not provided.
+             * @param {Function} [options.translateObjectIdentifier] A funtion returning a promise that returns a data mart identifier based on a provided identifier.  This is a hook to allow custom identifier translation.
+             * @param {Function} [options.translateFilters] A funtion returning a promise that returns a filters object based on a provided filters object.  This is a hook to allow custom filters translation. 
+             * @param {Function} [options.translateAttributeName] A function that returns a translated attribute name based on a provided attribute name.
+             * @return {BBDataMartAPI} A class containing methods to handle interactions with the DataMart APIs
              */
             var BBDataMartAPI = function (options) {
                 var apiContextPromise,
@@ -113708,11 +113720,11 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
                 }
 
                 /**
-                 * Description
+                 * Gets the datamart ID
                  * @method getDataMartId
-                 * @return CallExpression
+                 * @return {CallExpression} A promise to return the datamart ID as a string
                  */
-                function getDataMartId() {
+                self.getDataMartId = function getDataMartId() {
                     return $q(function (resolve, reject) {
                         if (options.dataMartId) {
                             resolve(options.dataMartId);
@@ -113720,27 +113732,22 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
                             options.getDataMartId().then(resolve).catch(reject);
                         }
                     });
-                }
+                };
 
                 /**
-                 * Description
+                 * Get the root of the API
                  * @method getApiRoot
-                 * @return CallExpression
+                 * @return {CallExpression} A promise to return the root URL of the API as a string
                  */
-                function getApiRoot() {
+                self.getApiRoot = function getApiRoot() {
                     return authentication.getDomain();
-                }
+                };
 
-                /**
-                 * Description
-                 * @method getAPIContext
-                 * @return apiContextPromise
-                 */
                 function getAPIContext() {
                     if (!apiContextPromise) {
                         apiContextPromise = $q(function (resolve, reject) {
-                            getApiRoot().then(function (apiRoot) {
-                                getDataMartId().then(function (dataMartId) {
+                            self.getApiRoot().then(function (apiRoot) {
+                                self.getDataMartId().then(function (dataMartId) {
                                     resolve({
                                         apiRoot: apiRoot,
                                         dataMartId: dataMartId
@@ -113752,11 +113759,6 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
                     return apiContextPromise;
                 }
 
-                /**
-                 * Description
-                 * @method ensureAuthenticatedContext
-                 * @return CallExpression
-                 */
                 function ensureAuthenticatedContext() {
                     return $q(function (resolve, reject) {
                         authentication.ensureAuthenticated().then(function () {
@@ -113767,22 +113769,9 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
                     });
                 }
 
-                /**
-                 * Description
-                 * @method getObjectUriFromIdentifier
-                 * @param {} context
-                 * @param {} objectIdentifier
-                 * @return MemberExpression
-                 */
                 function getObjectUriFromIdentifier(context, objectIdentifier) {
                     if (!objectUriPromises[objectIdentifier]) {
                         objectUriPromises[objectIdentifier] = $q(function (resolve, reject) {
-                            /**
-                             * Description
-                             * @method lookupUriForObjectId
-                             * @param {} id
-                             * @return 
-                             */
                             function lookupUriForObjectId(id) {
                                 var postData = {
                                     identifierToUri: [id]
@@ -113812,13 +113801,6 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
                     return objectUriPromises[objectIdentifier];
                 }
 
-                /**
-                 * Description
-                 * @method getObjectDefinitionByUri
-                 * @param {} context
-                 * @param {} objectUri
-                 * @return CallExpression
-                 */
                 function getObjectDefinitionByUri(context, objectUri) {
                     return $q(function (resolve, reject) {
                         $http.get(context.apiRoot + objectUri, {
@@ -113833,14 +113815,6 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
                     });
                 }
 
-                /**
-                 * Description
-                 * @method getSingleElementUri
-                 * @param {} context
-                 * @param {} elementsUri
-                 * @param {} elementValue
-                 * @return CallExpression
-                 */
                 function getSingleElementUri(context, elementsUri, elementValue) {
                     var i,
                         el,
@@ -113866,12 +113840,6 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
                     });
                 }
 
-                /**
-                 * Description
-                 * @method getAttributeName
-                 * @param {} attribute
-                 * @return attribute
-                 */
                 function getAttributeName(attribute) {
                     if (options.translateAttributeName) {
                         return options.translateAttributeName(attribute);
@@ -113880,12 +113848,6 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
                     return attribute;
                 }
 
-                /**
-                 * Description
-                 * @method getObjectIdentifierDisplayForm
-                 * @param {} attribute
-                 * @return identifier
-                 */
                 function getObjectIdentifierDisplayForm(attribute) {
                     var identifier = null;
 
@@ -113900,14 +113862,6 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
                     return identifier;
                 }
 
-                /**
-                 * Description
-                 * @method getDataResults
-                 * @param {} context
-                 * @param {} dataResultsUri
-                 * @param {} skipRetry
-                 * @return CallExpression
-                 */
                 function getDataResults(context, dataResultsUri, skipRetry) {
                     return $q(function (resolve, reject) {
                         $http.get(context.apiRoot + dataResultsUri, {
@@ -113924,13 +113878,6 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
                     });
                 }
 
-                /**
-                 * Description
-                 * @method executeReportByPostData
-                 * @param {} context
-                 * @param {} postData
-                 * @return CallExpression
-                 */
                 function executeReportByPostData(context, postData) {
                     return $q(function (resolve, reject) {
                         $http.post(context.apiRoot + '/gdc/app/projects/' + context.dataMartId + '/execute', postData, {
@@ -113945,14 +113892,6 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
                     });
                 }
 
-                /**
-                 * Description
-                 * @method buildElementFilter
-                 * @param {} context
-                 * @param {} filter
-                 * @param {} objectDisplayFormUri
-                 * @return CallExpression
-                 */
                 function buildElementFilter(context, filter, objectDisplayFormUri) {
                     var filterObj = {
                         uri: objectDisplayFormUri,
@@ -113989,25 +113928,12 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
                     });
                 }
 
-                /**
-                 * Description
-                 * @method buildReportRequestContext
-                 * @param {} context
-                 * @param {} filters
-                 * @return CallExpression
-                 */
                 function buildReportRequestContext(context, filters) {
                     return $q(function (resolve, reject) {
                         var attributeDisplayForm,
                             i,
                             tasks = [];
 
-                        /**
-                         * Description
-                         * @method buildContext
-                         * @param {} filters
-                         * @return 
-                         */
                         function buildContext(filters) {
                             var reportRequestContext = {};
 
@@ -114060,14 +113986,6 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
                     });
                 }
 
-                /**
-                 * Description
-                 * @method executeReport
-                 * @param {} context
-                 * @param {} reportIdentifier
-                 * @param {} filters
-                 * @return CallExpression
-                 */
                 function executeReport(context, reportIdentifier, filters) {
                     return $q(function (resolve, reject) {
                         $q.all([getObjectUriFromIdentifier(context, reportIdentifier), buildReportRequestContext(context, filters)]).then(function (taskResults) {
@@ -114087,21 +114005,8 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
                     });
                 }
 
-                /**
-                 * Description
-                 * @method executeReportRaw
-                 * @param {} context
-                 * @param {} postData
-                 * @return CallExpression
-                 */
                 function executeReportRaw(context, postData) {
                     return $q(function (resolve, reject) {
-                        /**
-                         * Description
-                         * @method loadReport
-                         * @param {} uri
-                         * @return 
-                         */
                         function loadReport(uri) {
                             $http.get(uri, {
                                 withCredentials: true
@@ -114126,12 +114031,6 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
                     });
                 }
 
-                /**
-                 * Description
-                 * @method getHeadlineDataResults
-                 * @param {} result
-                 * @return reportData
-                 */
                 function getHeadlineDataResults(result) {
                     var reportData = null,
                         xtabData;
@@ -114146,13 +114045,6 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
                     return reportData;
                 }
 
-                /**
-                 * Description
-                 * @method getLatestReportDefinition
-                 * @param {} context
-                 * @param {} reportIdentifier
-                 * @return CallExpression
-                 */
                 function getLatestReportDefinition(context, reportIdentifier) {
                     return $q(function (resolve, reject) {
                         getObjectUriFromIdentifier(context, reportIdentifier).then(function (reportUri) {
@@ -114169,14 +114061,6 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
                     });
                 }
 
-                /**
-                 * Description
-                 * @method getHeadlineReportDrillContext
-                 * @param {} context
-                 * @param {} reportIdentifier
-                 * @param {} filters
-                 * @return CallExpression
-                 */
                 function getHeadlineReportDrillContext(context, reportIdentifier, filters) {
                     return $q(function (resolve, reject) {
                         var drillAttribute,
@@ -114228,13 +114112,6 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
                     });
                 }
 
-                /**
-                 * Description
-                 * @method loadDrillInRecordIds
-                 * @param {} context
-                 * @param {} drillContext
-                 * @return CallExpression
-                 */
                 function loadDrillInRecordIds(context, drillContext) {
                     return $q(function (resolve, reject) {
                         var postData = {
@@ -114272,13 +114149,13 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
                 }
 
                 /**
-                 * Description
+                 * Check if the platform is available.
                  * @method platformIsAvailable
-                 * @return CallExpression
+                 * @return {CallExpression} A promise for if the platform is available as a boolean
                  */
-                function platformIsAvailable() {
+                self.platformIsAvailable = function platformIsAvailable() {
                     return $q(function (resolve) {
-                        getApiRoot().then(function (apiRoot) {
+                        self.getApiRoot().then(function (apiRoot) {
                             $http.get(apiRoot + '/gdc/ping', {
                                 withCredentials: true
                             }).then(function () {
@@ -114288,15 +114165,13 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
                             });
                         });
                     });
-                }
-
-                self.platformIsAvailable = platformIsAvailable;
+                };
 
                 /**
-                 * Description
+                 * Gets the object URI from an identifier
                  * @method getObjectUriFromIdentifier
-                 * @param {} identifier
-                 * @return CallExpression
+                 * @param {string} identifier Identifier for a datamart report or dashboard
+                 * @return {CallExpression} A promise to return the relative URI for the datamart report or dashboard
                  */
                 self.getObjectUriFromIdentifier = function (identifier) {
                     return $q(function (resolve, reject) {
@@ -114307,11 +114182,14 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
                 };
 
                 /**
-                 * Description
+                 * Execites a report based on an identifier and filters
                  * @method executeReport
-                 * @param {} reportIdentifier
-                 * @param {} filters
-                 * @return CallExpression
+                 * @param {string} reportIdentifier Identifier for the report
+                 * @param {Object[]} filters Filters for the report
+                 * @param {string} [filters[].attribute] The name of the attribute to be filtered
+                 * @param {string} [filters[].attributeDisplayForm] The display form of the attribute that will be filtered. This is required if you do not provide attribute
+                 * @param {string} filters[].value The filter value
+                 * @return {CallExpression} A promise to return the result of the report as an Object
                  */
                 self.executeReport = function (reportIdentifier, filters) {
                     return $q(function (resolve, reject) {
@@ -114322,11 +114200,14 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
                 };
 
                 /**
-                 * Description
+                 * Executes a report that returns a single data value
                  * @method getHeadlineReportData
-                 * @param {} reportIdentifier
-                 * @param {} filters
-                 * @return CallExpression
+                 * @param {string} reportIdentifier Identifier for the report
+                 * @param {Object[]} filters Filters for the report
+                 * @param {string} [filters[].attribute] The name of the attribute to be filtered
+                 * @param {string} [filters[].attributeDisplayForm] The display form of the attribute that will be filtered. This is required if you do not provide attribute
+                 * @param {string} filters[].value The filter value
+                 * @return {CallExpression} A promise to return the result of the report as a single string
                  */
                 self.getHeadlineReportData = function (reportIdentifier, filters) {
                     return $q(function (resolve, reject) {
@@ -114339,11 +114220,14 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
                 };
 
                 /**
-                 * Description
+                 * Gets an object that can be used to drill into the context of a headline report
                  * @method getHeadlineReportDrillContext
-                 * @param {} reportIdentifier
-                 * @param {} filters
-                 * @return CallExpression
+                 * @param {string} reportIdentifier Identifier for the report
+                 * @param {Object[]} filters Filters for the report
+                 * @param {string} [filters[].attribute] The name of the attribute to be filtered
+                 * @param {string} [filters[].attributeDisplayForm] The display form of the attribute that will be filtered. This is required if you do not provide attribute
+                 * @param {string} filters[].value The filter value
+                 * @return {CallExpression} A promise that will return an object to be used to drill into the context of a headline report
                  */
                 self.getHeadlineReportDrillContext = function (reportIdentifier, filters) {
                     return $q(function (resolve, reject) {
@@ -114354,10 +114238,10 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
                 };
 
                 /**
-                 * Description
+                 * Load the drilled in records from a context
                  * @method loadDrillInRecordIds
-                 * @param {} drillContext
-                 * @return CallExpression
+                 * @param {Object} drillContext Context from the getHeadlineReportDrillContext or from a datamart directive
+                 * @return {CallExpression} A promise to return the drilled in records object
                  */
                 self.loadDrillInRecordIds = function (drillContext) {
                     return $q(function (resolve, reject) {
@@ -114368,10 +114252,10 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
                 };
 
                 /**
-                 * Description
+                 * Gets the latest report definition
                  * @method getLatestReportDefinition
-                 * @param {} reportIdentifier
-                 * @return CallExpression
+                 * @param {string} reportIdentifier Identifier for the report
+                 * @return {CallExpression} A promise to return the most recent definition of the report as an object
                  */
                 self.getLatestReportDefinition = function (reportIdentifier) {
                     return $q(function (resolve, reject) {
@@ -114382,10 +114266,10 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
                 };
 
                 /**
-                 * Description
+                 * Get an object definition by a URI
                  * @method getObjectDefinitionByUri
-                 * @param {} objectUri
-                 * @return CallExpression
+                 * @param {string} objectUri URI of the object
+                 * @return {CallExpression} A promise to return the object based on a URI
                  */
                 self.getObjectDefinitionByUri = function (objectUri) {
                     return $q(function (resolve, reject) {
@@ -114396,18 +114280,15 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
                 };
                 
                 /**
-                 * Description
+                 * Maintains the authentication
                  * @method maintainAuthentication
-                 * @param {} scope
-                 * @return CallExpression
+                 * @param {Object} scope
+                 * @return {CallExpression} A promise to let you know when the authentication is maintained
                  */
                 self.maintainAuthentication = function (scope) {
                     return authentication.maintainAuthentication(scope);
                 };
 
-                self.getDataMartId = getDataMartId;
-
-                self.getApiRoot = getApiRoot;
             };
 
             return BBDataMartAPI;
@@ -114418,12 +114299,25 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
 
 (function () {
     'use strict';
+    //YAML Title, YAML Description, JSDoc Heading
     /**
+     * DataMart Authentication
+     * Authentication module for NPI DataMart UX
      * @module npi-datamart.authentication
-     * @description Authentication module for NPI Datamart
      */
     angular.module('npi-datamart.authentication', [])
         .factory('BBDataMartAuthentication', ['$q', '$http', '$rootScope', function ($q, $http, $rootScope) {
+            /**
+             * An class to handle authentication with the DataMart APIs
+             * @method BBDataMartAuthentication
+             * @param {Object} options Object containing the information for domain and single sign on
+             * @param {string} options.domain The domain
+             * @param {Function} options.getDomain A promise returning the domain
+             * @param {string} options.ssoProvider the SSO provider
+             * @param {Function} options.getSSOProvider A promise returning the SSO provider
+             * @param {Function} options.getSSOToken A promise returning the SSO token
+             * @return {BBDataMartAuthentication} The class containing methods to handle authentication on the DataMart API
+             */
             var BBDataMartAuthentication = function (options) {
                 var ensureAuthenticatedPromise,
                     initialAuthPerformed,
@@ -114443,13 +114337,13 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
                 if (!options.getSSOToken) {
                     throw 'An option for getSSOToken must be provided.  This should be a function returning a promise for an SSO token to be used to authenticate with the data mart API.';
                 }
+
                 /**
-                 * @function getDomain
-                 * @description Gets the domain of the environment
-                 * 
-                 * @return {string} Domain
+                 * Gets the domain of the environment 
+                 * @method getDomain
+                 * @return {CallExpression} A promise to get the domain of the environment
                  */
-                function getDomain() {
+                self.getDomain = function getDomain() {
                     return $q(function (resolve, reject) {
                         if (options.domain) {
                             resolve(options.domain);
@@ -114457,14 +114351,8 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
                             options.getDomain().then(resolve).catch(reject);
                         }
                     });
-                }
+                };
                 
-                /**
-                 * @function getSSOProvider
-                 * @description Gets the SSO Provider
-                 * 
-                 * @return {string} SSO Provider
-                 */
                 function getSSOProvider() {
                     return $q(function (resolve, reject) {
                         if (options.ssoProvider) {
@@ -114475,18 +114363,11 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
                     });
                 }
 
-                /**
-                 * @function getSSOUrl
-                 * @description Gets the SSO URL based on the Provider and the Domain
-                 * 
-                 * @param {string} targetUrl Url of the target for SSO
-                 * @return {string} SSO URL
-                 */
                 function getSSOUrl(targetUrl) {
                     return $q(function (resolve, reject) {
                         var tasks = [
                             options.getSSOToken(),
-                            getDomain(),
+                            self.getDomain(),
                             getSSOProvider()
                         ];
 
@@ -114515,26 +114396,13 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
                     });
                 }
 
-                /**
-                 * @function isUnauthorizedFailure
-                 * @description Checks if a failure reason corresponds to a 401 unauthorized response
-                 *
-                 * @param reason Reason for failure
-                 * @return {boolean} Unauthorized Failure
-                 */
                 function isUnauthorizedFailure(reason) {
                     return reason && reason.status === 401;
                 }
 
-                /**
-                 * @function getTemporaryToken
-                 * @description Requests a temporary token for use with the API
-                 *
-                 * @return {string} token
-                 */
                 function getTemporaryToken() {
                     return $q(function (resolve, reject) {
-                        getDomain().then(function (domain) {
+                        self.getDomain().then(function (domain) {
                             var getTokenUrl = domain + '/gdc/account/token';
                             $http.get(getTokenUrl, { withCredentials: true }).then(function () {
                                 resolve();
@@ -114543,12 +114411,6 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
                     });
                 }
 
-                /**
-                 * @function authenticate
-                 * @description Performs an SSO with the API, retreiving both a long lived authentication token and a temporary token
-                 *
-                 * @return {string[]} [Authentication Token, Temporary Token]
-                 */
                 function authenticate() {
                     return $q(function (resolve, reject) {
                         getSSOUrl('/gdc/account/token').then(function (ssoUrl) {
@@ -114571,12 +114433,6 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
                     });
                 }
 
-                /**
-                 * @function ensureTemporaryToken
-                 * @description Ensures that the browser has a temporary token by requesting one, and then authenticating if the request fails with a 401
-                 * 
-                 * @return {string} Temporary token
-                 */
                 function ensureTemporaryToken() {
                     return $q(function (resolve, reject) {
                         getTemporaryToken().then(function () {
@@ -114594,12 +114450,11 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
                 }
                 
                 /**
-                 * @function ensureAuthenticated
-                 * @description Ensures that the client maintains an authenticated token
-                 * 
-                 * @return {Promise} 
+                 * Ensures that the client maintains an authenticated token 
+                 * @method ensureAuthenticated
+                 * @return {ensureAuthenticatedPromise} A promise to ensure authentication 
                  */
-                function ensureAuthenticated() {
+                self.ensureAuthenticated = function ensureAuthenticated() {
                     if (!ensureAuthenticatedPromise) {
                         ensureAuthenticatedPromise = $q(function (resolve, reject) {
                             var getTokenPromise;
@@ -114643,16 +114498,15 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
                     }
 
                     return ensureAuthenticatedPromise;
-                }
+                };
 
                 /**
-                 * @function maintainAuthentication
-                 * @description Ensures that the API is currently authenticated and will ensure the API maintains authentication tokens until the specified scope is destroyed
-                 *
-                 * @param scope Scope of the authentication
-                 * @return {Promise} 
+                 * Ensures that the API is currently authenticated and will ensure the API maintains authentication tokens until the specified scope is destroyed
+                 * @method maintainAuthentication
+                 * @param {Object} $scope
+                 * @return {CallExpression} A promise to maintain authentication
                  */
-                function maintainAuthentication($scope) {
+                self.maintainAuthentication = function maintainAuthentication($scope) {
                     //Increment the number of scopes requesting that authentication be maintained.
                     maintainAuthScopeCount += 1;
 
@@ -114663,15 +114517,12 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
 
                     //Return a promise once authentication has been ensured.
                     return $q(function (resolve, reject) {
-                        ensureAuthenticated().then(function () {
+                        self.ensureAuthenticated().then(function () {
                             resolve();
                         }).catch(reject);
                     });
-                }
+                };
 
-                self.getDomain = getDomain;
-                self.ensureAuthenticated = ensureAuthenticated;
-                self.maintainAuthentication = maintainAuthentication;
             };
 
             return BBDataMartAuthentication;
@@ -114731,7 +114582,12 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
             "extraFonts": { 'googlefonts': ['Oswald', 'Open Sans'] }
         }
     };
-
+    //YAML Title, YAML Description, JSDoc Heading
+    /**
+     * DataMart Report
+     * Authentication module for NPI DataMart UX  
+     * @module npi-datamart.report
+     */
     angular.module('npi-datamart.report', ['npi-datamart.templates', 'npi-datamart.api', 'sky'])
         .constant('bbDataMartReportConfiguration', {
             processFilters: null, //Optional hook for preprocessing of filters
@@ -114959,6 +114815,10 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
                 dashboardLink: link
             };
         }])
+        /**
+         * The DataMart Report directive
+         * @name bbDataMartReport
+         */
         .directive('bbDataMartReport', ['bbDataMartReportService', function (bbDataMartReportService) {
             return {
                 replace: true,
@@ -114975,6 +114835,10 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
                 controller: bbDataMartReportService.controller
             };
         }])
+        /**
+         * The DataMart Dashboard directive
+         * @name bbDataMartDashboard
+         */
         .directive('bbDataMartDashboard', ['bbDataMartReportService', function (bbDataMartReportService) {
             return {
                 replace: true,
@@ -114990,6 +114854,10 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
                 controller: bbDataMartReportService.dashboardController
             };
         }])
+        /**
+         * The directive that handles dynamic page events
+         * @name bbDataMartResponsiveDashboard
+         */
         .directive('bbDataMartResponsiveDashboard', ['bbDataMartReportService', function (bbDataMartReportService) {
             return {
                 replace: true,
