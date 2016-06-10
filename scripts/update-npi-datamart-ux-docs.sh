@@ -4,7 +4,7 @@ set -e
 echo -e "Starting to update npi-datamart-ux docs"
 
 # This is normally master
-branch="carcher"
+branch="master"
 
 # Clones the npi-datamart repo into a "docs/" folder
 git clone --quiet --branch=$branch https://${GH_TOKEN}@github.com/blackbaud/npi-datamart.git docs > /dev/null
