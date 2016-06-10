@@ -1,7 +1,7 @@
 # Fail the build if this step fails
 set -e
 
-echo -e "Starting to update npi-datamart-ux docs\n"
+echo -e "Starting to update npi-datamart-ux docs"
 
 # This is normally master
 branch="carcher"
@@ -20,7 +20,7 @@ git config --global user.name "Blackbaud Sky Build User"
 cd docs
 git add -f .
 if [ -z "$(git status --porcelain)" ]; then
-  echo -e "No changes to commit to npi-datamart."
+  echo -e "No changes to commit to npi-datamart.\n"
 else
   git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed to npi-datamart"
   git push -fq origin $branch > /dev/null
@@ -31,7 +31,7 @@ fi
 # Only run for a release
 if [[ "$IS_RELEASE" == "true" && "$IS_PRERELEASE" == "false" ]]; then
 
-  echo -e "Starting to update npi-datamart stache site\n"
+  echo -e "Starting to update npi-datamart stache site"
 
   cd ..
 
