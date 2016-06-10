@@ -14,16 +14,16 @@ Authentication module for NPI DataMart UX
 ## report~bbDataMartReport
 The DataMart Report directive
 
-**Kind**: inner property of <code>[report](#npi-datamart.module_report)</code>  
+**Kind**: directive of <code>[report](#npi-datamart.module_report)</code>  
 <a name="npi-datamart.module_report..bbDataMartDashboard"></a>
 
 ## report~bbDataMartDashboard
 The DataMart Dashboard directive
 
-**Kind**: inner property of <code>[report](#npi-datamart.module_report)</code>  
+**Kind**: directive of <code>[report](#npi-datamart.module_report)</code>  
 <a name="npi-datamart.module_report..bbDataMartResponsiveDashboard"></a>
 
 ## report~bbDataMartResponsiveDashboard
 The directive that handles dynamic page events
 
-**Kind**: inner property of <code>[report](#npi-datamart.module_report)</code>  
+**Kind**: directive of <code>[report](#npi-datamart.module_report)</code>  
