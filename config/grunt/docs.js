@@ -25,6 +25,14 @@ module.exports = function (grunt, env, utils) {
                 ]
             }
         },
+        ngdocs: {
+            reports: {
+                src: ['js/src/datamartreport/datamartreport.js'],
+            },
+            options: {
+                dest: 'js/src/datamartreport/docs'
+            }
+        },
         // Renamed the original grunt-contrib-watch task
         watchRenamed: {
             docs: {
@@ -59,20 +67,23 @@ module.exports = function (grunt, env, utils) {
             frontmatter = grunt.file.read(pathFrontmatter);
             content = grunt.file.read(pathMarkdown);
             lines = content.split('\n');
-            
             frontmatter = frontmatter.replace('<<order>>', order);
             order += 10;
-            frontmatter = frontmatter.replace('<<component>>', component);
-            frontmatter = frontmatter.replace('<<desc>>', lines[3]);
+            frontmatter = frontmatter.replace('<<component>>', lines[3]);
+            frontmatter = frontmatter.replace('<<desc>>', lines[4]);
+            lines[3] = '# '.concat(lines[3]);
+            lines.splice(2, 1);
+            content = lines.join('\n');
             newFile = frontmatter.concat(content);
             
             utils.log('Writing markdown file to stache/' + component + ' directory.');
             
             grunt.file.write('stache/' + component + '/index.md', newFile);
+            grunt.file.write(pathMarkdown, content);
         });
     });
    
     // Main docs task
-    grunt.registerTask('docs', ['jsdoc2md', 'prepareDocs']);
+    grunt.registerTask('docs', ['jsdoc2md', /*'ngdocs',*/ 'prepareDocs']);
 };
 

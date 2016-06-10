@@ -3,9 +3,11 @@
 
 (function () {
     'use strict';
+    //YAML Title, YAML Description, JSDoc Heading
     /**
-     * @module npi-datamart.BBDataMartAPI
-     * @description Service module for NPI Datamart
+     * DataMart API
+     * API module for NPI DataMart UX
+     * @module npi-datamart.api
      */
     angular.module('npi-datamart.api', ['npi-datamart.authentication'])
         .factory('BBDataMartAPI', ['$q', '$timeout', '$http', function ($q, $timeout, $http) {
@@ -51,7 +53,7 @@
                             options.getDataMartId().then(resolve).catch(reject);
                         }
                     });
-                }
+                };
 
                 /**
                  * Get the root of the API
@@ -60,13 +62,13 @@
                  */
                 self.getApiRoot = function getApiRoot() {
                     return authentication.getDomain();
-                }
+                };
 
                 function getAPIContext() {
                     if (!apiContextPromise) {
                         apiContextPromise = $q(function (resolve, reject) {
-                            getApiRoot().then(function (apiRoot) {
-                                getDataMartId().then(function (dataMartId) {
+                            self.getApiRoot().then(function (apiRoot) {
+                                self.getDataMartId().then(function (dataMartId) {
                                     resolve({
                                         apiRoot: apiRoot,
                                         dataMartId: dataMartId
@@ -474,7 +476,7 @@
                  */
                 self.platformIsAvailable = function platformIsAvailable() {
                     return $q(function (resolve) {
-                        getApiRoot().then(function (apiRoot) {
+                        self.getApiRoot().then(function (apiRoot) {
                             $http.get(apiRoot + '/gdc/ping', {
                                 withCredentials: true
                             }).then(function () {
@@ -484,7 +486,7 @@
                             });
                         });
                     });
-                }
+                };
 
                 /**
                  * Gets the object URI from an identifier

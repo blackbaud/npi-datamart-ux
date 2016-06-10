@@ -3,9 +3,11 @@
 
 (function () {
     'use strict';
+    //YAML Title, YAML Description, JSDoc Heading
     /**
+     * DataMart Authentication
+     * Authentication module for NPI DataMart UX
      * @module npi-datamart.authentication
-     * @description Authentication module for NPI Datamart
      */
     angular.module('npi-datamart.authentication', [])
         .factory('BBDataMartAuthentication', ['$q', '$http', '$rootScope', function ($q, $http, $rootScope) {
@@ -53,7 +55,7 @@
                             options.getDomain().then(resolve).catch(reject);
                         }
                     });
-                }
+                };
                 
                 function getSSOProvider() {
                     return $q(function (resolve, reject) {
@@ -69,7 +71,7 @@
                     return $q(function (resolve, reject) {
                         var tasks = [
                             options.getSSOToken(),
-                            getDomain(),
+                            self.getDomain(),
                             getSSOProvider()
                         ];
 
@@ -104,7 +106,7 @@
 
                 function getTemporaryToken() {
                     return $q(function (resolve, reject) {
-                        getDomain().then(function (domain) {
+                        self.getDomain().then(function (domain) {
                             var getTokenUrl = domain + '/gdc/account/token';
                             $http.get(getTokenUrl, { withCredentials: true }).then(function () {
                                 resolve();
@@ -200,7 +202,7 @@
                     }
 
                     return ensureAuthenticatedPromise;
-                }
+                };
 
                 /**
                  * Ensures that the API is currently authenticated and will ensure the API maintains authentication tokens until the specified scope is destroyed
@@ -219,11 +221,11 @@
 
                     //Return a promise once authentication has been ensured.
                     return $q(function (resolve, reject) {
-                        ensureAuthenticated().then(function () {
+                        self.ensureAuthenticated().then(function () {
                             resolve();
                         }).catch(reject);
                     });
-                }
+                };
 
             };
 

@@ -1,29 +1,28 @@
-<a name="npi-datamart.module_BBDataMartAPI"></a>
+<a name="npi-datamart.module_api"></a>
 
-# BBDataMartAPI
-Service module for NPI Datamart
+# DataMart APIAPI module for NPI DataMart UX
 
 
-* [BBDataMartAPI](#npi-datamart.module_BBDataMartAPI)
-    * [~BBDataMartAPI(options)](#npi-datamart.module_BBDataMartAPI..BBDataMartAPI) ⇒ <code>BBDataMartAPI</code>
-    * [~getDataMartId()](#npi-datamart.module_BBDataMartAPI..getDataMartId) ⇒ <code>CallExpression</code>
-    * [~getApiRoot()](#npi-datamart.module_BBDataMartAPI..getApiRoot) ⇒ <code>CallExpression</code>
-    * [~platformIsAvailable()](#npi-datamart.module_BBDataMartAPI..platformIsAvailable) ⇒ <code>CallExpression</code>
-    * [~getObjectUriFromIdentifier(identifier)](#npi-datamart.module_BBDataMartAPI..getObjectUriFromIdentifier) ⇒ <code>CallExpression</code>
-    * [~executeReport(reportIdentifier, filters)](#npi-datamart.module_BBDataMartAPI..executeReport) ⇒ <code>CallExpression</code>
-    * [~getHeadlineReportData(reportIdentifier, filters)](#npi-datamart.module_BBDataMartAPI..getHeadlineReportData) ⇒ <code>CallExpression</code>
-    * [~getHeadlineReportDrillContext(reportIdentifier, filters)](#npi-datamart.module_BBDataMartAPI..getHeadlineReportDrillContext) ⇒ <code>CallExpression</code>
-    * [~loadDrillInRecordIds(drillContext)](#npi-datamart.module_BBDataMartAPI..loadDrillInRecordIds) ⇒ <code>CallExpression</code>
-    * [~getLatestReportDefinition(reportIdentifier)](#npi-datamart.module_BBDataMartAPI..getLatestReportDefinition) ⇒ <code>CallExpression</code>
-    * [~getObjectDefinitionByUri(objectUri)](#npi-datamart.module_BBDataMartAPI..getObjectDefinitionByUri) ⇒ <code>CallExpression</code>
-    * [~maintainAuthentication(scope)](#npi-datamart.module_BBDataMartAPI..maintainAuthentication) ⇒ <code>CallExpression</code>
+* [api](#npi-datamart.module_api)
+    * [~BBDataMartAPI(options)](#npi-datamart.module_api..BBDataMartAPI) ⇒ <code>BBDataMartAPI</code>
+    * [~getDataMartId()](#npi-datamart.module_api..getDataMartId) ⇒ <code>CallExpression</code>
+    * [~getApiRoot()](#npi-datamart.module_api..getApiRoot) ⇒ <code>CallExpression</code>
+    * [~platformIsAvailable()](#npi-datamart.module_api..platformIsAvailable) ⇒ <code>CallExpression</code>
+    * [~getObjectUriFromIdentifier(identifier)](#npi-datamart.module_api..getObjectUriFromIdentifier) ⇒ <code>CallExpression</code>
+    * [~executeReport(reportIdentifier, filters)](#npi-datamart.module_api..executeReport) ⇒ <code>CallExpression</code>
+    * [~getHeadlineReportData(reportIdentifier, filters)](#npi-datamart.module_api..getHeadlineReportData) ⇒ <code>CallExpression</code>
+    * [~getHeadlineReportDrillContext(reportIdentifier, filters)](#npi-datamart.module_api..getHeadlineReportDrillContext) ⇒ <code>CallExpression</code>
+    * [~loadDrillInRecordIds(drillContext)](#npi-datamart.module_api..loadDrillInRecordIds) ⇒ <code>CallExpression</code>
+    * [~getLatestReportDefinition(reportIdentifier)](#npi-datamart.module_api..getLatestReportDefinition) ⇒ <code>CallExpression</code>
+    * [~getObjectDefinitionByUri(objectUri)](#npi-datamart.module_api..getObjectDefinitionByUri) ⇒ <code>CallExpression</code>
+    * [~maintainAuthentication(scope)](#npi-datamart.module_api..maintainAuthentication) ⇒ <code>CallExpression</code>
 
-<a name="npi-datamart.module_BBDataMartAPI..BBDataMartAPI"></a>
+<a name="npi-datamart.module_api..BBDataMartAPI"></a>
 
-## BBDataMartAPI~BBDataMartAPI(options) ⇒ <code>BBDataMartAPI</code>
+## api~BBDataMartAPI(options) ⇒ <code>BBDataMartAPI</code>
 An object for interacting with the DataMart APIs
 
-**Kind**: inner method of <code>[BBDataMartAPI](#npi-datamart.module_BBDataMartAPI)</code>  
+**Kind**: inner method of <code>[api](#npi-datamart.module_api)</code>  
 **Returns**: <code>BBDataMartAPI</code> - A class containing methods to handle interactions with the DataMart APIs  
 **Params**
 
@@ -35,44 +34,44 @@ An object for interacting with the DataMart APIs
     - [.translateFilters] <code>function</code> - A funtion returning a promise that returns a filters object based on a provided filters object.  This is a hook to allow custom filters translation.
     - [.translateAttributeName] <code>function</code> - A function that returns a translated attribute name based on a provided attribute name.
 
-<a name="npi-datamart.module_BBDataMartAPI..getDataMartId"></a>
+<a name="npi-datamart.module_api..getDataMartId"></a>
 
-## BBDataMartAPI~getDataMartId() ⇒ <code>CallExpression</code>
+## api~getDataMartId() ⇒ <code>CallExpression</code>
 Gets the datamart ID
 
-**Kind**: inner method of <code>[BBDataMartAPI](#npi-datamart.module_BBDataMartAPI)</code>  
+**Kind**: inner method of <code>[api](#npi-datamart.module_api)</code>  
 **Returns**: <code>CallExpression</code> - A promise to return the datamart ID as a string  
-<a name="npi-datamart.module_BBDataMartAPI..getApiRoot"></a>
+<a name="npi-datamart.module_api..getApiRoot"></a>
 
-## BBDataMartAPI~getApiRoot() ⇒ <code>CallExpression</code>
+## api~getApiRoot() ⇒ <code>CallExpression</code>
 Get the root of the API
 
-**Kind**: inner method of <code>[BBDataMartAPI](#npi-datamart.module_BBDataMartAPI)</code>  
+**Kind**: inner method of <code>[api](#npi-datamart.module_api)</code>  
 **Returns**: <code>CallExpression</code> - A promise to return the root URL of the API as a string  
-<a name="npi-datamart.module_BBDataMartAPI..platformIsAvailable"></a>
+<a name="npi-datamart.module_api..platformIsAvailable"></a>
 
-## BBDataMartAPI~platformIsAvailable() ⇒ <code>CallExpression</code>
+## api~platformIsAvailable() ⇒ <code>CallExpression</code>
 Check if the platform is available.
 
-**Kind**: inner method of <code>[BBDataMartAPI](#npi-datamart.module_BBDataMartAPI)</code>  
+**Kind**: inner method of <code>[api](#npi-datamart.module_api)</code>  
 **Returns**: <code>CallExpression</code> - A promise for if the platform is available as a boolean  
-<a name="npi-datamart.module_BBDataMartAPI..getObjectUriFromIdentifier"></a>
+<a name="npi-datamart.module_api..getObjectUriFromIdentifier"></a>
 
-## BBDataMartAPI~getObjectUriFromIdentifier(identifier) ⇒ <code>CallExpression</code>
+## api~getObjectUriFromIdentifier(identifier) ⇒ <code>CallExpression</code>
 Gets the object URI from an identifier
 
-**Kind**: inner method of <code>[BBDataMartAPI](#npi-datamart.module_BBDataMartAPI)</code>  
+**Kind**: inner method of <code>[api](#npi-datamart.module_api)</code>  
 **Returns**: <code>CallExpression</code> - A promise to return the relative URI for the datamart report or dashboard  
 **Params**
 
 - identifier <code>string</code> - Identifier for a datamart report or dashboard
 
-<a name="npi-datamart.module_BBDataMartAPI..executeReport"></a>
+<a name="npi-datamart.module_api..executeReport"></a>
 
-## BBDataMartAPI~executeReport(reportIdentifier, filters) ⇒ <code>CallExpression</code>
+## api~executeReport(reportIdentifier, filters) ⇒ <code>CallExpression</code>
 Execites a report based on an identifier and filters
 
-**Kind**: inner method of <code>[BBDataMartAPI](#npi-datamart.module_BBDataMartAPI)</code>  
+**Kind**: inner method of <code>[api](#npi-datamart.module_api)</code>  
 **Returns**: <code>CallExpression</code> - A promise to return the result of the report as an Object  
 **Params**
 
@@ -82,12 +81,12 @@ Execites a report based on an identifier and filters
     - [.attributeDisplayForm] <code>string</code> - The display form of the attribute that will be filtered. This is required if you do not provide attribute
     - .value <code>string</code> - The filter value
 
-<a name="npi-datamart.module_BBDataMartAPI..getHeadlineReportData"></a>
+<a name="npi-datamart.module_api..getHeadlineReportData"></a>
 
-## BBDataMartAPI~getHeadlineReportData(reportIdentifier, filters) ⇒ <code>CallExpression</code>
+## api~getHeadlineReportData(reportIdentifier, filters) ⇒ <code>CallExpression</code>
 Executes a report that returns a single data value
 
-**Kind**: inner method of <code>[BBDataMartAPI](#npi-datamart.module_BBDataMartAPI)</code>  
+**Kind**: inner method of <code>[api](#npi-datamart.module_api)</code>  
 **Returns**: <code>CallExpression</code> - A promise to return the result of the report as a single string  
 **Params**
 
@@ -97,12 +96,12 @@ Executes a report that returns a single data value
     - [.attributeDisplayForm] <code>string</code> - The display form of the attribute that will be filtered. This is required if you do not provide attribute
     - .value <code>string</code> - The filter value
 
-<a name="npi-datamart.module_BBDataMartAPI..getHeadlineReportDrillContext"></a>
+<a name="npi-datamart.module_api..getHeadlineReportDrillContext"></a>
 
-## BBDataMartAPI~getHeadlineReportDrillContext(reportIdentifier, filters) ⇒ <code>CallExpression</code>
+## api~getHeadlineReportDrillContext(reportIdentifier, filters) ⇒ <code>CallExpression</code>
 Gets an object that can be used to drill into the context of a headline report
 
-**Kind**: inner method of <code>[BBDataMartAPI](#npi-datamart.module_BBDataMartAPI)</code>  
+**Kind**: inner method of <code>[api](#npi-datamart.module_api)</code>  
 **Returns**: <code>CallExpression</code> - A promise that will return an object to be used to drill into the context of a headline report  
 **Params**
 
@@ -112,45 +111,45 @@ Gets an object that can be used to drill into the context of a headline report
     - [.attributeDisplayForm] <code>string</code> - The display form of the attribute that will be filtered. This is required if you do not provide attribute
     - .value <code>string</code> - The filter value
 
-<a name="npi-datamart.module_BBDataMartAPI..loadDrillInRecordIds"></a>
+<a name="npi-datamart.module_api..loadDrillInRecordIds"></a>
 
-## BBDataMartAPI~loadDrillInRecordIds(drillContext) ⇒ <code>CallExpression</code>
+## api~loadDrillInRecordIds(drillContext) ⇒ <code>CallExpression</code>
 Load the drilled in records from a context
 
-**Kind**: inner method of <code>[BBDataMartAPI](#npi-datamart.module_BBDataMartAPI)</code>  
+**Kind**: inner method of <code>[api](#npi-datamart.module_api)</code>  
 **Returns**: <code>CallExpression</code> - A promise to return the drilled in records object  
 **Params**
 
 - drillContext <code>Object</code> - Context from the getHeadlineReportDrillContext or from a datamart directive
 
-<a name="npi-datamart.module_BBDataMartAPI..getLatestReportDefinition"></a>
+<a name="npi-datamart.module_api..getLatestReportDefinition"></a>
 
-## BBDataMartAPI~getLatestReportDefinition(reportIdentifier) ⇒ <code>CallExpression</code>
+## api~getLatestReportDefinition(reportIdentifier) ⇒ <code>CallExpression</code>
 Gets the latest report definition
 
-**Kind**: inner method of <code>[BBDataMartAPI](#npi-datamart.module_BBDataMartAPI)</code>  
+**Kind**: inner method of <code>[api](#npi-datamart.module_api)</code>  
 **Returns**: <code>CallExpression</code> - A promise to return the most recent definition of the report as an object  
 **Params**
 
 - reportIdentifier <code>string</code> - Identifier for the report
 
-<a name="npi-datamart.module_BBDataMartAPI..getObjectDefinitionByUri"></a>
+<a name="npi-datamart.module_api..getObjectDefinitionByUri"></a>
 
-## BBDataMartAPI~getObjectDefinitionByUri(objectUri) ⇒ <code>CallExpression</code>
+## api~getObjectDefinitionByUri(objectUri) ⇒ <code>CallExpression</code>
 Get an object definition by a URI
 
-**Kind**: inner method of <code>[BBDataMartAPI](#npi-datamart.module_BBDataMartAPI)</code>  
+**Kind**: inner method of <code>[api](#npi-datamart.module_api)</code>  
 **Returns**: <code>CallExpression</code> - A promise to return the object based on a URI  
 **Params**
 
 - objectUri <code>string</code> - URI of the object
 
-<a name="npi-datamart.module_BBDataMartAPI..maintainAuthentication"></a>
+<a name="npi-datamart.module_api..maintainAuthentication"></a>
 
-## BBDataMartAPI~maintainAuthentication(scope) ⇒ <code>CallExpression</code>
+## api~maintainAuthentication(scope) ⇒ <code>CallExpression</code>
 Maintains the authentication
 
-**Kind**: inner method of <code>[BBDataMartAPI](#npi-datamart.module_BBDataMartAPI)</code>  
+**Kind**: inner method of <code>[api](#npi-datamart.module_api)</code>  
 **Returns**: <code>CallExpression</code> - A promise to let you know when the authentication is maintained  
 **Params**
 
