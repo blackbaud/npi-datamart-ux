@@ -13,11 +13,11 @@ module.exports = function (grunt, env, utils) {
                     {
                         src: 'js/src/datamartauthentication/datamartauthentication.js',
                         dest: 'js/src/datamartauthentication/docs/datamartauthentication.md'
+                    },
+                    {
+                        src: 'js/src/datamartapi/datamartapi.js',
+                        dest: 'js/src/datamartapi/docs/datamartapi.md'
                     }//,
-                    //{
-                    //    src: 'js/src/datamartapi/datamartapi.js',
-                    //    dest: 'js/src/datamartapi/docs/datamartapi.md'
-                    //},
                     //{
                     //    src: 'js/src/datamartreport/datamartreport.js',
                     //    dest: 'js/src/datamartreport/docs/datamartreport.md'
@@ -59,16 +59,19 @@ module.exports = function (grunt, env, utils) {
             frontmatter = grunt.file.read(pathFrontmatter);
             content = grunt.file.read(pathMarkdown);
             lines = content.split('\n');
-            
             frontmatter = frontmatter.replace('<<order>>', order);
             order += 10;
-            frontmatter = frontmatter.replace('<<component>>', component);
-            frontmatter = frontmatter.replace('<<desc>>', lines[3]);
+            frontmatter = frontmatter.replace('<<component>>', lines[3]);
+            frontmatter = frontmatter.replace('<<desc>>', lines[4]);
+            lines[3] = '# '.concat(lines[3]);
+            lines.splice(2, 1);
+            content = lines.join('\n');
             newFile = frontmatter.concat(content);
             
             utils.log('Writing markdown file to stache/' + component + ' directory.');
             
             grunt.file.write('stache/' + component + '/index.md', newFile);
+            grunt.file.write(pathMarkdown, content);
         });
     });
    

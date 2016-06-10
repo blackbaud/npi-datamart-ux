@@ -52,7 +52,12 @@
             "extraFonts": { 'googlefonts': ['Oswald', 'Open Sans'] }
         }
     };
-
+    //YAML Title, YAML Description, JSDoc Heading
+    /**
+     * DataMart Report
+     * Authentication module for NPI DataMart UX  
+     * @module npi-datamart.report
+     */
     angular.module('npi-datamart.report', ['npi-datamart.templates', 'npi-datamart.api', 'sky'])
         .constant('bbDataMartReportConfiguration', {
             processFilters: null, //Optional hook for preprocessing of filters
@@ -280,6 +285,10 @@
                 dashboardLink: link
             };
         }])
+        /**
+         * The DataMart Report directive
+         * @name bbDataMartReport
+         */
         .directive('bbDataMartReport', ['bbDataMartReportService', function (bbDataMartReportService) {
             return {
                 replace: true,
@@ -296,6 +305,10 @@
                 controller: bbDataMartReportService.controller
             };
         }])
+        /**
+         * The DataMart Dashboard directive
+         * @name bbDataMartDashboard
+         */
         .directive('bbDataMartDashboard', ['bbDataMartReportService', function (bbDataMartReportService) {
             return {
                 replace: true,
@@ -311,6 +324,10 @@
                 controller: bbDataMartReportService.dashboardController
             };
         }])
+        /**
+         * The directive that handles dynamic page events
+         * @name bbDataMartResponsiveDashboard
+         */
         .directive('bbDataMartResponsiveDashboard', ['bbDataMartReportService', function (bbDataMartReportService) {
             return {
                 replace: true,
