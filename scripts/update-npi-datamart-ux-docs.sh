@@ -26,32 +26,15 @@ else
   git push -fq origin $branch > /dev/null
   echo -e "npi-datamart successfully updated.\n"
 
-fi
+  # Only run for a release
+  if [[ "$IS_RELEASE" == "true" && "$IS_PRERELEASE" == "false" ]]; then
 
-# Only run for a release
-if [[ "$IS_RELEASE" == "true" && "$IS_PRERELEASE" == "false" ]]; then
-
-  echo -e "Starting to update npi-datamart stache site"
-
-  cd ..
-
-  # Clones npi-datamart Stache repo into a "web/" folder 
-  git clone --quiet --branch=master http://npi-datamart.scm.docs.blackbaudhosting.com/npi-datamart.git web > /dev/null
-
-  # Copy jsdoc output
-  cp -rf stache/. web/content/npi-datamart-ux
-
-  # Copy integrity hashes
-#  cp -f dist/sri.json docs/npi-datamart-sri/npi-datamart-$RELEASE_VERSION.json
-
-  cd web
-  git add -f .
-  if [ -z "$(git status --porcelain)" ]; then
-    echo -e "No changes to commit to npi-datamart stache."
-  else
-    git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed $RELEASE_VERSION to npi-datamart stache"
-    git push -fq website master > /dev/null
+    echo -e "Starting to update npi-datamart stache site"
+    git remote add website http://npi-datamart.scm.docs.blackbaudhosting.com/npi-datamart.git
+    git push -fq website $branch > /dev/null  
+    echo -e "NPI Datamart UX Docs successfully updated.\n"
+    
   fi
+
 fi
-  
-echo -e "NPI Datamart UX Docs successfully updated.\n"
+
