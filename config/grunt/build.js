@@ -126,7 +126,6 @@ module.exports = function (grunt, env, utils) {
         utils.run({
             'build': false,
             'docs': false,
-            'connect:docs': true,
             'karma:watch:start': false,
             'watchRenamed': true
         });
@@ -137,7 +136,6 @@ module.exports = function (grunt, env, utils) {
         utils.run({
             'scripts': true,
             'karma:watch:run': false,
-            'copy:docs': false,
             'docs': true
         });
     });

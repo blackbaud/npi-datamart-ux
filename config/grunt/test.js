@@ -12,13 +12,6 @@ module.exports = function (grunt, env, utils) {
                 ]
             }
         },
-        connect: {
-            webdrivertest: {
-                options: {
-                    port: 8000
-                }
-            }
-        },
         jshint: {
             options: {
                 jshintrc: true
@@ -55,7 +48,6 @@ module.exports = function (grunt, env, utils) {
     });
 
     grunt.registerTask('lint', ['jshint', 'jscs']);
-    //grunt.registerTask('lint', ['jshint']);
 
     grunt.registerTask('unittest', function () {
         var tasks = [];

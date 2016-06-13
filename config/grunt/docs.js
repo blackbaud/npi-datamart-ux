@@ -31,7 +31,7 @@ module.exports = function (grunt, env, utils) {
                 options: {
                     livereload: true
                 },
-                files: ['<%= npiux.paths.src %>*/docs/*.*'],
+                files: ['<%= npiux.paths.src %>datamartreport/docs/*.*'],
                 tasks: ['docs']
             }
         }
@@ -57,8 +57,8 @@ module.exports = function (grunt, env, utils) {
             pathMarkdown = grunt.config.get('npiux.paths.src') + filename;
             pathFrontmatter = grunt.config.get('npiux.paths.src') + 'docs-header.tmpl';
             frontmatter = grunt.file.read(pathFrontmatter);
-            content = grunt.file.read(pathMarkdown).replace('\r', '\n');
-            lines = content.split('\n');
+            content = grunt.file.read(pathMarkdown).replace(/\r\n/g, '\n'); // Standardize Reports MD file
+            lines = content.split(/[\r\n]/); // Find stray CR character
             frontmatter = frontmatter.replace('<<order>>', order);
             order += 10;
             if (order > 30) { // Don't modify Reports MD
@@ -70,13 +70,14 @@ module.exports = function (grunt, env, utils) {
                 lines[3] = '# ' + lines[3];
                 lines.splice(2, 1);
                 content = lines.join('\n');
+                grunt.file.write(pathMarkdown, content);
             }
             newFile = frontmatter.concat(content);
             
             utils.log('Writing markdown file to stache/' + component + ' directory.');
 
             grunt.file.write('stache/' + component + '/index.md', newFile);
-            grunt.file.write(pathMarkdown, content);
+            
         });
     });
    
