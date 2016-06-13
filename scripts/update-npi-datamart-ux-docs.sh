@@ -25,5 +25,16 @@ else
   git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed to npi-datamart"
   git push -fq origin $branch > /dev/null
   echo -e "npi-datamart successfully updated.\n"
+
+  # Only run for a release
+  if [[ "$IS_RELEASE" == "true" && "$IS_PRERELEASE" == "false" ]]; then
+
+    echo -e "Starting to update npi-datamart stache site"
+    git remote add website http://npi-datamart.scm.docs.blackbaudhosting.com/npi-datamart.git
+    git push -fq website $branch > /dev/null  
+    echo -e "NPI Datamart UX Docs successfully updated.\n"
+    
+  fi
+
 fi
 

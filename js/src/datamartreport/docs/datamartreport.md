@@ -1,7 +1,7 @@
 <a name="npi-datamart.module_report"></a>
 
 # DataMart Report
-Module for handling embedding dashboards and reports in BB pages.
+Authentication module for NPI DataMart UX
 
 
 * [report](#npi-datamart.module_report)
