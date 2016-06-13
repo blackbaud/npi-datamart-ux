@@ -10,7 +10,7 @@ before_install:
   - export LAST_COMMIT_MESSAGE=`git log --format=%B -n 1 $TRAVIS_COMMIT`
   - export RELEASE_VERSION="${LAST_COMMIT_MESSAGE#Release v}"
   - export RELEASE_COMMENT="^Release v[0-9]+\.[0-9]+\.[0-9]+"
-  - export RELEASE_BRANCH="master""
+  - export RELEASE_BRANCH="^(master|rc-)"
   - if [[ "$TRAVIS_PULL_REQUEST" == "false" && $TRAVIS_BRANCH =~ $RELEASE_BRANCH && $LAST_COMMIT_MESSAGE =~ $RELEASE_COMMENT ]]; then export IS_RELEASE=true; else export IS_RELEASE=false; fi
 
   - rvm install ruby-2.3.0
