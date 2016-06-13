@@ -1,7 +1,7 @@
 {
   "name": "blackbaud-npi-datamart-ux",
   "description": "Library for embedding interactive reports in BB dashboards. This Library is currently under construction.",
-  "version": "0.3.4",
+  "version": "1.0.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/blackbaud/npi-datamart-ux.git"

@@ -1,7 +1,7 @@
 <a name="npi-datamart.module_report"></a>
 
 # DataMart Report
-Module for handling embedding dashboards and reports in BB pages.
+Module for handling embedding dashboards and reports in BB pages. This page is currently WIP and will be updated soon.
 
 
 * [report](#npi-datamart.module_report)
