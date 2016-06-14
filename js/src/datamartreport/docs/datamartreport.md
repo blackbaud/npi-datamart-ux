@@ -39,7 +39,7 @@ Directive for displaying a report dashboard on a page. When loaded, the directiv
 
 The embedded dashboard will have Sky NPI CSS styles injected to use a Sky look and feel.
 
-The directive also supports embedding help links directly in the dashboards. Clicking these links will cause the Help flyout to open to a specified topic. To embed a help link, use the "Add Web Content" feature in the dashboard designer.  For the url, use `https://www.blackbaud.com/files/support/helpfiles/npi/npi_help.html?helpkey={{INSERT HELP KEY}}.html`.  
+The directive also supports embedding help links directly in the dashboards. Clicking these links will cause the Help flyout to open to a specified topic. To embed a help link, use the "Add Web Content" feature in the dashboard designer.  For the url, use `https://www.blackbaud.com/files/support/helpfiles/npi/npi_help.html?helpkey=<<INSERT HELP KEY>>.html`.  
 
 * `bb-data-mart-dashboard` - Displays a dashboard as an embedded iFrame.
     * `bb-data-mart-dashboard-id` - The report ID of the dashboard to be displayed.
