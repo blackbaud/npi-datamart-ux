@@ -44,15 +44,18 @@ The directive also supports embedding help links directly in the dashboards. Cli
 * `bb-data-mart-dashboard` - Displays a dashboard as an embedded iFrame.
     * `bb-data-mart-dashboard-id` - The report ID of the dashboard to be displayed.
     * `bb-data-mart-dashboard-filters` - *(Optional.)* An object describing filters to be applied to the dashboard using the querystring URL filters feature of dahboards. The keys and values of this object will be applied as filters.  The `bbDataMartReportConfiguration.processFilters` function, if defined, will be executed on the filters object before it is used. 
-    * `bb-data-mart-dashboard-drill-handler` - *(Optional.)* Overrides the `bbDataMartReportConfiguration.processFilters` function for a specific directive.  
+    * `bb-data-mart-dashboard-drill-handler` - *(Optional.)* Overrides the `bbDataMartReportConfiguration.processFilters` function for a specific directive.
+    * `bb-data-mart-dashboard-no-chrome` - *(Optional.)* If true, does not include the dashboard chrome for saving filters and exporting as PDF.
     * `width` - *(Optional.)* Sets the width attribute of the iFrame. 
 
 <a name="npi-datamart.module_report..bbDataMartResponsiveDashboard"></a>
 ## bbDataMartResponsiveDashboard
 Directive for creating the effect of reponsive design for dashboards. Data Mart dashboards currently have a fixed width design. This directive provides responsive design by allowing different dashboards to be used at different breakpoints.  A collection of dashboards can be designed to show the same or similar reports in different layouts for the different breakpoints, and this directive will display the correct dashboard based on the size of the device.  If the device width changes (for example, due to changing orientation) the dashboard can change as well.
 
+Note that when using a responsive dashboard, the `bb-data-mart-dashboard-no-chrome` option is used to hide the chrome when not viewing on a large (desktop) device.
+
 * `bb-data-mart-responsive-dashboard` - Displays a dashboard as an embedded iFrame, choosing the correct dashboard based on the width of the device.
     * `bb-data-mart-responsive-dashboard-xs` - The dashboard id of the dashboard to display on extra small devices (phone).
     * `bb-data-mart-responsive-dashboard-sm` - The dashboard id of the dashboard to display on small devices (portait tablets).
-    * `bb-data-mart-responsive-dashboard-lg` - The dashboard id of the dashboard to display on large devices (landscape tablets and desktop).
+    * `bb-data-mart-responsive-dashboard-lg` - The dashboard id of the dashboard to display on medium (landscape tablets) and large devices (desktop).  There is no distinction between medium and large devices because the maximum size of a dashboard already fits on the medium device width.
     * `bb-data-mart-responsive-dashboard-drill-handler` - *(Optional.)* Overrides the `bbDataMartReportConfiguration.processFilters` function for a specific directive.

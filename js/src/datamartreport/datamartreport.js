@@ -65,7 +65,7 @@
             drillHandler: null, //Optionally set to function to handle drill events from reports
             processFilters: null //Optional hook for preprocessing of filters
         })
-        .service('bbDataMartReportService', ['bbDataMartReportConfiguration', '$sce', '$window', '$q', '$timeout', 'bbMediaBreakpoints', 'bbHelp', function (bbDataMartReportConfiguration, $sce, $window, $q, $timeout, bbMediaBreakpoints, bbHelp) {
+        .service('bbDataMartReportService', ['bbDataMartReportConfiguration', '$sce', '$window', '$q', '$timeout', 'bbHelp', function (bbDataMartReportConfiguration, $sce, $window, $q, $timeout, bbHelp) {
             var windowIsiOS;
 
             function isiOS() {
@@ -146,7 +146,7 @@
                                         reportUrl += ",ui.drill";
                                     }
 
-                                    if (isDashboard && !bbMediaBreakpoints.getCurrent().lg) {
+                                    if ($scope.noChrome) {
                                         reportUrl += "&nochrome=true";
                                     }
 
@@ -180,12 +180,8 @@
 
                     $scope.$watch('filters', setiFrameUrl, true);
 
-                    function handleMediaBreakpoint() {
-                        setiFrameUrl();
-                    }
-
-                    bbMediaBreakpoints.register(handleMediaBreakpoint);
-
+                    setiFrameUrl();
+                    
                     if (isiOS()) {
                         //When the orientation changes on iOS, there is a GoodData bug that causes the report to not be resized correctly.  Reset
                         //the iFrame URL to force it to refresh.
@@ -213,7 +209,6 @@
 
                     $scope.$on('$destroy', function () {
                         windowEl.off('orientationchange.' + windowEventId);
-                        bbMediaBreakpoints.unregister(handleMediaBreakpoint);
                     });
                 });
             }
@@ -318,6 +313,7 @@
                     embeddedObjectId: '=bbDataMartDashboardId',
                     filters: '=bbDataMartDashboardFilters',
                     drillHandler: '=bbDataMartDashboardDrillHandler',
+                    noChrome: '=bbDataMartDashboardNoChrome',
                     frameWidth: '@width'
                 },
                 link: bbDataMartReportService.dashboardLink,

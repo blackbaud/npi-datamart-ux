@@ -83,9 +83,13 @@
                     return agent;
                 });
             }
-            $window.navigator = {
-                userAgent: agent
-            };
+            try {
+                $window.navigator = {
+                    userAgent: agent
+                };
+            } catch (e) {
+                //Some browsers fail on setting the navigator above, but others require it.
+            }
         }
 
         it('Data mart reports should maintain authentication with GoodData while it is on the page', function () {
