@@ -80,7 +80,7 @@
                 return bbDataMartReportConfiguration.api;
             }
 
-            function emeddedObjectController($scope, isDashboard) {
+            function emeddedObjectController($scope, isDashboard, isResponsive) {
                 var api = getAPI();
 
                 api.maintainAuthentication($scope).then(function () {
@@ -146,7 +146,7 @@
                                         reportUrl += ",ui.drill";
                                     }
 
-                                    if (isDashboard && !bbMediaBreakpoints.getCurrent().lg) {
+                                    if (isResponsive && isDashboard && !bbMediaBreakpoints.getCurrent().lg) {
                                         reportUrl += "&nochrome=true";
                                     }
 
@@ -184,8 +184,12 @@
                         setiFrameUrl();
                     }
 
-                    bbMediaBreakpoints.register(handleMediaBreakpoint);
-
+                    if (isResponsive) {
+                        bbMediaBreakpoints.register(handleMediaBreakpoint);
+                    } else {
+                        setiFrameUrl();
+                    }
+                    
                     if (isiOS()) {
                         //When the orientation changes on iOS, there is a GoodData bug that causes the report to not be resized correctly.  Reset
                         //the iFrame URL to force it to refresh.
