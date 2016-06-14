@@ -114590,10 +114590,10 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
      */
     angular.module('npi-datamart.report', ['npi-datamart.templates', 'npi-datamart.api', 'sky'])
         .constant('bbDataMartReportConfiguration', {
-            processFilters: null, //Optional hook for preprocessing of filters
-            api: null, //Set to an instance of BBDataMartAPI to use by default for all directives it not otherwise specified
+            api: null, //Set to an instance of BBDataMartAPI to use by default for all directives it not otherwise specified                        
             linkHandler: null, //Optionally set to function to handle when links are clicked in the dashboards and reports
-            drillHandler: null //Optionally set to function to handle drill events from reports
+            drillHandler: null, //Optionally set to function to handle drill events from reports
+            processFilters: null //Optional hook for preprocessing of filters
         })
         .service('bbDataMartReportService', ['bbDataMartReportConfiguration', '$sce', '$window', '$q', '$timeout', 'bbMediaBreakpoints', 'bbHelp', function (bbDataMartReportConfiguration, $sce, $window, $q, $timeout, bbMediaBreakpoints, bbHelp) {
             var windowIsiOS;
