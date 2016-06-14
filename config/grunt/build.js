@@ -7,6 +7,7 @@ module.exports = function (grunt, env, utils) {
             paths: {
                 dist: (env.isCurrent(env.SUPPORTED.LOCAL) ? 'bin/' : 'dist/'),
                 src: 'js/src/',
+                docs: 'js/docs/',
                 templates: 'js/templates/',
                 npiDatamartJs: [
                     '<%= npiux.paths.src %>*/*.js',
