@@ -65,7 +65,7 @@
             linkHandler: null, //Optionally set to function to handle when links are clicked in the dashboards and reports
             drillHandler: null //Optionally set to function to handle drill events from reports
         })
-        .service('bbDataMartReportService', ['bbDataMartReportConfiguration', '$sce', '$window', '$q', '$timeout', 'bbMediaBreakpoints', 'bbHelp', function (bbDataMartReportConfiguration, $sce, $window, $q, $timeout, bbMediaBreakpoints, bbHelp) {
+        .service('bbDataMartReportService', ['bbDataMartReportConfiguration', '$sce', '$window', '$q', '$timeout', 'bbHelp', function (bbDataMartReportConfiguration, $sce, $window, $q, $timeout, bbHelp) {
             var windowIsiOS;
 
             function isiOS() {
@@ -80,7 +80,7 @@
                 return bbDataMartReportConfiguration.api;
             }
 
-            function emeddedObjectController($scope, isDashboard, isResponsive) {
+            function emeddedObjectController($scope, isDashboard) {
                 var api = getAPI();
 
                 api.maintainAuthentication($scope).then(function () {
@@ -146,7 +146,7 @@
                                         reportUrl += ",ui.drill";
                                     }
 
-                                    if (isResponsive && isDashboard && !bbMediaBreakpoints.getCurrent().lg) {
+                                    if ($scope.noChrome) {
                                         reportUrl += "&nochrome=true";
                                     }
 
@@ -180,15 +180,7 @@
 
                     $scope.$watch('filters', setiFrameUrl, true);
 
-                    function handleMediaBreakpoint() {
-                        setiFrameUrl();
-                    }
-
-                    if (isResponsive) {
-                        bbMediaBreakpoints.register(handleMediaBreakpoint);
-                    } else {
-                        setiFrameUrl();
-                    }
+                    setiFrameUrl();
                     
                     if (isiOS()) {
                         //When the orientation changes on iOS, there is a GoodData bug that causes the report to not be resized correctly.  Reset
@@ -217,7 +209,6 @@
 
                     $scope.$on('$destroy', function () {
                         windowEl.off('orientationchange.' + windowEventId);
-                        bbMediaBreakpoints.unregister(handleMediaBreakpoint);
                     });
                 });
             }
@@ -322,6 +313,7 @@
                     embeddedObjectId: '=bbDataMartDashboardId',
                     filters: '=bbDataMartDashboardFilters',
                     drillHandler: '=bbDataMartDashboardDrillHandler',
+                    noChrome: '=bbDataMartDashboardNoChrome',
                     frameWidth: '@width'
                 },
                 link: bbDataMartReportService.dashboardLink,
