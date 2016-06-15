@@ -113684,23 +113684,23 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
     'use strict';
     //YAML Title, YAML Description, JSDoc Heading
     /**
-     * DataMart API
-     * API module for NPI DataMart UX
+     * Data Mart API
+     * API module for NPI Data Mart UX
      * @module npi-datamart.api
      */
     angular.module('npi-datamart.api', ['npi-datamart.authentication'])
         .factory('BBDataMartAPI', ['$q', '$timeout', '$http', function ($q, $timeout, $http) {
             /**
-             * An object for interacting with the DataMart APIs
+             * An Angular Factory for generating BBDataMartAPI objects
              * @method BBDataMartAPI
              * @param {Object} options Object containing the information for the authentication and datamart
              * @param {BBDataMartAuthentication} options.authentication A BBDataMartAuthentication object
              * @param {string} [options.dataMartId] ID of the datamart
-             * @param {Function} [options.getDataMartId] A promise to return the DataMart ID as a string. Required if dataMartId not provided.
+             * @param {Function} [options.getDataMartId] A promise to return the Data Mart ID as a string. Required if dataMartId not provided.
              * @param {Function} [options.translateObjectIdentifier] A funtion returning a promise that returns a data mart identifier based on a provided identifier.  This is a hook to allow custom identifier translation.
              * @param {Function} [options.translateFilters] A funtion returning a promise that returns a filters object based on a provided filters object.  This is a hook to allow custom filters translation. 
              * @param {Function} [options.translateAttributeName] A function that returns a translated attribute name based on a provided attribute name.
-             * @return {BBDataMartAPI} A class containing methods to handle interactions with the DataMart APIs
+             * @return {BBDataMartAPI} A class containing methods to handle interactions with the Data Mart APIs
              */
             var BBDataMartAPI = function (options) {
                 var apiContextPromise,
@@ -113720,9 +113720,9 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
                 }
 
                 /**
-                 * Gets the datamart ID
+                 * Gets the Data Mart ID
                  * @method getDataMartId
-                 * @return {CallExpression} A promise to return the datamart ID as a string
+                 * @return {CallExpression} A promise to return the Data Mart ID as a string
                  */
                 self.getDataMartId = function getDataMartId() {
                     return $q(function (resolve, reject) {
@@ -114170,8 +114170,8 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
                 /**
                  * Gets the object URI from an identifier
                  * @method getObjectUriFromIdentifier
-                 * @param {string} identifier Identifier for a datamart report or dashboard
-                 * @return {CallExpression} A promise to return the relative URI for the datamart report or dashboard
+                 * @param {string} identifier Identifier for a Data Mart report or dashboard
+                 * @return {CallExpression} A promise to return the relative URI for the Data Mart report or dashboard
                  */
                 self.getObjectUriFromIdentifier = function (identifier) {
                     return $q(function (resolve, reject) {
@@ -114240,7 +114240,7 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
                 /**
                  * Load the drilled in records from a context
                  * @method loadDrillInRecordIds
-                 * @param {Object} drillContext Context from the getHeadlineReportDrillContext or from a datamart directive
+                 * @param {Object} drillContext Context from the getHeadlineReportDrillContext or from a Data Mart directive
                  * @return {CallExpression} A promise to return the drilled in records object
                  */
                 self.loadDrillInRecordIds = function (drillContext) {
@@ -114301,14 +114301,14 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
     'use strict';
     //YAML Title, YAML Description, JSDoc Heading
     /**
-     * DataMart Authentication
-     * Authentication module for NPI DataMart UX
+     * Data Mart Authentication
+     * Module for handling Single Sign-On
      * @module npi-datamart.authentication
      */
     angular.module('npi-datamart.authentication', [])
         .factory('BBDataMartAuthentication', ['$q', '$http', '$rootScope', function ($q, $http, $rootScope) {
             /**
-             * An class to handle authentication with the DataMart APIs
+             * An Angular Factory to create BBDataMartAuthentication objects
              * @method BBDataMartAuthentication
              * @param {Object} options Object containing the information for domain and single sign on
              * @param {string} options.domain The domain
@@ -114316,7 +114316,7 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
              * @param {string} options.ssoProvider the SSO provider
              * @param {Function} options.getSSOProvider A promise returning the SSO provider
              * @param {Function} options.getSSOToken A promise returning the SSO token
-             * @return {BBDataMartAuthentication} The class containing methods to handle authentication on the DataMart API
+             * @return {BBDataMartAuthentication} The class containing methods to handle authentication on the Data Mart API
              */
             var BBDataMartAuthentication = function (options) {
                 var ensureAuthenticatedPromise,
@@ -114584,8 +114584,8 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
     };
     //YAML Title, YAML Description, JSDoc Heading
     /**
-     * DataMart Report
-     * Authentication module for NPI DataMart UX  
+     * Data Mart Report
+     * Authentication module for NPI Data Mart UX  
      * @module npi-datamart.report
      */
     angular.module('npi-datamart.report', ['npi-datamart.templates', 'npi-datamart.api', 'sky'])
@@ -114811,7 +114811,7 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
             };
         }])
         /**
-         * The DataMart Report directive
+         * The Data Mart Report directive
          * @name bbDataMartReport
          */
         .directive('bbDataMartReport', ['bbDataMartReportService', function (bbDataMartReportService) {
@@ -114831,7 +114831,7 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
             };
         }])
         /**
-         * The DataMart Dashboard directive
+         * The Data Mart Dashboard directive
          * @name bbDataMartDashboard
          */
         .directive('bbDataMartDashboard', ['bbDataMartReportService', function (bbDataMartReportService) {
