@@ -1,6 +1,6 @@
 <a name="npi-datamart.module_report"></a>
 
-# DataMart Report
+# Data Mart Report
 Module for embedding dashboards and reports on a page.
 
 

@@ -5,14 +5,14 @@
     'use strict';
     //YAML Title, YAML Description, JSDoc Heading
     /**
-     * DataMart Authentication
-     * Authentication module for NPI DataMart UX
+     * Data Mart Authentication
+     * Module for handling Single Sign-On
      * @module npi-datamart.authentication
      */
     angular.module('npi-datamart.authentication', [])
         .factory('BBDataMartAuthentication', ['$q', '$http', '$rootScope', function ($q, $http, $rootScope) {
             /**
-             * An class to handle authentication with the DataMart APIs
+             * An Angular Factory to create BBDataMartAuthentication objects
              * @method BBDataMartAuthentication
              * @param {Object} options Object containing the information for domain and single sign on
              * @param {string} options.domain The domain
@@ -20,7 +20,7 @@
              * @param {string} options.ssoProvider the SSO provider
              * @param {Function} options.getSSOProvider A promise returning the SSO provider
              * @param {Function} options.getSSOToken A promise returning the SSO token
-             * @return {BBDataMartAuthentication} The class containing methods to handle authentication on the DataMart API
+             * @return {BBDataMartAuthentication} The class containing methods to handle authentication on the Data Mart API
              */
             var BBDataMartAuthentication = function (options) {
                 var ensureAuthenticatedPromise,

@@ -1,7 +1,7 @@
 <a name="npi-datamart.module_api"></a>
 
-# DataMart API
-API module for NPI DataMart UX
+# Data Mart API
+API module for NPI Data Mart UX
 
 
 * [api](#npi-datamart.module_api)
@@ -21,16 +21,16 @@ API module for NPI DataMart UX
 <a name="npi-datamart.module_api..BBDataMartAPI"></a>
 
 ## BBDataMartAPI(options) ⇒ `BBDataMartAPI`
-An object for interacting with the DataMart APIs
+An Angular Factory for generating BBDataMartAPI objects
 
 **Kind**: inner method of `[api](#npi-datamart.module_api)`  
-**Returns**: `BBDataMartAPI` - A class containing methods to handle interactions with the DataMart APIs  
+**Returns**: `BBDataMartAPI` - A class containing methods to handle interactions with the Data Mart APIs  
 **Params**
 
 - `options` - Object containing the information for the authentication and datamart
     - `authentication` - A BBDataMartAuthentication object
     - `dataMartId` - _(Optional.)_ String containing the ID of the datamart
-    - `getDataMartId` - _(Optional.)_ A promissory function to return the DataMart ID as a string. Required if dataMartId not provided.
+    - `getDataMartId` - _(Optional.)_ A promissory function to return the Data Mart ID as a string. Required if dataMartId not provided.
     - `translateObjectIdentifier` - _(Optional.)_ A funtion returning a promise that returns a data mart identifier based on a provided identifier.  This is a hook to allow custom identifier translation.
     - `translateFilters` - _(Optional.)_ A funtion returning a promise that returns a filters object based on a provided filters object.  This is a hook to allow custom filters translation.
     - `translateAttributeName` - _(Optional.)_ A function that returns a translated attribute name based on a provided attribute name.
@@ -38,10 +38,10 @@ An object for interacting with the DataMart APIs
 <a name="npi-datamart.module_api..getDataMartId"></a>
 
 ## getDataMartId() ⇒ `CallExpression`
-Gets the datamart ID
+Gets the Data Mart ID
 
 **Kind**: inner method of `[api](#npi-datamart.module_api)`  
-**Returns**: `CallExpression` - A promise to return the datamart ID as a string  
+**Returns**: `CallExpression` - A promise to return the Data Mart ID as a string  
 <a name="npi-datamart.module_api..getApiRoot"></a>
 
 ## getApiRoot() ⇒ `CallExpression`
@@ -62,10 +62,10 @@ Check if the platform is available.
 Gets the object URI from an identifier
 
 **Kind**: inner method of `[api](#npi-datamart.module_api)`  
-**Returns**: `CallExpression` - A promise to return the relative URI for the datamart report or dashboard  
+**Returns**: `CallExpression` - A promise to return the relative URI for the Data Mart report or dashboard  
 **Params**
 
-- `identifier` - String for a datamart report or dashboard
+- `identifier` - String for a Data Mart report or dashboard
 
 <a name="npi-datamart.module_api..executeReport"></a>
 
@@ -121,7 +121,7 @@ Load the drilled in records from a context
 **Returns**: `CallExpression` - A promise to return the drilled in records object  
 **Params**
 
-- `drillContext` - Context object from the getHeadlineReportDrillContext or from a datamart directive
+- `drillContext` - Context object from the getHeadlineReportDrillContext or from a Data Mart directive
 
 <a name="npi-datamart.module_api..getLatestReportDefinition"></a>
 
@@ -154,5 +154,5 @@ Maintains the authentication
 **Returns**: `CallExpression` - A promise to let you know when the authentication is maintained  
 **Params**
 
-- `scope` - Angular object
+- `scope` - Angular local scope object
 

@@ -1,7 +1,7 @@
 <a name="npi-datamart.module_authentication"></a>
 
-# DataMart Authentication
-Authentication module for NPI DataMart UX
+# Data Mart Authentication
+Module for handling Single Sign-On 
 
 
 * [authentication](#npi-datamart.module_authentication)
@@ -13,10 +13,10 @@ Authentication module for NPI DataMart UX
 <a name="npi-datamart.module_authentication..BBDataMartAuthentication"></a>
 
 ## BBDataMartAuthentication(options) ⇒ `BBDataMartAuthentication`
-An class to handle authentication with the DataMart APIs
+An Angular Factory to create BBDataMartAuthentication objects
 
 **Kind**: inner method of `[authentication](#npi-datamart.module_authentication)`  
-**Returns**: `BBDataMartAuthentication` - The class containing methods to handle authentication on the DataMart API  
+**Returns**: `BBDataMartAuthentication` - The class containing methods to handle authentication on the Data Mart API  
 **Params**
 
 - `options` - Object containing the information for domain and single sign on

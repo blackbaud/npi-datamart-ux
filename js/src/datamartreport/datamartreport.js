@@ -54,8 +54,8 @@
     };
     //YAML Title, YAML Description, JSDoc Heading
     /**
-     * DataMart Report
-     * Authentication module for NPI DataMart UX  
+     * Data Mart Report
+     * Authentication module for NPI Data Mart UX  
      * @module npi-datamart.report
      */
     angular.module('npi-datamart.report', ['npi-datamart.templates', 'npi-datamart.api', 'sky'])
@@ -281,7 +281,7 @@
             };
         }])
         /**
-         * The DataMart Report directive
+         * The Data Mart Report directive
          * @name bbDataMartReport
          */
         .directive('bbDataMartReport', ['bbDataMartReportService', function (bbDataMartReportService) {
@@ -301,7 +301,7 @@
             };
         }])
         /**
-         * The DataMart Dashboard directive
+         * The Data Mart Dashboard directive
          * @name bbDataMartDashboard
          */
         .directive('bbDataMartDashboard', ['bbDataMartReportService', function (bbDataMartReportService) {
