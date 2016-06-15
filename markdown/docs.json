@@ -1,0 +1,1374 @@
+[
+    {
+        "comment": "/**\r\n     * DataMart Authentication\r\n     * Authentication module for NPI DataMart UX\r\n     * @module npi-datamart.authentication\r\n     */",
+        "meta": {
+            "range": [
+                169,
+                307
+            ],
+            "filename": "datamartauthentication.js",
+            "lineno": 7,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication",
+            "code": {}
+        },
+        "description": "DataMart Authentication\rAuthentication module for NPI DataMart UX",
+        "kind": "module",
+        "name": "authentication",
+        "memberof": "npi-datamart",
+        "longname": "npi-datamart.module:authentication",
+        "scope": "static"
+    },
+    {
+        "comment": "/**\r\n             * An class to handle authentication with the DataMart APIs\r\n             * @method BBDataMartAuthentication\r\n             * @param {Object} options Object containing the information for domain and single sign on\r\n             * @param {string} options.domain The domain\r\n             * @param {Function} options.getDomain A promise returning the domain\r\n             * @param {string} options.ssoProvider the SSO provider\r\n             * @param {Function} options.getSSOProvider A promise returning the SSO provider\r\n             * @param {Function} options.getSSOToken A promise returning the SSO token\r\n             * @return {BBDataMartAuthentication} The class containing methods to handle authentication on the DataMart API\r\n             */",
+        "meta": {
+            "range": [
+                487,
+                1250
+            ],
+            "filename": "datamartauthentication.js",
+            "lineno": 14,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication",
+            "code": {}
+        },
+        "description": "An class to handle authentication with the DataMart APIs",
+        "kind": "function",
+        "name": "BBDataMartAuthentication",
+        "params": [
+            {
+                "type": {
+                    "names": [
+                        "Object"
+                    ]
+                },
+                "description": "Object containing the information for domain and single sign on",
+                "name": "options"
+            },
+            {
+                "type": {
+                    "names": [
+                        "string"
+                    ]
+                },
+                "description": "The domain",
+                "name": "options.domain"
+            },
+            {
+                "type": {
+                    "names": [
+                        "function"
+                    ]
+                },
+                "description": "A promise returning the domain",
+                "name": "options.getDomain"
+            },
+            {
+                "type": {
+                    "names": [
+                        "string"
+                    ]
+                },
+                "description": "the SSO provider",
+                "name": "options.ssoProvider"
+            },
+            {
+                "type": {
+                    "names": [
+                        "function"
+                    ]
+                },
+                "description": "A promise returning the SSO provider",
+                "name": "options.getSSOProvider"
+            },
+            {
+                "type": {
+                    "names": [
+                        "function"
+                    ]
+                },
+                "description": "A promise returning the SSO token",
+                "name": "options.getSSOToken"
+            }
+        ],
+        "returns": [
+            {
+                "type": {
+                    "names": [
+                        "BBDataMartAuthentication"
+                    ]
+                },
+                "description": "The class containing methods to handle authentication on the DataMart API"
+            }
+        ],
+        "longname": "npi-datamart.module:authentication~BBDataMartAuthentication",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:authentication"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                1268,
+                12002
+            ],
+            "filename": "datamartauthentication.js",
+            "lineno": 25,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication",
+            "code": {
+                "id": "astnode100000028",
+                "name": "BBDataMartAuthentication",
+                "type": "FunctionExpression"
+            },
+            "vars": {
+                "ensureAuthenticatedPromise": "<anonymous>~BBDataMartAuthentication~ensureAuthenticatedPromise",
+                "initialAuthPerformed": "<anonymous>~BBDataMartAuthentication~initialAuthPerformed",
+                "maintainAuthScopeCount": "<anonymous>~BBDataMartAuthentication~maintainAuthScopeCount",
+                "self": "<anonymous>~BBDataMartAuthentication~self",
+                "options": "npi-datamart.module:authentication~options",
+                "self.getDomain": "<anonymous>~BBDataMartAuthentication~self.getDomain",
+                "": null,
+                "getSSOProvider": "<anonymous>~BBDataMartAuthentication~getSSOProvider",
+                "getSSOUrl": "<anonymous>~BBDataMartAuthentication~getSSOUrl",
+                "isUnauthorizedFailure": "<anonymous>~BBDataMartAuthentication~isUnauthorizedFailure",
+                "getTemporaryToken": "<anonymous>~BBDataMartAuthentication~getTemporaryToken",
+                "authenticate": "<anonymous>~BBDataMartAuthentication~authenticate",
+                "ensureTemporaryToken": "<anonymous>~BBDataMartAuthentication~ensureTemporaryToken",
+                "self.ensureAuthenticated": "<anonymous>~BBDataMartAuthentication~self.ensureAuthenticated",
+                "self.maintainAuthentication": "<anonymous>~BBDataMartAuthentication~self.maintainAuthentication"
+            }
+        },
+        "undocumented": true,
+        "name": "BBDataMartAuthentication",
+        "longname": "<anonymous>~BBDataMartAuthentication",
+        "kind": "function",
+        "memberof": "<anonymous>",
+        "scope": "inner"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                1337,
+                1363
+            ],
+            "filename": "datamartauthentication.js",
+            "lineno": 26,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication",
+            "code": {
+                "id": "astnode100000034",
+                "name": "ensureAuthenticatedPromise"
+            }
+        },
+        "undocumented": true,
+        "name": "ensureAuthenticatedPromise",
+        "longname": "<anonymous>~BBDataMartAuthentication~ensureAuthenticatedPromise",
+        "kind": "member",
+        "memberof": "<anonymous>~BBDataMartAuthentication",
+        "scope": "inner"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                1386,
+                1406
+            ],
+            "filename": "datamartauthentication.js",
+            "lineno": 27,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication",
+            "code": {
+                "id": "astnode100000036",
+                "name": "initialAuthPerformed"
+            }
+        },
+        "undocumented": true,
+        "name": "initialAuthPerformed",
+        "longname": "<anonymous>~BBDataMartAuthentication~initialAuthPerformed",
+        "kind": "member",
+        "memberof": "<anonymous>~BBDataMartAuthentication",
+        "scope": "inner"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                1429,
+                1455
+            ],
+            "filename": "datamartauthentication.js",
+            "lineno": 28,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication",
+            "code": {
+                "id": "astnode100000038",
+                "name": "maintainAuthScopeCount",
+                "type": "Literal",
+                "value": 0
+            }
+        },
+        "undocumented": true,
+        "name": "maintainAuthScopeCount",
+        "longname": "<anonymous>~BBDataMartAuthentication~maintainAuthScopeCount",
+        "kind": "member",
+        "memberof": "<anonymous>~BBDataMartAuthentication",
+        "scope": "inner"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                1478,
+                1489
+            ],
+            "filename": "datamartauthentication.js",
+            "lineno": 29,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication",
+            "code": {
+                "id": "astnode100000041",
+                "name": "self",
+                "type": "ThisExpression",
+                "value": "this"
+            }
+        },
+        "undocumented": true,
+        "name": "self",
+        "longname": "<anonymous>~BBDataMartAuthentication~self",
+        "kind": "member",
+        "memberof": "<anonymous>~BBDataMartAuthentication",
+        "scope": "inner"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                1510,
+                1533
+            ],
+            "filename": "datamartauthentication.js",
+            "lineno": 31,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication",
+            "code": {
+                "id": "astnode100000045",
+                "name": "options",
+                "type": "LogicalExpression",
+                "funcscope": "<anonymous>~BBDataMartAuthentication",
+                "value": "",
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "options",
+        "longname": "npi-datamart.module:authentication~options",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:authentication"
+    },
+    {
+        "comment": "/**\r\n                 * Gets the domain of the environment \r\n                 * @method getDomain\r\n                 * @return {CallExpression} A promise to get the domain of the environment\r\n                 */",
+        "meta": {
+            "range": [
+                2157,
+                2367
+            ],
+            "filename": "datamartauthentication.js",
+            "lineno": 45,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication",
+            "code": {}
+        },
+        "description": "Gets the domain of the environment",
+        "kind": "function",
+        "name": "getDomain",
+        "returns": [
+            {
+                "type": {
+                    "names": [
+                        "CallExpression"
+                    ]
+                },
+                "description": "A promise to get the domain of the environment"
+            }
+        ],
+        "longname": "npi-datamart.module:authentication~getDomain",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:authentication"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                2385,
+                2768
+            ],
+            "filename": "datamartauthentication.js",
+            "lineno": 50,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication",
+            "code": {
+                "id": "astnode100000085",
+                "name": "self.getDomain",
+                "type": "FunctionExpression",
+                "funcscope": "<anonymous>~BBDataMartAuthentication",
+                "value": "getDomain",
+                "paramnames": []
+            },
+            "vars": {
+                "": null
+            }
+        },
+        "undocumented": true,
+        "name": "getDomain",
+        "longname": "<anonymous>~BBDataMartAuthentication~self.getDomain",
+        "kind": "function",
+        "memberof": "<anonymous>~BBDataMartAuthentication~self",
+        "scope": "static"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                2805,
+                3191
+            ],
+            "filename": "datamartauthentication.js",
+            "lineno": 60,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication",
+            "code": {
+                "id": "astnode100000124",
+                "name": "getSSOProvider",
+                "type": "FunctionDeclaration",
+                "paramnames": []
+            },
+            "vars": {
+                "": null
+            }
+        },
+        "undocumented": true,
+        "name": "getSSOProvider",
+        "longname": "<anonymous>~BBDataMartAuthentication~getSSOProvider",
+        "kind": "function",
+        "memberof": "<anonymous>~BBDataMartAuthentication",
+        "scope": "inner",
+        "params": []
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                3211,
+                4663
+            ],
+            "filename": "datamartauthentication.js",
+            "lineno": 70,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication",
+            "code": {
+                "id": "astnode100000159",
+                "name": "getSSOUrl",
+                "type": "FunctionDeclaration",
+                "paramnames": [
+                    "targetUrl"
+                ]
+            },
+            "vars": {
+                "": null
+            }
+        },
+        "undocumented": true,
+        "name": "getSSOUrl",
+        "longname": "<anonymous>~BBDataMartAuthentication~getSSOUrl",
+        "kind": "function",
+        "memberof": "<anonymous>~BBDataMartAuthentication",
+        "scope": "inner",
+        "params": []
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                3332,
+                3513
+            ],
+            "filename": "datamartauthentication.js",
+            "lineno": 72,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication",
+            "code": {
+                "id": "astnode100000171",
+                "name": "tasks",
+                "type": "ArrayExpression",
+                "value": "[\"\",\"\",\"\"]"
+            }
+        },
+        "undocumented": true,
+        "name": "tasks",
+        "longname": "<anonymous>~tasks",
+        "kind": "member",
+        "memberof": "<anonymous>",
+        "scope": "inner"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                3614,
+                3623
+            ],
+            "filename": "datamartauthentication.js",
+            "lineno": 79,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication",
+            "code": {
+                "id": "astnode100000199",
+                "name": "iFrameUrl"
+            }
+        },
+        "undocumented": true,
+        "name": "iFrameUrl",
+        "longname": "<anonymous>~iFrameUrl",
+        "kind": "member",
+        "memberof": "<anonymous>",
+        "scope": "inner"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                3658,
+                3672
+            ],
+            "filename": "datamartauthentication.js",
+            "lineno": 80,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication",
+            "code": {
+                "id": "astnode100000201",
+                "name": "reportRootPath"
+            }
+        },
+        "undocumented": true,
+        "name": "reportRootPath",
+        "longname": "<anonymous>~reportRootPath",
+        "kind": "member",
+        "memberof": "<anonymous>",
+        "scope": "inner"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                3707,
+                3715
+            ],
+            "filename": "datamartauthentication.js",
+            "lineno": 81,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication",
+            "code": {
+                "id": "astnode100000203",
+                "name": "ssoToken"
+            }
+        },
+        "undocumented": true,
+        "name": "ssoToken",
+        "longname": "<anonymous>~ssoToken",
+        "kind": "member",
+        "memberof": "<anonymous>",
+        "scope": "inner"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                3750,
+                3761
+            ],
+            "filename": "datamartauthentication.js",
+            "lineno": 82,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication",
+            "code": {
+                "id": "astnode100000205",
+                "name": "ssoProvider"
+            }
+        },
+        "undocumented": true,
+        "name": "ssoProvider",
+        "longname": "<anonymous>~ssoProvider",
+        "kind": "member",
+        "memberof": "<anonymous>",
+        "scope": "inner"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                3794,
+                3814
+            ],
+            "filename": "datamartauthentication.js",
+            "lineno": 84,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication",
+            "code": {
+                "id": "astnode100000208",
+                "name": "ssoToken",
+                "type": "MemberExpression",
+                "funcscope": "<anonymous>",
+                "value": "values[0]",
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "ssoToken",
+        "longname": "npi-datamart.module:authentication~ssoToken",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:authentication"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                3845,
+                3871
+            ],
+            "filename": "datamartauthentication.js",
+            "lineno": 85,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication",
+            "code": {
+                "id": "astnode100000214",
+                "name": "reportRootPath",
+                "type": "MemberExpression",
+                "funcscope": "<anonymous>",
+                "value": "values[1]",
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "reportRootPath",
+        "longname": "npi-datamart.module:authentication~reportRootPath",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:authentication"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                3902,
+                3925
+            ],
+            "filename": "datamartauthentication.js",
+            "lineno": 86,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication",
+            "code": {
+                "id": "astnode100000220",
+                "name": "ssoProvider",
+                "type": "MemberExpression",
+                "funcscope": "<anonymous>",
+                "value": "values[2]",
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "ssoProvider",
+        "longname": "npi-datamart.module:authentication~ssoProvider",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:authentication"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                4022,
+                4048
+            ],
+            "filename": "datamartauthentication.js",
+            "lineno": 89,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication",
+            "code": {
+                "id": "astnode100000231",
+                "name": "iFrameUrl",
+                "type": "Identifier",
+                "funcscope": "<anonymous>",
+                "value": "reportRootPath",
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "iFrameUrl",
+        "longname": "npi-datamart.module:authentication~iFrameUrl",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:authentication"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                4083,
+                4135
+            ],
+            "filename": "datamartauthentication.js",
+            "lineno": 90,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication",
+            "code": {
+                "id": "astnode100000235",
+                "name": "iFrameUrl",
+                "type": "Literal",
+                "funcscope": "<anonymous>",
+                "value": "/gdc/account/customerlogin?sessionId=",
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "iFrameUrl",
+        "longname": "npi-datamart.module:authentication~iFrameUrl",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:authentication"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                4170,
+                4211
+            ],
+            "filename": "datamartauthentication.js",
+            "lineno": 91,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication",
+            "code": {
+                "id": "astnode100000239",
+                "name": "iFrameUrl",
+                "type": "CallExpression",
+                "funcscope": "<anonymous>",
+                "value": "",
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "iFrameUrl",
+        "longname": "npi-datamart.module:authentication~iFrameUrl",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:authentication"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                4246,
+                4272
+            ],
+            "filename": "datamartauthentication.js",
+            "lineno": 92,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication",
+            "code": {
+                "id": "astnode100000245",
+                "name": "iFrameUrl",
+                "type": "Literal",
+                "funcscope": "<anonymous>",
+                "value": "&serverURL=",
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "iFrameUrl",
+        "longname": "npi-datamart.module:authentication~iFrameUrl",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:authentication"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                4307,
+                4351
+            ],
+            "filename": "datamartauthentication.js",
+            "lineno": 93,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication",
+            "code": {
+                "id": "astnode100000249",
+                "name": "iFrameUrl",
+                "type": "CallExpression",
+                "funcscope": "<anonymous>",
+                "value": "",
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "iFrameUrl",
+        "longname": "npi-datamart.module:authentication~iFrameUrl",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:authentication"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                4386,
+                4412
+            ],
+            "filename": "datamartauthentication.js",
+            "lineno": 94,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication",
+            "code": {
+                "id": "astnode100000255",
+                "name": "iFrameUrl",
+                "type": "Literal",
+                "funcscope": "<anonymous>",
+                "value": "&targetURL=",
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "iFrameUrl",
+        "longname": "npi-datamart.module:authentication~iFrameUrl",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:authentication"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                4447,
+                4489
+            ],
+            "filename": "datamartauthentication.js",
+            "lineno": 95,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication",
+            "code": {
+                "id": "astnode100000259",
+                "name": "iFrameUrl",
+                "type": "CallExpression",
+                "funcscope": "<anonymous>",
+                "value": "",
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "iFrameUrl",
+        "longname": "npi-datamart.module:authentication~iFrameUrl",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:authentication"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                4683,
+                4803
+            ],
+            "filename": "datamartauthentication.js",
+            "lineno": 103,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication",
+            "code": {
+                "id": "astnode100000270",
+                "name": "isUnauthorizedFailure",
+                "type": "FunctionDeclaration",
+                "paramnames": [
+                    "reason"
+                ]
+            }
+        },
+        "undocumented": true,
+        "name": "isUnauthorizedFailure",
+        "longname": "<anonymous>~BBDataMartAuthentication~isUnauthorizedFailure",
+        "kind": "function",
+        "memberof": "<anonymous>~BBDataMartAuthentication",
+        "scope": "inner",
+        "params": []
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                4823,
+                5334
+            ],
+            "filename": "datamartauthentication.js",
+            "lineno": 107,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication",
+            "code": {
+                "id": "astnode100000282",
+                "name": "getTemporaryToken",
+                "type": "FunctionDeclaration",
+                "paramnames": []
+            },
+            "vars": {
+                "": null
+            }
+        },
+        "undocumented": true,
+        "name": "getTemporaryToken",
+        "longname": "<anonymous>~BBDataMartAuthentication~getTemporaryToken",
+        "kind": "function",
+        "memberof": "<anonymous>~BBDataMartAuthentication",
+        "scope": "inner",
+        "params": []
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                5014,
+                5057
+            ],
+            "filename": "datamartauthentication.js",
+            "lineno": 110,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication",
+            "code": {
+                "id": "astnode100000306",
+                "name": "getTokenUrl",
+                "type": "BinaryExpression",
+                "value": ""
+            }
+        },
+        "undocumented": true,
+        "name": "getTokenUrl",
+        "longname": "<anonymous>~getTokenUrl",
+        "kind": "member",
+        "memberof": "<anonymous>",
+        "scope": "inner"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                5113,
+                5134
+            ],
+            "filename": "datamartauthentication.js",
+            "lineno": 111,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication",
+            "code": {
+                "id": "astnode100000322",
+                "name": "withCredentials",
+                "type": "Literal",
+                "value": true
+            }
+        },
+        "undocumented": true,
+        "name": "withCredentials",
+        "longname": "npi-datamart.module:authentication~withCredentials",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:authentication"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                5354,
+                7008
+            ],
+            "filename": "datamartauthentication.js",
+            "lineno": 118,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication",
+            "code": {
+                "id": "astnode100000334",
+                "name": "authenticate",
+                "type": "FunctionDeclaration",
+                "paramnames": []
+            },
+            "vars": {
+                "": null
+            }
+        },
+        "undocumented": true,
+        "name": "authenticate",
+        "longname": "<anonymous>~BBDataMartAuthentication~authenticate",
+        "kind": "function",
+        "memberof": "<anonymous>~BBDataMartAuthentication",
+        "scope": "inner",
+        "params": []
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                5571,
+                5592
+            ],
+            "filename": "datamartauthentication.js",
+            "lineno": 121,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication",
+            "code": {
+                "id": "astnode100000367",
+                "name": "withCredentials",
+                "type": "Literal",
+                "value": true
+            }
+        },
+        "undocumented": true,
+        "name": "withCredentials",
+        "longname": "npi-datamart.module:authentication~withCredentials",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:authentication"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                7028,
+                7702
+            ],
+            "filename": "datamartauthentication.js",
+            "lineno": 140,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication",
+            "code": {
+                "id": "astnode100000395",
+                "name": "ensureTemporaryToken",
+                "type": "FunctionDeclaration",
+                "paramnames": []
+            },
+            "vars": {
+                "": null
+            }
+        },
+        "undocumented": true,
+        "name": "ensureTemporaryToken",
+        "longname": "<anonymous>~BBDataMartAuthentication~ensureTemporaryToken",
+        "kind": "function",
+        "memberof": "<anonymous>~BBDataMartAuthentication",
+        "scope": "inner",
+        "params": []
+    },
+    {
+        "comment": "/**\r\n                 * Ensures that the client maintains an authenticated token \r\n                 * @method ensureAuthenticated\r\n                 * @return {ensureAuthenticatedPromise} A promise to ensure authentication \r\n                 */",
+        "meta": {
+            "range": [
+                7738,
+                7981
+            ],
+            "filename": "datamartauthentication.js",
+            "lineno": 156,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication",
+            "code": {}
+        },
+        "description": "Ensures that the client maintains an authenticated token",
+        "kind": "function",
+        "name": "ensureAuthenticated",
+        "returns": [
+            {
+                "type": {
+                    "names": [
+                        "ensureAuthenticatedPromise"
+                    ]
+                },
+                "description": "A promise to ensure authentication"
+            }
+        ],
+        "longname": "npi-datamart.module:authentication~ensureAuthenticated",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:authentication"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                7999,
+                10811
+            ],
+            "filename": "datamartauthentication.js",
+            "lineno": 161,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication",
+            "code": {
+                "id": "astnode100000448",
+                "name": "self.ensureAuthenticated",
+                "type": "FunctionExpression",
+                "funcscope": "<anonymous>~BBDataMartAuthentication",
+                "value": "ensureAuthenticated",
+                "paramnames": []
+            },
+            "vars": {
+                "ensureAuthenticatedPromise": "npi-datamart.module:authentication~ensureAuthenticatedPromise",
+                "": null
+            }
+        },
+        "undocumented": true,
+        "name": "ensureAuthenticated",
+        "longname": "<anonymous>~BBDataMartAuthentication~self.ensureAuthenticated",
+        "kind": "function",
+        "memberof": "<anonymous>~BBDataMartAuthentication~self",
+        "scope": "static"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                8140,
+                10710
+            ],
+            "filename": "datamartauthentication.js",
+            "lineno": 163,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication",
+            "code": {
+                "id": "astnode100000460",
+                "name": "ensureAuthenticatedPromise",
+                "type": "CallExpression",
+                "funcscope": "<anonymous>~BBDataMartAuthentication~self.ensureAuthenticated",
+                "value": "",
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "ensureAuthenticatedPromise",
+        "longname": "npi-datamart.module:authentication~ensureAuthenticatedPromise",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:authentication"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                8234,
+                8249
+            ],
+            "filename": "datamartauthentication.js",
+            "lineno": 164,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication",
+            "code": {
+                "id": "astnode100000469",
+                "name": "getTokenPromise"
+            }
+        },
+        "undocumented": true,
+        "name": "getTokenPromise",
+        "longname": "<anonymous>~getTokenPromise",
+        "kind": "member",
+        "memberof": "<anonymous>",
+        "scope": "inner"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                8343,
+                8383
+            ],
+            "filename": "datamartauthentication.js",
+            "lineno": 167,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication",
+            "code": {
+                "id": "astnode100000475",
+                "name": "getTokenPromise",
+                "type": "CallExpression",
+                "funcscope": "<anonymous>",
+                "value": "",
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "getTokenPromise",
+        "longname": "npi-datamart.module:authentication~getTokenPromise",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:authentication"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                8456,
+                8483
+            ],
+            "filename": "datamartauthentication.js",
+            "lineno": 169,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication",
+            "code": {
+                "id": "astnode100000481",
+                "name": "initialAuthPerformed",
+                "type": "Literal",
+                "funcscope": "<anonymous>",
+                "value": true,
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "initialAuthPerformed",
+        "longname": "npi-datamart.module:authentication~initialAuthPerformed",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:authentication"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                8518,
+                8550
+            ],
+            "filename": "datamartauthentication.js",
+            "lineno": 170,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication",
+            "code": {
+                "id": "astnode100000485",
+                "name": "getTokenPromise",
+                "type": "CallExpression",
+                "funcscope": "<anonymous>",
+                "value": "",
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "getTokenPromise",
+        "longname": "npi-datamart.module:authentication~getTokenPromise",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:authentication"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                8900,
+                8914
+            ],
+            "filename": "datamartauthentication.js",
+            "lineno": 176,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication",
+            "code": {
+                "id": "astnode100000499",
+                "name": "intervalHandle"
+            }
+        },
+        "undocumented": true,
+        "name": "intervalHandle",
+        "longname": "<anonymous>~intervalHandle",
+        "kind": "member",
+        "memberof": "<anonymous>",
+        "scope": "inner"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                8953,
+                9003
+            ],
+            "filename": "datamartauthentication.js",
+            "lineno": 177,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication",
+            "code": {
+                "id": "astnode100000501",
+                "name": "promiseClearTime",
+                "type": "BinaryExpression",
+                "value": ""
+            }
+        },
+        "undocumented": true,
+        "name": "promiseClearTime",
+        "longname": "<anonymous>~promiseClearTime",
+        "kind": "member",
+        "memberof": "<anonymous>",
+        "scope": "inner"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                9567,
+                10240
+            ],
+            "filename": "datamartauthentication.js",
+            "lineno": 183,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication",
+            "code": {
+                "id": "astnode100000511",
+                "name": "intervalHandle",
+                "type": "CallExpression",
+                "funcscope": "<anonymous>",
+                "value": "",
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "intervalHandle",
+        "longname": "npi-datamart.module:authentication~intervalHandle",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:authentication"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                9809,
+                9842
+            ],
+            "filename": "datamartauthentication.js",
+            "lineno": 186,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication",
+            "code": {
+                "id": "astnode100000531",
+                "name": "ensureAuthenticatedPromise",
+                "type": "Literal",
+                "funcscope": "<anonymous>",
+                "value": null,
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "ensureAuthenticatedPromise",
+        "longname": "npi-datamart.module:authentication~ensureAuthenticatedPromise",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:authentication"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                10566,
+                10599
+            ],
+            "filename": "datamartauthentication.js",
+            "lineno": 198,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication",
+            "code": {
+                "id": "astnode100000558",
+                "name": "ensureAuthenticatedPromise",
+                "type": "Literal",
+                "funcscope": "<anonymous>",
+                "value": null,
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "ensureAuthenticatedPromise",
+        "longname": "npi-datamart.module:authentication~ensureAuthenticatedPromise",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:authentication"
+    },
+    {
+        "comment": "/**\r\n                 * Ensures that the API is currently authenticated and will ensure the API maintains authentication tokens until the specified scope is destroyed\r\n                 * @method maintainAuthentication\r\n                 * @param {Object} $scope\r\n                 * @return {CallExpression} A promise to maintain authentication\r\n                 */",
+        "meta": {
+            "range": [
+                10832,
+                11195
+            ],
+            "filename": "datamartauthentication.js",
+            "lineno": 207,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication",
+            "code": {}
+        },
+        "description": "Ensures that the API is currently authenticated and will ensure the API maintains authentication tokens until the specified scope is destroyed",
+        "kind": "function",
+        "name": "maintainAuthentication",
+        "params": [
+            {
+                "type": {
+                    "names": [
+                        "Object"
+                    ]
+                },
+                "name": "$scope"
+            }
+        ],
+        "returns": [
+            {
+                "type": {
+                    "names": [
+                        "CallExpression"
+                    ]
+                },
+                "description": "A promise to maintain authentication"
+            }
+        ],
+        "longname": "npi-datamart.module:authentication~maintainAuthentication",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:authentication"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                11213,
+                11984
+            ],
+            "filename": "datamartauthentication.js",
+            "lineno": 213,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication",
+            "code": {
+                "id": "astnode100000568",
+                "name": "self.maintainAuthentication",
+                "type": "FunctionExpression",
+                "funcscope": "<anonymous>~BBDataMartAuthentication",
+                "value": "maintainAuthentication",
+                "paramnames": [
+                    "$scope"
+                ]
+            },
+            "vars": {
+                "maintainAuthScopeCount": "npi-datamart.module:authentication~maintainAuthScopeCount",
+                "": null
+            }
+        },
+        "undocumented": true,
+        "name": "maintainAuthentication",
+        "longname": "<anonymous>~BBDataMartAuthentication~self.maintainAuthentication",
+        "kind": "function",
+        "memberof": "<anonymous>~BBDataMartAuthentication~self",
+        "scope": "static"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                11406,
+                11433
+            ],
+            "filename": "datamartauthentication.js",
+            "lineno": 215,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication",
+            "code": {
+                "id": "astnode100000577",
+                "name": "maintainAuthScopeCount",
+                "type": "Literal",
+                "funcscope": "<anonymous>~BBDataMartAuthentication~self.maintainAuthentication",
+                "value": 1,
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "maintainAuthScopeCount",
+        "longname": "npi-datamart.module:authentication~maintainAuthScopeCount",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:authentication"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                11593,
+                11620
+            ],
+            "filename": "datamartauthentication.js",
+            "lineno": 219,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication",
+            "code": {
+                "id": "astnode100000589",
+                "name": "maintainAuthScopeCount",
+                "type": "Literal",
+                "funcscope": "<anonymous>",
+                "value": 1,
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "maintainAuthScopeCount",
+        "longname": "npi-datamart.module:authentication~maintainAuthScopeCount",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:authentication"
+    },
+    {
+        "kind": "package",
+        "longname": "package:undefined",
+        "files": [
+            "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication\\datamartauthentication.js"
+        ]
+    }
+]

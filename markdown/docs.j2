@@ -1,0 +1,31 @@
+# {{module.name}}
+{{module.description}}
+
+* {{module.name}}
+	{% for func in functions -%}
+	* `{{func.name}}`
+	{% endfor -%}
+	
+{% for func in functions %}
+## `{{func.name}}`
+{{func.description}}
+
+**Kind**: 
+	{%- if func.scope == 'inner' -%}
+		{{' '}}inner property of `{{module.name}}`
+	{%- endif %}
+
+**Returns**:
+	{%- if func.returns -%}
+	{% for return in func.returns %}
+		{{return.type.names}} - {{return.description}}
+	{%- endfor -%}
+	{%- endif %}
+
+{% if func.params -%}
+**Params**:
+{% for param in func.params -%}
+* {{param.name}}
+{% endfor -%}
+{% endif -%}
+{% endfor %}
