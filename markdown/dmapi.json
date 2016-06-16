@@ -1,0 +1,3899 @@
+[
+    {
+        "comment": "/**\r\n     * Data Mart API\r\n     * API module for NPI Data Mart UX\r\n     * @module npi-datamart.api\r\n     */",
+        "meta": {
+            "range": [
+                141,
+                248
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 7,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {}
+        },
+        "description": "Data Mart API\rAPI module for NPI Data Mart UX",
+        "kind": "module",
+        "name": "api",
+        "memberof": "npi-datamart",
+        "longname": "npi-datamart.module:api",
+        "scope": "static"
+    },
+    {
+        "comment": "/**\r\n             * An Angular Factory for generating BBDataMartAPI objects\r\n             * @method BBDataMartAPI\r\n             * @param {Object} options Object containing the information for the authentication and datamart\r\n             * @param {BBDataMartAuthentication} options.authentication A BBDataMartAuthentication object\r\n             * @param {string} [options.dataMartId] ID of the datamart\r\n             * @param {Function} [options.getDataMartId] A promise to return the Data Mart ID as a string. Required if dataMartId not provided.\r\n             * @param {Function} [options.translateObjectIdentifier] A funtion returning a promise that returns a data mart identifier based on a provided identifier.  This is a hook to allow custom identifier translation.\r\n             * @param {Function} [options.translateFilters] A funtion returning a promise that returns a filters object based on a provided filters object.  This is a hook to allow custom filters translation. \r\n             * @param {Function} [options.translateAttributeName] A function that returns a translated attribute name based on a provided attribute name.\r\n             * @return {BBDataMartAPI} A class containing methods to handle interactions with the Data Mart APIs\r\n             */",
+        "meta": {
+            "range": [
+                431,
+                1699
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 14,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {}
+        },
+        "description": "An Angular Factory for generating BBDataMartAPI objects",
+        "kind": "function",
+        "name": "BBDataMartAPI",
+        "params": [
+            {
+                "type": {
+                    "names": [
+                        "Object"
+                    ]
+                },
+                "description": "Object containing the information for the authentication and datamart",
+                "name": "options"
+            },
+            {
+                "type": {
+                    "names": [
+                        "BBDataMartAuthentication"
+                    ]
+                },
+                "description": "A BBDataMartAuthentication object",
+                "name": "options.authentication"
+            },
+            {
+                "type": {
+                    "names": [
+                        "string"
+                    ]
+                },
+                "optional": true,
+                "description": "ID of the datamart",
+                "name": "options.dataMartId"
+            },
+            {
+                "type": {
+                    "names": [
+                        "function"
+                    ]
+                },
+                "optional": true,
+                "description": "A promise to return the Data Mart ID as a string. Required if dataMartId not provided.",
+                "name": "options.getDataMartId"
+            },
+            {
+                "type": {
+                    "names": [
+                        "function"
+                    ]
+                },
+                "optional": true,
+                "description": "A funtion returning a promise that returns a data mart identifier based on a provided identifier.  This is a hook to allow custom identifier translation.",
+                "name": "options.translateObjectIdentifier"
+            },
+            {
+                "type": {
+                    "names": [
+                        "function"
+                    ]
+                },
+                "optional": true,
+                "description": "A funtion returning a promise that returns a filters object based on a provided filters object.  This is a hook to allow custom filters translation.",
+                "name": "options.translateFilters"
+            },
+            {
+                "type": {
+                    "names": [
+                        "function"
+                    ]
+                },
+                "optional": true,
+                "description": "A function that returns a translated attribute name based on a provided attribute name.",
+                "name": "options.translateAttributeName"
+            }
+        ],
+        "returns": [
+            {
+                "type": {
+                    "names": [
+                        "BBDataMartAPI"
+                    ]
+                },
+                "description": "A class containing methods to handle interactions with the Data Mart APIs"
+            }
+        ],
+        "longname": "npi-datamart.module:api~BBDataMartAPI",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:api"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                1717,
+                31479
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 26,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000029",
+                "name": "BBDataMartAPI",
+                "type": "FunctionExpression"
+            },
+            "vars": {
+                "apiContextPromise": "<anonymous>~BBDataMartAPI~apiContextPromise",
+                "authentication": "npi-datamart.module:api~authentication",
+                "objectUriPromises": "<anonymous>~BBDataMartAPI~objectUriPromises",
+                "self": "<anonymous>~BBDataMartAPI~self",
+                "options": "npi-datamart.module:api~options",
+                "self.getDataMartId": "<anonymous>~BBDataMartAPI~self.getDataMartId",
+                "": null,
+                "self.getApiRoot": "<anonymous>~BBDataMartAPI~self.getApiRoot",
+                "getAPIContext": "<anonymous>~BBDataMartAPI~getAPIContext",
+                "ensureAuthenticatedContext": "<anonymous>~BBDataMartAPI~ensureAuthenticatedContext",
+                "getObjectUriFromIdentifier": "<anonymous>~BBDataMartAPI~getObjectUriFromIdentifier",
+                "getObjectDefinitionByUri": "<anonymous>~BBDataMartAPI~getObjectDefinitionByUri",
+                "getSingleElementUri": "<anonymous>~BBDataMartAPI~getSingleElementUri",
+                "getAttributeName": "<anonymous>~BBDataMartAPI~getAttributeName",
+                "getObjectIdentifierDisplayForm": "<anonymous>~BBDataMartAPI~getObjectIdentifierDisplayForm",
+                "getDataResults": "<anonymous>~BBDataMartAPI~getDataResults",
+                "executeReportByPostData": "<anonymous>~BBDataMartAPI~executeReportByPostData",
+                "buildElementFilter": "<anonymous>~BBDataMartAPI~buildElementFilter",
+                "buildReportRequestContext": "<anonymous>~BBDataMartAPI~buildReportRequestContext",
+                "executeReport": "<anonymous>~BBDataMartAPI~executeReport",
+                "executeReportRaw": "<anonymous>~BBDataMartAPI~executeReportRaw",
+                "getHeadlineDataResults": "<anonymous>~BBDataMartAPI~getHeadlineDataResults",
+                "getLatestReportDefinition": "<anonymous>~BBDataMartAPI~getLatestReportDefinition",
+                "getHeadlineReportDrillContext": "<anonymous>~BBDataMartAPI~getHeadlineReportDrillContext",
+                "loadDrillInRecordIds": "<anonymous>~BBDataMartAPI~loadDrillInRecordIds",
+                "self.platformIsAvailable": "<anonymous>~BBDataMartAPI~self.platformIsAvailable",
+                "self.getObjectUriFromIdentifier": "<anonymous>~BBDataMartAPI~self.getObjectUriFromIdentifier",
+                "self.executeReport": "<anonymous>~BBDataMartAPI~self.executeReport",
+                "self.getHeadlineReportData": "<anonymous>~BBDataMartAPI~self.getHeadlineReportData",
+                "self.getHeadlineReportDrillContext": "<anonymous>~BBDataMartAPI~self.getHeadlineReportDrillContext",
+                "self.loadDrillInRecordIds": "<anonymous>~BBDataMartAPI~self.loadDrillInRecordIds",
+                "self.getLatestReportDefinition": "<anonymous>~BBDataMartAPI~self.getLatestReportDefinition",
+                "self.getObjectDefinitionByUri": "<anonymous>~BBDataMartAPI~self.getObjectDefinitionByUri",
+                "self.maintainAuthentication": "<anonymous>~BBDataMartAPI~self.maintainAuthentication"
+            }
+        },
+        "undocumented": true,
+        "name": "BBDataMartAPI",
+        "longname": "<anonymous>~BBDataMartAPI",
+        "kind": "function",
+        "memberof": "<anonymous>",
+        "scope": "inner"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                1775,
+                1792
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 27,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000035",
+                "name": "apiContextPromise"
+            }
+        },
+        "undocumented": true,
+        "name": "apiContextPromise",
+        "longname": "<anonymous>~BBDataMartAPI~apiContextPromise",
+        "kind": "member",
+        "memberof": "<anonymous>~BBDataMartAPI",
+        "scope": "inner"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                1815,
+                1829
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 28,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000037",
+                "name": "authentication"
+            }
+        },
+        "undocumented": true,
+        "name": "authentication",
+        "longname": "<anonymous>~BBDataMartAPI~authentication",
+        "kind": "member",
+        "memberof": "<anonymous>~BBDataMartAPI",
+        "scope": "inner"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                1852,
+                1874
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 29,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000039",
+                "name": "objectUriPromises",
+                "type": "ObjectExpression",
+                "value": "{}"
+            }
+        },
+        "undocumented": true,
+        "name": "objectUriPromises",
+        "longname": "<anonymous>~BBDataMartAPI~objectUriPromises",
+        "kind": "member",
+        "memberof": "<anonymous>~BBDataMartAPI",
+        "scope": "inner"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                1897,
+                1908
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 30,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000042",
+                "name": "self",
+                "type": "ThisExpression",
+                "value": "this"
+            }
+        },
+        "undocumented": true,
+        "name": "self",
+        "longname": "<anonymous>~BBDataMartAPI~self",
+        "kind": "member",
+        "memberof": "<anonymous>~BBDataMartAPI",
+        "scope": "inner"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                1929,
+                1952
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 32,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000046",
+                "name": "options",
+                "type": "LogicalExpression",
+                "funcscope": "<anonymous>~BBDataMartAPI",
+                "value": "",
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "options",
+        "longname": "npi-datamart.module:api~options",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:api"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                1971,
+                2010
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 33,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000052",
+                "name": "authentication",
+                "type": "MemberExpression",
+                "funcscope": "<anonymous>~BBDataMartAPI",
+                "value": "options.authentication",
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "authentication",
+        "longname": "npi-datamart.module:api~authentication",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:api"
+    },
+    {
+        "comment": "/**\r\n                 * Gets the Data Mart ID\r\n                 * @method getDataMartId\r\n                 * @return {CallExpression} A promise to return the Data Mart ID as a string\r\n                 */",
+        "meta": {
+            "range": [
+                2437,
+                2639
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 43,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {}
+        },
+        "description": "Gets the Data Mart ID",
+        "kind": "function",
+        "name": "getDataMartId",
+        "returns": [
+            {
+                "type": {
+                    "names": [
+                        "CallExpression"
+                    ]
+                },
+                "description": "A promise to return the Data Mart ID as a string"
+            }
+        ],
+        "longname": "npi-datamart.module:api~getDataMartId",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:api"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                2657,
+                3060
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 48,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000077",
+                "name": "self.getDataMartId",
+                "type": "FunctionExpression",
+                "funcscope": "<anonymous>~BBDataMartAPI",
+                "value": "getDataMartId",
+                "paramnames": []
+            },
+            "vars": {
+                "": null
+            }
+        },
+        "undocumented": true,
+        "name": "getDataMartId",
+        "longname": "<anonymous>~BBDataMartAPI~self.getDataMartId",
+        "kind": "function",
+        "memberof": "<anonymous>~BBDataMartAPI~self",
+        "scope": "static"
+    },
+    {
+        "comment": "/**\r\n                 * Get the root of the API\r\n                 * @method getApiRoot\r\n                 * @return {CallExpression} A promise to return the root URL of the API as a string\r\n                 */",
+        "meta": {
+            "range": [
+                3081,
+                3289
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 58,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {}
+        },
+        "description": "Get the root of the API",
+        "kind": "function",
+        "name": "getApiRoot",
+        "returns": [
+            {
+                "type": {
+                    "names": [
+                        "CallExpression"
+                    ]
+                },
+                "description": "A promise to return the root URL of the API as a string"
+            }
+        ],
+        "longname": "npi-datamart.module:api~getApiRoot",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:api"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                3307,
+                3423
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 63,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000117",
+                "name": "self.getApiRoot",
+                "type": "FunctionExpression",
+                "funcscope": "<anonymous>~BBDataMartAPI",
+                "value": "getApiRoot",
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "getApiRoot",
+        "longname": "<anonymous>~BBDataMartAPI~self.getApiRoot",
+        "kind": "function",
+        "memberof": "<anonymous>~BBDataMartAPI~self",
+        "scope": "static"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                3444,
+                4177
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 67,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000129",
+                "name": "getAPIContext",
+                "type": "FunctionDeclaration",
+                "paramnames": []
+            },
+            "vars": {
+                "apiContextPromise": "npi-datamart.module:api~apiContextPromise",
+                "": null
+            }
+        },
+        "undocumented": true,
+        "name": "getAPIContext",
+        "longname": "<anonymous>~BBDataMartAPI~getAPIContext",
+        "kind": "function",
+        "memberof": "<anonymous>~BBDataMartAPI",
+        "scope": "inner",
+        "params": []
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                3543,
+                4087
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 69,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000137",
+                "name": "apiContextPromise",
+                "type": "CallExpression",
+                "funcscope": "<anonymous>~BBDataMartAPI~getAPIContext",
+                "value": "",
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "apiContextPromise",
+        "longname": "npi-datamart.module:api~apiContextPromise",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:api"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                3839,
+                3855
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 73,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000175",
+                "name": "apiRoot",
+                "type": "Identifier",
+                "value": "apiRoot"
+            }
+        },
+        "undocumented": true,
+        "name": "apiRoot",
+        "longname": "npi-datamart.module:api~apiRoot",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:api"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                3898,
+                3920
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 74,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000177",
+                "name": "dataMartId",
+                "type": "Identifier",
+                "value": "dataMartId"
+            }
+        },
+        "undocumented": true,
+        "name": "dataMartId",
+        "longname": "npi-datamart.module:api~dataMartId",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:api"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                4197,
+                4633
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 83,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000185",
+                "name": "ensureAuthenticatedContext",
+                "type": "FunctionDeclaration",
+                "paramnames": []
+            },
+            "vars": {
+                "": null
+            }
+        },
+        "undocumented": true,
+        "name": "ensureAuthenticatedContext",
+        "longname": "<anonymous>~BBDataMartAPI~ensureAuthenticatedContext",
+        "kind": "function",
+        "memberof": "<anonymous>~BBDataMartAPI",
+        "scope": "inner",
+        "params": []
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                4653,
+                6352
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 93,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000226",
+                "name": "getObjectUriFromIdentifier",
+                "type": "FunctionDeclaration",
+                "paramnames": [
+                    "context",
+                    "objectIdentifier"
+                ]
+            },
+            "vars": {
+                "objectUriPromises[undefined]": "<anonymous>~BBDataMartAPI~objectUriPromises.undefined]",
+                "": null
+            }
+        },
+        "undocumented": true,
+        "name": "getObjectUriFromIdentifier",
+        "longname": "<anonymous>~BBDataMartAPI~getObjectUriFromIdentifier",
+        "kind": "function",
+        "memberof": "<anonymous>~BBDataMartAPI",
+        "scope": "inner",
+        "params": []
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                4808,
+                6242
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 95,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000238",
+                "name": "objectUriPromises[undefined]",
+                "type": "CallExpression",
+                "value": "",
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "undefined]",
+        "longname": "<anonymous>~BBDataMartAPI~objectUriPromises.undefined]",
+        "kind": "member",
+        "memberof": "<anonymous>~BBDataMartAPI~objectUriPromises",
+        "scope": "static"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                4907,
+                5780
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 96,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000248",
+                "name": "lookupUriForObjectId",
+                "type": "FunctionDeclaration",
+                "paramnames": [
+                    "id"
+                ]
+            },
+            "vars": {
+                "postData": "<anonymous>~lookupUriForObjectId~postData",
+                "": null
+            }
+        },
+        "undocumented": true,
+        "name": "lookupUriForObjectId",
+        "longname": "<anonymous>~lookupUriForObjectId",
+        "kind": "function",
+        "memberof": "<anonymous>",
+        "scope": "inner",
+        "params": []
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                4980,
+                5086
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 97,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000253",
+                "name": "postData",
+                "type": "ObjectExpression",
+                "value": "{\"identifierToUri\":\"\"}"
+            }
+        },
+        "undocumented": true,
+        "name": "postData",
+        "longname": "<anonymous>~lookupUriForObjectId~postData",
+        "kind": "member",
+        "memberof": "<anonymous>~lookupUriForObjectId",
+        "scope": "inner"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                5030,
+                5051
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 98,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000256",
+                "name": "identifierToUri",
+                "type": "ArrayExpression",
+                "value": "[\"id\"]"
+            }
+        },
+        "undocumented": true,
+        "name": "identifierToUri",
+        "longname": "<anonymous>~lookupUriForObjectId~postData.identifierToUri",
+        "kind": "member",
+        "memberof": "<anonymous>~lookupUriForObjectId~postData",
+        "scope": "static"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                5251,
+                5272
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 102,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000281",
+                "name": "withCredentials",
+                "type": "Literal",
+                "value": true
+            }
+        },
+        "undocumented": true,
+        "name": "withCredentials",
+        "longname": "npi-datamart.module:api~withCredentials",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:api"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                6372,
+                6959
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 125,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000368",
+                "name": "getObjectDefinitionByUri",
+                "type": "FunctionDeclaration",
+                "paramnames": [
+                    "context",
+                    "objectUri"
+                ]
+            },
+            "vars": {
+                "": null
+            }
+        },
+        "undocumented": true,
+        "name": "getObjectDefinitionByUri",
+        "longname": "<anonymous>~BBDataMartAPI~getObjectDefinitionByUri",
+        "kind": "function",
+        "memberof": "<anonymous>~BBDataMartAPI",
+        "scope": "inner",
+        "params": []
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                6583,
+                6604
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 128,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000395",
+                "name": "withCredentials",
+                "type": "Literal",
+                "value": true
+            }
+        },
+        "undocumented": true,
+        "name": "withCredentials",
+        "longname": "npi-datamart.module:api~withCredentials",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:api"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                6979,
+                8216
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 139,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000418",
+                "name": "getSingleElementUri",
+                "type": "FunctionDeclaration",
+                "paramnames": [
+                    "context",
+                    "elementsUri",
+                    "elementValue"
+                ]
+            },
+            "vars": {
+                "i": "<anonymous>~BBDataMartAPI~getSingleElementUri~i",
+                "el": "<anonymous>~BBDataMartAPI~getSingleElementUri~el",
+                "elementUri": "<anonymous>~BBDataMartAPI~getSingleElementUri~elementUri",
+                "": null
+            }
+        },
+        "undocumented": true,
+        "name": "getSingleElementUri",
+        "longname": "<anonymous>~BBDataMartAPI~getSingleElementUri",
+        "kind": "function",
+        "memberof": "<anonymous>~BBDataMartAPI",
+        "scope": "inner",
+        "params": []
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                7071,
+                7072
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 140,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000425",
+                "name": "i"
+            }
+        },
+        "undocumented": true,
+        "name": "i",
+        "longname": "<anonymous>~BBDataMartAPI~getSingleElementUri~i",
+        "kind": "member",
+        "memberof": "<anonymous>~BBDataMartAPI~getSingleElementUri",
+        "scope": "inner"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                7099,
+                7101
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 141,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000427",
+                "name": "el"
+            }
+        },
+        "undocumented": true,
+        "name": "el",
+        "longname": "<anonymous>~BBDataMartAPI~getSingleElementUri~el",
+        "kind": "member",
+        "memberof": "<anonymous>~BBDataMartAPI~getSingleElementUri",
+        "scope": "inner"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                7128,
+                7145
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 142,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000429",
+                "name": "elementUri",
+                "type": "Literal",
+                "value": null
+            }
+        },
+        "undocumented": true,
+        "name": "elementUri",
+        "longname": "<anonymous>~BBDataMartAPI~getSingleElementUri~elementUri",
+        "kind": "member",
+        "memberof": "<anonymous>~BBDataMartAPI~getSingleElementUri",
+        "scope": "inner"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                7334,
+                7355
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 146,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000458",
+                "name": "withCredentials",
+                "type": "Literal",
+                "value": true
+            }
+        },
+        "undocumented": true,
+        "name": "withCredentials",
+        "longname": "npi-datamart.module:api~withCredentials",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:api"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                7570,
+                7575
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 149,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000484",
+                "name": "i",
+                "type": "Literal",
+                "funcscope": "<anonymous>",
+                "value": 0,
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "i",
+        "longname": "npi-datamart.module:api~i",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:api"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                7628,
+                7634
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 149,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000498",
+                "name": "i",
+                "type": "Literal",
+                "funcscope": "<anonymous>",
+                "value": 1,
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "i",
+        "longname": "npi-datamart.module:api~i",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:api"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                7675,
+                7721
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 150,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000503",
+                "name": "el",
+                "type": "MemberExpression",
+                "funcscope": "<anonymous>",
+                "value": "result.data.attributeElements.elements[undefined]",
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "el",
+        "longname": "npi-datamart.module:api~el",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:api"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                7856,
+                7875
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 152,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000528",
+                "name": "elementUri",
+                "type": "MemberExpression",
+                "funcscope": "<anonymous>",
+                "value": "el.uri",
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "elementUri",
+        "longname": "npi-datamart.module:api~elementUri",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:api"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                8236,
+                8491
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 164,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000544",
+                "name": "getAttributeName",
+                "type": "FunctionDeclaration",
+                "paramnames": [
+                    "attribute"
+                ]
+            }
+        },
+        "undocumented": true,
+        "name": "getAttributeName",
+        "longname": "<anonymous>~BBDataMartAPI~getAttributeName",
+        "kind": "function",
+        "memberof": "<anonymous>~BBDataMartAPI",
+        "scope": "inner",
+        "params": []
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                8511,
+                9008
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 172,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000561",
+                "name": "getObjectIdentifierDisplayForm",
+                "type": "FunctionDeclaration",
+                "paramnames": [
+                    "attribute"
+                ]
+            },
+            "vars": {
+                "identifier": "npi-datamart.module:api~identifier"
+            }
+        },
+        "undocumented": true,
+        "name": "getObjectIdentifierDisplayForm",
+        "longname": "<anonymous>~BBDataMartAPI~getObjectIdentifierDisplayForm",
+        "kind": "function",
+        "memberof": "<anonymous>~BBDataMartAPI",
+        "scope": "inner",
+        "params": []
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                8589,
+                8606
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 173,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000566",
+                "name": "identifier",
+                "type": "Literal",
+                "value": null
+            }
+        },
+        "undocumented": true,
+        "name": "identifier",
+        "longname": "<anonymous>~BBDataMartAPI~getObjectIdentifierDisplayForm~identifier",
+        "kind": "member",
+        "memberof": "<anonymous>~BBDataMartAPI~getObjectIdentifierDisplayForm",
+        "scope": "inner"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                8749,
+                8798
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 177,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000583",
+                "name": "identifier",
+                "type": "CallExpression",
+                "funcscope": "<anonymous>~BBDataMartAPI~getObjectIdentifierDisplayForm",
+                "value": "",
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "identifier",
+        "longname": "npi-datamart.module:api~identifier",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:api"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                8863,
+                8896
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 179,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000593",
+                "name": "identifier",
+                "type": "BinaryExpression",
+                "funcscope": "<anonymous>~BBDataMartAPI~getObjectIdentifierDisplayForm",
+                "value": "",
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "identifier",
+        "longname": "npi-datamart.module:api~identifier",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:api"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                9028,
+                9811
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 186,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000600",
+                "name": "getDataResults",
+                "type": "FunctionDeclaration",
+                "paramnames": [
+                    "context",
+                    "dataResultsUri",
+                    "skipRetry"
+                ]
+            },
+            "vars": {
+                "": null
+            }
+        },
+        "undocumented": true,
+        "name": "getDataResults",
+        "longname": "<anonymous>~BBDataMartAPI~getDataResults",
+        "kind": "function",
+        "memberof": "<anonymous>~BBDataMartAPI",
+        "scope": "inner",
+        "params": []
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                9250,
+                9271
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 189,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000628",
+                "name": "withCredentials",
+                "type": "Literal",
+                "value": true
+            }
+        },
+        "undocumented": true,
+        "name": "withCredentials",
+        "longname": "npi-datamart.module:api~withCredentials",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:api"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                9831,
+                10582
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 202,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000670",
+                "name": "executeReportByPostData",
+                "type": "FunctionDeclaration",
+                "paramnames": [
+                    "context",
+                    "postData"
+                ]
+            },
+            "vars": {
+                "": null
+            }
+        },
+        "undocumented": true,
+        "name": "executeReportByPostData",
+        "longname": "<anonymous>~BBDataMartAPI~executeReportByPostData",
+        "kind": "function",
+        "memberof": "<anonymous>~BBDataMartAPI",
+        "scope": "inner",
+        "params": []
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                10096,
+                10117
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 205,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000704",
+                "name": "withCredentials",
+                "type": "Literal",
+                "value": true
+            }
+        },
+        "undocumented": true,
+        "name": "withCredentials",
+        "longname": "npi-datamart.module:api~withCredentials",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:api"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                10602,
+                12141
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 216,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000748",
+                "name": "buildElementFilter",
+                "type": "FunctionDeclaration",
+                "paramnames": [
+                    "context",
+                    "filter",
+                    "objectDisplayFormUri"
+                ]
+            },
+            "vars": {
+                "filterObj": "<anonymous>~BBDataMartAPI~buildElementFilter~filterObj",
+                "i": "<anonymous>~BBDataMartAPI~buildElementFilter~i",
+                "tasks": "<anonymous>~BBDataMartAPI~buildElementFilter~tasks",
+                "values": "<anonymous>~BBDataMartAPI~buildElementFilter~values",
+                "": null
+            }
+        },
+        "undocumented": true,
+        "name": "buildElementFilter",
+        "longname": "<anonymous>~BBDataMartAPI~buildElementFilter",
+        "kind": "function",
+        "memberof": "<anonymous>~BBDataMartAPI",
+        "scope": "inner",
+        "params": []
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                10696,
+                10892
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 217,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000755",
+                "name": "filterObj",
+                "type": "ObjectExpression",
+                "value": "{\"uri\":\"\",\"constraint\":\"\"}"
+            }
+        },
+        "undocumented": true,
+        "name": "filterObj",
+        "longname": "<anonymous>~BBDataMartAPI~buildElementFilter~filterObj",
+        "kind": "member",
+        "memberof": "<anonymous>~BBDataMartAPI~buildElementFilter",
+        "scope": "inner"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                10735,
+                10760
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 218,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000758",
+                "name": "uri",
+                "type": "Identifier",
+                "value": "objectDisplayFormUri"
+            }
+        },
+        "undocumented": true,
+        "name": "uri",
+        "longname": "<anonymous>~BBDataMartAPI~buildElementFilter~filterObj.uri",
+        "kind": "member",
+        "memberof": "<anonymous>~BBDataMartAPI~buildElementFilter~filterObj",
+        "scope": "static"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                10787,
+                10869
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 219,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000760",
+                "name": "constraint",
+                "type": "ObjectExpression",
+                "value": "{\"type\":\"list\"}"
+            }
+        },
+        "undocumented": true,
+        "name": "constraint",
+        "longname": "<anonymous>~BBDataMartAPI~buildElementFilter~filterObj.constraint",
+        "kind": "member",
+        "memberof": "<anonymous>~BBDataMartAPI~buildElementFilter~filterObj",
+        "scope": "static"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                10830,
+                10842
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 220,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000762",
+                "name": "type",
+                "type": "Literal",
+                "value": "list"
+            }
+        },
+        "undocumented": true,
+        "name": "type",
+        "longname": "<anonymous>~BBDataMartAPI~buildElementFilter~filterObj.constraint.type",
+        "kind": "member",
+        "memberof": "<anonymous>~BBDataMartAPI~buildElementFilter~filterObj.constraint",
+        "scope": "static"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                10919,
+                10920
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 223,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000764",
+                "name": "i"
+            }
+        },
+        "undocumented": true,
+        "name": "i",
+        "longname": "<anonymous>~BBDataMartAPI~buildElementFilter~i",
+        "kind": "member",
+        "memberof": "<anonymous>~BBDataMartAPI~buildElementFilter",
+        "scope": "inner"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                10947,
+                10957
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 224,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000766",
+                "name": "tasks",
+                "type": "ArrayExpression",
+                "value": "[]"
+            }
+        },
+        "undocumented": true,
+        "name": "tasks",
+        "longname": "<anonymous>~BBDataMartAPI~buildElementFilter~tasks",
+        "kind": "member",
+        "memberof": "<anonymous>~BBDataMartAPI~buildElementFilter",
+        "scope": "inner"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                10984,
+                10990
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 225,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000769",
+                "name": "values"
+            }
+        },
+        "undocumented": true,
+        "name": "values",
+        "longname": "<anonymous>~BBDataMartAPI~buildElementFilter~values",
+        "kind": "member",
+        "memberof": "<anonymous>~BBDataMartAPI~buildElementFilter",
+        "scope": "inner"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                11189,
+                11212
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 230,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000793",
+                "name": "values",
+                "type": "ArrayExpression",
+                "funcscope": "<anonymous>",
+                "value": "[\"filter.value\"]",
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "values",
+        "longname": "npi-datamart.module:api~values",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:api"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                11285,
+                11306
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 232,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000801",
+                "name": "values",
+                "type": "MemberExpression",
+                "funcscope": "<anonymous>",
+                "value": "filter.value",
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "values",
+        "longname": "npi-datamart.module:api~values",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:api"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                11375,
+                11380
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 235,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000807",
+                "name": "i",
+                "type": "Literal",
+                "funcscope": "<anonymous>",
+                "value": 0,
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "i",
+        "longname": "npi-datamart.module:api~i",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:api"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                11401,
+                11407
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 235,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000815",
+                "name": "i",
+                "type": "Literal",
+                "funcscope": "<anonymous>",
+                "value": 1,
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "i",
+        "longname": "npi-datamart.module:api~i",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:api"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                11734,
+                11780
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 240,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000853",
+                "name": "filterObj.constraint.elements",
+                "type": "Identifier",
+                "funcscope": "<anonymous>~BBDataMartAPI~buildElementFilter",
+                "value": "objectElements",
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "constraint.elements",
+        "longname": "<anonymous>~BBDataMartAPI~buildElementFilter~filterObj.constraint.elements",
+        "kind": "member",
+        "memberof": "<anonymous>~BBDataMartAPI~buildElementFilter~filterObj",
+        "scope": "static"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                12161,
+                15128
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 252,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000874",
+                "name": "buildReportRequestContext",
+                "type": "FunctionDeclaration",
+                "paramnames": [
+                    "context",
+                    "filters"
+                ]
+            },
+            "vars": {
+                "": null
+            }
+        },
+        "undocumented": true,
+        "name": "buildReportRequestContext",
+        "longname": "<anonymous>~BBDataMartAPI~buildReportRequestContext",
+        "kind": "function",
+        "memberof": "<anonymous>~BBDataMartAPI",
+        "scope": "inner",
+        "params": []
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                12305,
+                12325
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 254,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000887",
+                "name": "attributeDisplayForm"
+            }
+        },
+        "undocumented": true,
+        "name": "attributeDisplayForm",
+        "longname": "<anonymous>~attributeDisplayForm",
+        "kind": "member",
+        "memberof": "<anonymous>",
+        "scope": "inner"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                12356,
+                12357
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 255,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000889",
+                "name": "i"
+            }
+        },
+        "undocumented": true,
+        "name": "i",
+        "longname": "<anonymous>~i",
+        "kind": "member",
+        "memberof": "<anonymous>",
+        "scope": "inner"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                12388,
+                12398
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 256,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000891",
+                "name": "tasks",
+                "type": "ArrayExpression",
+                "value": "[]"
+            }
+        },
+        "undocumented": true,
+        "name": "tasks",
+        "longname": "<anonymous>~tasks",
+        "kind": "member",
+        "memberof": "<anonymous>",
+        "scope": "inner"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                12427,
+                14664
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 258,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000894",
+                "name": "buildContext",
+                "type": "FunctionDeclaration",
+                "paramnames": [
+                    "filters"
+                ]
+            },
+            "vars": {
+                "reportRequestContext": "<anonymous>~buildContext~reportRequestContext",
+                "i": "npi-datamart.module:api~i",
+                "attributeDisplayForm": "npi-datamart.module:api~attributeDisplayForm",
+                "": null
+            }
+        },
+        "undocumented": true,
+        "name": "buildContext",
+        "longname": "<anonymous>~buildContext",
+        "kind": "function",
+        "memberof": "<anonymous>",
+        "scope": "inner",
+        "params": []
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                12493,
+                12518
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 259,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000899",
+                "name": "reportRequestContext",
+                "type": "ObjectExpression",
+                "value": "{}"
+            }
+        },
+        "undocumented": true,
+        "name": "reportRequestContext",
+        "longname": "<anonymous>~buildContext~reportRequestContext",
+        "kind": "member",
+        "memberof": "<anonymous>~buildContext",
+        "scope": "inner"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                12556,
+                12561
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 261,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000903",
+                "name": "i",
+                "type": "Literal",
+                "funcscope": "<anonymous>~buildContext",
+                "value": 0,
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "i",
+        "longname": "npi-datamart.module:api~i",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:api"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                12583,
+                12589
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 261,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000911",
+                "name": "i",
+                "type": "Literal",
+                "funcscope": "<anonymous>~buildContext",
+                "value": 1,
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "i",
+        "longname": "npi-datamart.module:api~i",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:api"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                12691,
+                12784
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 263,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000923",
+                "name": "attributeDisplayForm",
+                "type": "CallExpression",
+                "funcscope": "<anonymous>~buildContext",
+                "value": "",
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "attributeDisplayForm",
+        "longname": "npi-datamart.module:api~attributeDisplayForm",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:api"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                12865,
+                12919
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 265,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000936",
+                "name": "attributeDisplayForm",
+                "type": "MemberExpression",
+                "funcscope": "<anonymous>~buildContext",
+                "value": "filters[undefined].attributeDisplayForm",
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "attributeDisplayForm",
+        "longname": "npi-datamart.module:api~attributeDisplayForm",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:api"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                13553,
+                13563
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 277,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000975",
+                "name": "tasks",
+                "type": "ArrayExpression",
+                "funcscope": "<anonymous>",
+                "value": "[]",
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "tasks",
+        "longname": "npi-datamart.module:api~tasks",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:api"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                13603,
+                13608
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 278,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000979",
+                "name": "i",
+                "type": "Literal",
+                "funcscope": "<anonymous>",
+                "value": 0,
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "i",
+        "longname": "npi-datamart.module:api~i",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:api"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                13630,
+                13636
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 278,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100000987",
+                "name": "i",
+                "type": "Literal",
+                "funcscope": "<anonymous>",
+                "value": 1,
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "i",
+        "longname": "npi-datamart.module:api~i",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:api"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                14160,
+                14304
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 286,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100001039",
+                "name": "reportRequestContext",
+                "type": "ObjectExpression",
+                "funcscope": "<anonymous>",
+                "value": "{\"filters\":\"\"}",
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "reportRequestContext",
+        "longname": "npi-datamart.module:api~reportRequestContext",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:api"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                14234,
+                14257
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 287,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100001042",
+                "name": "filters",
+                "type": "Identifier",
+                "value": "contextFilters"
+            }
+        },
+        "undocumented": true,
+        "name": "filters",
+        "longname": "npi-datamart.module:api~reportRequestContext.filters",
+        "kind": "member",
+        "memberof": "npi-datamart.module:api~reportRequestContext",
+        "scope": "static"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                15148,
+                16138
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 310,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100001083",
+                "name": "executeReport",
+                "type": "FunctionDeclaration",
+                "paramnames": [
+                    "context",
+                    "reportIdentifier",
+                    "filters"
+                ]
+            },
+            "vars": {
+                "": null
+            }
+        },
+        "undocumented": true,
+        "name": "executeReport",
+        "longname": "<anonymous>~BBDataMartAPI~executeReport",
+        "kind": "function",
+        "memberof": "<anonymous>~BBDataMartAPI",
+        "scope": "inner",
+        "params": []
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                15466,
+                15479
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 313,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100001119",
+                "name": "postData",
+                "type": "ObjectExpression",
+                "value": "{}"
+            }
+        },
+        "undocumented": true,
+        "name": "postData",
+        "longname": "<anonymous>~postData",
+        "kind": "member",
+        "memberof": "<anonymous>",
+        "scope": "inner"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                15514,
+                15532
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 314,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100001122",
+                "name": "reportRequest",
+                "type": "ObjectExpression",
+                "value": "{}"
+            }
+        },
+        "undocumented": true,
+        "name": "reportRequest",
+        "longname": "<anonymous>~reportRequest",
+        "kind": "member",
+        "memberof": "<anonymous>",
+        "scope": "inner"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                15567,
+                15594
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 315,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100001125",
+                "name": "reportPath",
+                "type": "MemberExpression",
+                "value": "taskResults[0]"
+            }
+        },
+        "undocumented": true,
+        "name": "reportPath",
+        "longname": "<anonymous>~reportPath",
+        "kind": "member",
+        "memberof": "<anonymous>",
+        "scope": "inner"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                15629,
+                15660
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 316,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100001130",
+                "name": "contextFilters",
+                "type": "MemberExpression",
+                "value": "taskResults[1]"
+            }
+        },
+        "undocumented": true,
+        "name": "contextFilters",
+        "longname": "<anonymous>~contextFilters",
+        "kind": "member",
+        "memberof": "<anonymous>",
+        "scope": "inner"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                15693,
+                15726
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 318,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100001136",
+                "name": "reportRequest.report",
+                "type": "Identifier",
+                "funcscope": "<anonymous>",
+                "value": "reportPath",
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "report",
+        "longname": "<anonymous>~reportRequest.report",
+        "kind": "member",
+        "memberof": "<anonymous>~reportRequest",
+        "scope": "static"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                15812,
+                15850
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 320,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100001145",
+                "name": "reportRequest.context",
+                "type": "Identifier",
+                "funcscope": "<anonymous>",
+                "value": "contextFilters",
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "context",
+        "longname": "<anonymous>~reportRequest.context",
+        "kind": "member",
+        "memberof": "<anonymous>~reportRequest",
+        "scope": "static"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                15912,
+                15947
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 322,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100001151",
+                "name": "postData.report_req",
+                "type": "Identifier",
+                "funcscope": "<anonymous>",
+                "value": "reportRequest",
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "report_req",
+        "longname": "<anonymous>~postData.report_req",
+        "kind": "member",
+        "memberof": "<anonymous>~postData",
+        "scope": "static"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                16158,
+                17419
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 329,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100001171",
+                "name": "executeReportRaw",
+                "type": "FunctionDeclaration",
+                "paramnames": [
+                    "context",
+                    "postData"
+                ]
+            },
+            "vars": {
+                "": null
+            }
+        },
+        "undocumented": true,
+        "name": "executeReportRaw",
+        "longname": "<anonymous>~BBDataMartAPI~executeReportRaw",
+        "kind": "function",
+        "memberof": "<anonymous>~BBDataMartAPI",
+        "scope": "inner",
+        "params": []
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                16290,
+                16834
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 331,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100001183",
+                "name": "loadReport",
+                "type": "FunctionDeclaration",
+                "paramnames": [
+                    "uri"
+                ]
+            },
+            "vars": {
+                "": null
+            }
+        },
+        "undocumented": true,
+        "name": "loadReport",
+        "longname": "<anonymous>~loadReport",
+        "kind": "function",
+        "memberof": "<anonymous>",
+        "scope": "inner",
+        "params": []
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                16396,
+                16417
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 333,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100001198",
+                "name": "withCredentials",
+                "type": "Literal",
+                "value": true
+            }
+        },
+        "undocumented": true,
+        "name": "withCredentials",
+        "longname": "npi-datamart.module:api~withCredentials",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:api"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                16992,
+                17013
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 344,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100001256",
+                "name": "withCredentials",
+                "type": "Literal",
+                "value": true
+            }
+        },
+        "undocumented": true,
+        "name": "withCredentials",
+        "longname": "npi-datamart.module:api~withCredentials",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:api"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                17439,
+                17951
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 355,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100001292",
+                "name": "getHeadlineDataResults",
+                "type": "FunctionDeclaration",
+                "paramnames": [
+                    "result"
+                ]
+            },
+            "vars": {
+                "reportData": "npi-datamart.module:api~reportData",
+                "xtabData": "npi-datamart.module:api~xtabData"
+            }
+        },
+        "undocumented": true,
+        "name": "getHeadlineDataResults",
+        "longname": "<anonymous>~BBDataMartAPI~getHeadlineDataResults",
+        "kind": "function",
+        "memberof": "<anonymous>~BBDataMartAPI",
+        "scope": "inner",
+        "params": []
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                17506,
+                17523
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 356,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100001297",
+                "name": "reportData",
+                "type": "Literal",
+                "value": null
+            }
+        },
+        "undocumented": true,
+        "name": "reportData",
+        "longname": "<anonymous>~BBDataMartAPI~getHeadlineDataResults~reportData",
+        "kind": "member",
+        "memberof": "<anonymous>~BBDataMartAPI~getHeadlineDataResults",
+        "scope": "inner"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                17550,
+                17558
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 357,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100001300",
+                "name": "xtabData"
+            }
+        },
+        "undocumented": true,
+        "name": "xtabData",
+        "longname": "<anonymous>~BBDataMartAPI~getHeadlineDataResults~xtabData",
+        "kind": "member",
+        "memberof": "<anonymous>~BBDataMartAPI~getHeadlineDataResults",
+        "scope": "inner"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                17682,
+                17719
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 360,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100001322",
+                "name": "xtabData",
+                "type": "MemberExpression",
+                "funcscope": "<anonymous>~BBDataMartAPI~getHeadlineDataResults",
+                "value": "result.data.xtab_data.data",
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "xtabData",
+        "longname": "npi-datamart.module:api~xtabData",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:api"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                17812,
+                17839
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 362,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100001343",
+                "name": "reportData",
+                "type": "MemberExpression",
+                "funcscope": "<anonymous>~BBDataMartAPI~getHeadlineDataResults",
+                "value": "xtabData[0][0]",
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "reportData",
+        "longname": "npi-datamart.module:api~reportData",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:api"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                17971,
+                18990
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 369,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100001352",
+                "name": "getLatestReportDefinition",
+                "type": "FunctionDeclaration",
+                "paramnames": [
+                    "context",
+                    "reportIdentifier"
+                ]
+            },
+            "vars": {
+                "": null
+            }
+        },
+        "undocumented": true,
+        "name": "getLatestReportDefinition",
+        "longname": "<anonymous>~BBDataMartAPI~getLatestReportDefinition",
+        "kind": "function",
+        "memberof": "<anonymous>~BBDataMartAPI",
+        "scope": "inner",
+        "params": []
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                19010,
+                21692
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 385,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100001447",
+                "name": "getHeadlineReportDrillContext",
+                "type": "FunctionDeclaration",
+                "paramnames": [
+                    "context",
+                    "reportIdentifier",
+                    "filters"
+                ]
+            },
+            "vars": {
+                "": null
+            }
+        },
+        "undocumented": true,
+        "name": "getHeadlineReportDrillContext",
+        "longname": "<anonymous>~BBDataMartAPI~getHeadlineReportDrillContext",
+        "kind": "function",
+        "memberof": "<anonymous>~BBDataMartAPI",
+        "scope": "inner",
+        "params": []
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                19176,
+                19190
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 387,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100001461",
+                "name": "drillAttribute"
+            }
+        },
+        "undocumented": true,
+        "name": "drillAttribute",
+        "longname": "<anonymous>~drillAttribute",
+        "kind": "member",
+        "memberof": "<anonymous>",
+        "scope": "inner"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                19221,
+                19233
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 388,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100001463",
+                "name": "drillContext"
+            }
+        },
+        "undocumented": true,
+        "name": "drillContext",
+        "longname": "<anonymous>~drillContext",
+        "kind": "member",
+        "memberof": "<anonymous>",
+        "scope": "inner"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                19264,
+                19273
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 389,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100001465",
+                "name": "metricUri"
+            }
+        },
+        "undocumented": true,
+        "name": "metricUri",
+        "longname": "<anonymous>~metricUri",
+        "kind": "member",
+        "memberof": "<anonymous>",
+        "scope": "inner"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                19304,
+                19312
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 390,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100001467",
+                "name": "response"
+            }
+        },
+        "undocumented": true,
+        "name": "response",
+        "longname": "<anonymous>~response",
+        "kind": "member",
+        "memberof": "<anonymous>",
+        "scope": "inner"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                19343,
+                19493
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 391,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100001469",
+                "name": "tasks",
+                "type": "ArrayExpression",
+                "value": "[\"\",\"\"]"
+            }
+        },
+        "undocumented": true,
+        "name": "tasks",
+        "longname": "<anonymous>~tasks",
+        "kind": "member",
+        "memberof": "<anonymous>",
+        "scope": "inner"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                19750,
+                19775
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 399,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100001507",
+                "name": "response",
+                "type": "MemberExpression",
+                "funcscope": "<anonymous>",
+                "value": "taskResults[0]",
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "response",
+        "longname": "npi-datamart.module:api~response",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:api"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                20385,
+                20450
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 409,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100001570",
+                "name": "metricUri",
+                "type": "MemberExpression",
+                "funcscope": "<anonymous>",
+                "value": "response.reportDefinition.content.grid.metrics[0].uri",
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "metricUri",
+        "longname": "npi-datamart.module:api~metricUri",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:api"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                20485,
+                20578
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 410,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100001586",
+                "name": "drillAttribute",
+                "type": "MemberExpression",
+                "funcscope": "<anonymous>",
+                "value": "response.reportDefinition.content.grid.metrics[0].drillAcrossStepAttributeDF",
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "drillAttribute",
+        "longname": "npi-datamart.module:api~drillAttribute",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:api"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                20642,
+                21550
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 413,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100001602",
+                "name": "drillContext",
+                "type": "ObjectExpression",
+                "funcscope": "<anonymous>",
+                "value": "{\"reportUri\":\"\",\"executionContext\":\"\"}",
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "drillContext",
+        "longname": "npi-datamart.module:api~drillContext",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:api"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                20692,
+                20717
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 414,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100001605",
+                "name": "reportUri",
+                "type": "MemberExpression",
+                "value": "taskResults[1]"
+            }
+        },
+        "undocumented": true,
+        "name": "reportUri",
+        "longname": "npi-datamart.module:api~drillContext.reportUri",
+        "kind": "member",
+        "memberof": "npi-datamart.module:api~drillContext",
+        "scope": "static"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                20752,
+                21519
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 415,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100001609",
+                "name": "executionContext",
+                "type": "ObjectExpression",
+                "value": "{\"drillInto\":\"\",\"filters\":\"\"}"
+            }
+        },
+        "undocumented": true,
+        "name": "executionContext",
+        "longname": "npi-datamart.module:api~drillContext.executionContext",
+        "kind": "member",
+        "memberof": "npi-datamart.module:api~drillContext",
+        "scope": "static"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                20809,
+                21377
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 416,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100001611",
+                "name": "drillInto",
+                "type": "ObjectExpression",
+                "value": "{\"locators\":\"\",\"target\":\"\",\"targetType\":\"attributeDisplayForm\"}"
+            }
+        },
+        "undocumented": true,
+        "name": "drillInto",
+        "longname": "npi-datamart.module:api~drillContext.executionContext.drillInto",
+        "kind": "member",
+        "memberof": "npi-datamart.module:api~drillContext.executionContext",
+        "scope": "static"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                20863,
+                21196
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 417,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100001613",
+                "name": "locators",
+                "type": "ArrayExpression",
+                "value": "[\"{\\\"metricLocator\\\":\\\"\\\"}\"]"
+            }
+        },
+        "undocumented": true,
+        "name": "locators",
+        "longname": "npi-datamart.module:api~drillContext.executionContext.drillInto.locators",
+        "kind": "member",
+        "memberof": "npi-datamart.module:api~drillContext.executionContext.drillInto",
+        "scope": "static"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                20971,
+                21106
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 419,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100001616",
+                "name": "metricLocator",
+                "type": "ObjectExpression",
+                "value": "{\"uri\":\"\"}"
+            }
+        },
+        "undocumented": true,
+        "name": "metricLocator",
+        "longname": "npi-datamart.module:api~metricLocator",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:api"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                21041,
+                21055
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 420,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100001618",
+                "name": "uri",
+                "type": "Identifier",
+                "value": "metricUri"
+            }
+        },
+        "undocumented": true,
+        "name": "uri",
+        "longname": "npi-datamart.module:api~metricLocator.uri",
+        "kind": "member",
+        "memberof": "npi-datamart.module:api~metricLocator",
+        "scope": "static"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                21239,
+                21261
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 424,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100001620",
+                "name": "target",
+                "type": "Identifier",
+                "value": "drillAttribute"
+            }
+        },
+        "undocumented": true,
+        "name": "target",
+        "longname": "npi-datamart.module:api~drillContext.executionContext.drillInto.target",
+        "kind": "member",
+        "memberof": "npi-datamart.module:api~drillContext.executionContext.drillInto",
+        "scope": "static"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                21304,
+                21338
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 425,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100001622",
+                "name": "targetType",
+                "type": "Literal",
+                "value": "attributeDisplayForm"
+            }
+        },
+        "undocumented": true,
+        "name": "targetType",
+        "longname": "npi-datamart.module:api~drillContext.executionContext.drillInto.targetType",
+        "kind": "member",
+        "memberof": "npi-datamart.module:api~drillContext.executionContext.drillInto",
+        "scope": "static"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                21416,
+                21484
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 427,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100001624",
+                "name": "filters",
+                "type": "ConditionalExpression",
+                "value": ""
+            }
+        },
+        "undocumented": true,
+        "name": "filters",
+        "longname": "npi-datamart.module:api~drillContext.executionContext.filters",
+        "kind": "member",
+        "memberof": "npi-datamart.module:api~drillContext.executionContext",
+        "scope": "static"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                21712,
+                23339
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 436,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100001643",
+                "name": "loadDrillInRecordIds",
+                "type": "FunctionDeclaration",
+                "paramnames": [
+                    "context",
+                    "drillContext"
+                ]
+            },
+            "vars": {
+                "": null
+            }
+        },
+        "undocumented": true,
+        "name": "loadDrillInRecordIds",
+        "longname": "<anonymous>~BBDataMartAPI~loadDrillInRecordIds",
+        "kind": "function",
+        "memberof": "<anonymous>~BBDataMartAPI",
+        "scope": "inner",
+        "params": []
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                21856,
+                22106
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 438,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100001656",
+                "name": "postData",
+                "type": "ObjectExpression",
+                "value": "{\"report_req\":\"\"}"
+            }
+        },
+        "undocumented": true,
+        "name": "postData",
+        "longname": "<anonymous>~postData",
+        "kind": "member",
+        "memberof": "<anonymous>",
+        "scope": "inner"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                21898,
+                22079
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 439,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100001659",
+                "name": "report_req",
+                "type": "ObjectExpression",
+                "value": "{\"context\":\"\",\"report\":\"\"}"
+            }
+        },
+        "undocumented": true,
+        "name": "report_req",
+        "longname": "<anonymous>~postData.report_req",
+        "kind": "member",
+        "memberof": "<anonymous>~postData",
+        "scope": "static"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                21945,
+                21983
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 440,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100001661",
+                "name": "context",
+                "type": "MemberExpression",
+                "value": "drillContext.executionContext"
+            }
+        },
+        "undocumented": true,
+        "name": "context",
+        "longname": "<anonymous>~postData.report_req.context",
+        "kind": "member",
+        "memberof": "<anonymous>~postData.report_req",
+        "scope": "static"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                22018,
+                22048
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 441,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100001665",
+                "name": "report",
+                "type": "MemberExpression",
+                "value": "drillContext.reportUri"
+            }
+        },
+        "undocumented": true,
+        "name": "report",
+        "longname": "<anonymous>~postData.report_req.report",
+        "kind": "member",
+        "memberof": "<anonymous>~postData.report_req",
+        "scope": "static"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                22229,
+                22237
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 446,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100001683",
+                "name": "ids",
+                "type": "ArrayExpression",
+                "value": "[]"
+            }
+        },
+        "undocumented": true,
+        "name": "ids",
+        "longname": "<anonymous>~ids",
+        "kind": "member",
+        "memberof": "<anonymous>",
+        "scope": "inner"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                22272,
+                22276
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 447,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100001686",
+                "name": "rows"
+            }
+        },
+        "undocumented": true,
+        "name": "rows",
+        "longname": "<anonymous>~rows",
+        "kind": "member",
+        "memberof": "<anonymous>",
+        "scope": "inner"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                22472,
+                22520
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 451,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100001694",
+                "name": "rows",
+                "type": "CallExpression",
+                "funcscope": "<anonymous>",
+                "value": "",
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "rows",
+        "longname": "npi-datamart.module:api~rows",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:api"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                22890,
+                22912
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 458,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100001723",
+                "name": "id",
+                "type": "MemberExpression",
+                "value": "[0]"
+            }
+        },
+        "undocumented": true,
+        "name": "id",
+        "longname": "<anonymous>~id",
+        "kind": "member",
+        "memberof": "<anonymous>",
+        "scope": "inner"
+    },
+    {
+        "comment": "/**\r\n                 * Check if the platform is available.\r\n                 * @method platformIsAvailable\r\n                 * @return {CallExpression} A promise for if the platform is available as a boolean\r\n                 */",
+        "meta": {
+            "range": [
+                23359,
+                23588
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 472,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {}
+        },
+        "description": "Check if the platform is available.",
+        "kind": "function",
+        "name": "platformIsAvailable",
+        "returns": [
+            {
+                "type": {
+                    "names": [
+                        "CallExpression"
+                    ]
+                },
+                "description": "A promise for if the platform is available as a boolean"
+            }
+        ],
+        "longname": "npi-datamart.module:api~platformIsAvailable",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:api"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                23606,
+                24211
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 477,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100001752",
+                "name": "self.platformIsAvailable",
+                "type": "FunctionExpression",
+                "funcscope": "<anonymous>~BBDataMartAPI",
+                "value": "platformIsAvailable",
+                "paramnames": []
+            },
+            "vars": {
+                "": null
+            }
+        },
+        "undocumented": true,
+        "name": "platformIsAvailable",
+        "longname": "<anonymous>~BBDataMartAPI~self.platformIsAvailable",
+        "kind": "function",
+        "memberof": "<anonymous>~BBDataMartAPI~self",
+        "scope": "static"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                23884,
+                23905
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 481,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100001789",
+                "name": "withCredentials",
+                "type": "Literal",
+                "value": true
+            }
+        },
+        "undocumented": true,
+        "name": "withCredentials",
+        "longname": "npi-datamart.module:api~withCredentials",
+        "kind": "member",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:api"
+    },
+    {
+        "comment": "/**\r\n                 * Gets the object URI from an identifier\r\n                 * @method getObjectUriFromIdentifier\r\n                 * @param {string} identifier Identifier for a Data Mart report or dashboard\r\n                 * @return {CallExpression} A promise to return the relative URI for the Data Mart report or dashboard\r\n                 */",
+        "meta": {
+            "range": [
+                24232,
+                24584
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 491,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {}
+        },
+        "description": "Gets the object URI from an identifier",
+        "kind": "function",
+        "name": "getObjectUriFromIdentifier",
+        "params": [
+            {
+                "type": {
+                    "names": [
+                        "string"
+                    ]
+                },
+                "description": "Identifier for a Data Mart report or dashboard",
+                "name": "identifier"
+            }
+        ],
+        "returns": [
+            {
+                "type": {
+                    "names": [
+                        "CallExpression"
+                    ]
+                },
+                "description": "A promise to return the relative URI for the Data Mart report or dashboard"
+            }
+        ],
+        "longname": "npi-datamart.module:api~getObjectUriFromIdentifier",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:api"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                24602,
+                24992
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 497,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100001806",
+                "name": "self.getObjectUriFromIdentifier",
+                "type": "FunctionExpression",
+                "funcscope": "<anonymous>~BBDataMartAPI",
+                "paramnames": [
+                    "identifier"
+                ]
+            },
+            "vars": {
+                "": null
+            }
+        },
+        "undocumented": true,
+        "name": "getObjectUriFromIdentifier",
+        "longname": "<anonymous>~BBDataMartAPI~self.getObjectUriFromIdentifier",
+        "kind": "function",
+        "memberof": "<anonymous>~BBDataMartAPI~self",
+        "scope": "static"
+    },
+    {
+        "comment": "/**\r\n                 * Execites a report based on an identifier and filters\r\n                 * @method executeReport\r\n                 * @param {string} reportIdentifier Identifier for the report\r\n                 * @param {Object[]} filters Filters for the report\r\n                 * @param {string} [filters[].attribute] The name of the attribute to be filtered\r\n                 * @param {string} [filters[].attributeDisplayForm] The display form of the attribute that will be filtered. This is required if you do not provide attribute\r\n                 * @param {string} filters[].value The filter value\r\n                 * @return {CallExpression} A promise to return the result of the report as an Object\r\n                 */",
+        "meta": {
+            "range": [
+                25013,
+                25746
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 505,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {}
+        },
+        "description": "Execites a report based on an identifier and filters",
+        "kind": "function",
+        "name": "executeReport",
+        "params": [
+            {
+                "type": {
+                    "names": [
+                        "string"
+                    ]
+                },
+                "description": "Identifier for the report",
+                "name": "reportIdentifier"
+            },
+            {
+                "type": {
+                    "names": [
+                        "Array.<Object>"
+                    ]
+                },
+                "description": "Filters for the report",
+                "name": "filters"
+            },
+            {
+                "type": {
+                    "names": [
+                        "string"
+                    ]
+                },
+                "optional": true,
+                "description": "The name of the attribute to be filtered",
+                "name": "filters[].attribute"
+            },
+            {
+                "type": {
+                    "names": [
+                        "string"
+                    ]
+                },
+                "optional": true,
+                "description": "The display form of the attribute that will be filtered. This is required if you do not provide attribute",
+                "name": "filters[].attributeDisplayForm"
+            },
+            {
+                "type": {
+                    "names": [
+                        "string"
+                    ]
+                },
+                "description": "The filter value",
+                "name": "filters[].value"
+            }
+        ],
+        "returns": [
+            {
+                "type": {
+                    "names": [
+                        "CallExpression"
+                    ]
+                },
+                "description": "A promise to return the result of the report as an Object"
+            }
+        ],
+        "longname": "npi-datamart.module:api~executeReport",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:api"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                25764,
+                26158
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 515,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100001847",
+                "name": "self.executeReport",
+                "type": "FunctionExpression",
+                "funcscope": "<anonymous>~BBDataMartAPI",
+                "paramnames": [
+                    "reportIdentifier",
+                    "filters"
+                ]
+            },
+            "vars": {
+                "": null
+            }
+        },
+        "undocumented": true,
+        "name": "executeReport",
+        "longname": "<anonymous>~BBDataMartAPI~self.executeReport",
+        "kind": "function",
+        "memberof": "<anonymous>~BBDataMartAPI~self",
+        "scope": "static"
+    },
+    {
+        "comment": "/**\r\n                 * Executes a report that returns a single data value\r\n                 * @method getHeadlineReportData\r\n                 * @param {string} reportIdentifier Identifier for the report\r\n                 * @param {Object[]} filters Filters for the report\r\n                 * @param {string} [filters[].attribute] The name of the attribute to be filtered\r\n                 * @param {string} [filters[].attributeDisplayForm] The display form of the attribute that will be filtered. This is required if you do not provide attribute\r\n                 * @param {string} filters[].value The filter value\r\n                 * @return {CallExpression} A promise to return the result of the report as a single string\r\n                 */",
+        "meta": {
+            "range": [
+                26179,
+                26924
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 523,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {}
+        },
+        "description": "Executes a report that returns a single data value",
+        "kind": "function",
+        "name": "getHeadlineReportData",
+        "params": [
+            {
+                "type": {
+                    "names": [
+                        "string"
+                    ]
+                },
+                "description": "Identifier for the report",
+                "name": "reportIdentifier"
+            },
+            {
+                "type": {
+                    "names": [
+                        "Array.<Object>"
+                    ]
+                },
+                "description": "Filters for the report",
+                "name": "filters"
+            },
+            {
+                "type": {
+                    "names": [
+                        "string"
+                    ]
+                },
+                "optional": true,
+                "description": "The name of the attribute to be filtered",
+                "name": "filters[].attribute"
+            },
+            {
+                "type": {
+                    "names": [
+                        "string"
+                    ]
+                },
+                "optional": true,
+                "description": "The display form of the attribute that will be filtered. This is required if you do not provide attribute",
+                "name": "filters[].attributeDisplayForm"
+            },
+            {
+                "type": {
+                    "names": [
+                        "string"
+                    ]
+                },
+                "description": "The filter value",
+                "name": "filters[].value"
+            }
+        ],
+        "returns": [
+            {
+                "type": {
+                    "names": [
+                        "CallExpression"
+                    ]
+                },
+                "description": "A promise to return the result of the report as a single string"
+            }
+        ],
+        "longname": "npi-datamart.module:api~getHeadlineReportData",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:api"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                26942,
+                27457
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 533,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100001890",
+                "name": "self.getHeadlineReportData",
+                "type": "FunctionExpression",
+                "funcscope": "<anonymous>~BBDataMartAPI",
+                "paramnames": [
+                    "reportIdentifier",
+                    "filters"
+                ]
+            },
+            "vars": {
+                "": null
+            }
+        },
+        "undocumented": true,
+        "name": "getHeadlineReportData",
+        "longname": "<anonymous>~BBDataMartAPI~self.getHeadlineReportData",
+        "kind": "function",
+        "memberof": "<anonymous>~BBDataMartAPI~self",
+        "scope": "static"
+    },
+    {
+        "comment": "/**\r\n                 * Gets an object that can be used to drill into the context of a headline report\r\n                 * @method getHeadlineReportDrillContext\r\n                 * @param {string} reportIdentifier Identifier for the report\r\n                 * @param {Object[]} filters Filters for the report\r\n                 * @param {string} [filters[].attribute] The name of the attribute to be filtered\r\n                 * @param {string} [filters[].attributeDisplayForm] The display form of the attribute that will be filtered. This is required if you do not provide attribute\r\n                 * @param {string} filters[].value The filter value\r\n                 * @return {CallExpression} A promise that will return an object to be used to drill into the context of a headline report\r\n                 */",
+        "meta": {
+            "range": [
+                27478,
+                28290
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 543,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {}
+        },
+        "description": "Gets an object that can be used to drill into the context of a headline report",
+        "kind": "function",
+        "name": "getHeadlineReportDrillContext",
+        "params": [
+            {
+                "type": {
+                    "names": [
+                        "string"
+                    ]
+                },
+                "description": "Identifier for the report",
+                "name": "reportIdentifier"
+            },
+            {
+                "type": {
+                    "names": [
+                        "Array.<Object>"
+                    ]
+                },
+                "description": "Filters for the report",
+                "name": "filters"
+            },
+            {
+                "type": {
+                    "names": [
+                        "string"
+                    ]
+                },
+                "optional": true,
+                "description": "The name of the attribute to be filtered",
+                "name": "filters[].attribute"
+            },
+            {
+                "type": {
+                    "names": [
+                        "string"
+                    ]
+                },
+                "optional": true,
+                "description": "The display form of the attribute that will be filtered. This is required if you do not provide attribute",
+                "name": "filters[].attributeDisplayForm"
+            },
+            {
+                "type": {
+                    "names": [
+                        "string"
+                    ]
+                },
+                "description": "The filter value",
+                "name": "filters[].value"
+            }
+        ],
+        "returns": [
+            {
+                "type": {
+                    "names": [
+                        "CallExpression"
+                    ]
+                },
+                "description": "A promise that will return an object to be used to drill into the context of a headline report"
+            }
+        ],
+        "longname": "npi-datamart.module:api~getHeadlineReportDrillContext",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:api"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                28308,
+                28734
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 553,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100001941",
+                "name": "self.getHeadlineReportDrillContext",
+                "type": "FunctionExpression",
+                "funcscope": "<anonymous>~BBDataMartAPI",
+                "paramnames": [
+                    "reportIdentifier",
+                    "filters"
+                ]
+            },
+            "vars": {
+                "": null
+            }
+        },
+        "undocumented": true,
+        "name": "getHeadlineReportDrillContext",
+        "longname": "<anonymous>~BBDataMartAPI~self.getHeadlineReportDrillContext",
+        "kind": "function",
+        "memberof": "<anonymous>~BBDataMartAPI~self",
+        "scope": "static"
+    },
+    {
+        "comment": "/**\r\n                 * Load the drilled in records from a context\r\n                 * @method loadDrillInRecordIds\r\n                 * @param {Object} drillContext Context from the getHeadlineReportDrillContext or from a Data Mart directive\r\n                 * @return {CallExpression} A promise to return the drilled in records object\r\n                 */",
+        "meta": {
+            "range": [
+                28755,
+                29112
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 561,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {}
+        },
+        "description": "Load the drilled in records from a context",
+        "kind": "function",
+        "name": "loadDrillInRecordIds",
+        "params": [
+            {
+                "type": {
+                    "names": [
+                        "Object"
+                    ]
+                },
+                "description": "Context from the getHeadlineReportDrillContext or from a Data Mart directive",
+                "name": "drillContext"
+            }
+        ],
+        "returns": [
+            {
+                "type": {
+                    "names": [
+                        "CallExpression"
+                    ]
+                },
+                "description": "A promise to return the drilled in records object"
+            }
+        ],
+        "longname": "npi-datamart.module:api~loadDrillInRecordIds",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:api"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                29130,
+                29512
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 567,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100001984",
+                "name": "self.loadDrillInRecordIds",
+                "type": "FunctionExpression",
+                "funcscope": "<anonymous>~BBDataMartAPI",
+                "paramnames": [
+                    "drillContext"
+                ]
+            },
+            "vars": {
+                "": null
+            }
+        },
+        "undocumented": true,
+        "name": "loadDrillInRecordIds",
+        "longname": "<anonymous>~BBDataMartAPI~self.loadDrillInRecordIds",
+        "kind": "function",
+        "memberof": "<anonymous>~BBDataMartAPI~self",
+        "scope": "static"
+    },
+    {
+        "comment": "/**\r\n                 * Gets the latest report definition\r\n                 * @method getLatestReportDefinition\r\n                 * @param {string} reportIdentifier Identifier for the report\r\n                 * @return {CallExpression} A promise to return the most recent definition of the report as an object\r\n                 */",
+        "meta": {
+            "range": [
+                29533,
+                29863
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 575,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {}
+        },
+        "description": "Gets the latest report definition",
+        "kind": "function",
+        "name": "getLatestReportDefinition",
+        "params": [
+            {
+                "type": {
+                    "names": [
+                        "string"
+                    ]
+                },
+                "description": "Identifier for the report",
+                "name": "reportIdentifier"
+            }
+        ],
+        "returns": [
+            {
+                "type": {
+                    "names": [
+                        "CallExpression"
+                    ]
+                },
+                "description": "A promise to return the most recent definition of the report as an object"
+            }
+        ],
+        "longname": "npi-datamart.module:api~getLatestReportDefinition",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:api"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                29881,
+                30281
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 581,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100002025",
+                "name": "self.getLatestReportDefinition",
+                "type": "FunctionExpression",
+                "funcscope": "<anonymous>~BBDataMartAPI",
+                "paramnames": [
+                    "reportIdentifier"
+                ]
+            },
+            "vars": {
+                "": null
+            }
+        },
+        "undocumented": true,
+        "name": "getLatestReportDefinition",
+        "longname": "<anonymous>~BBDataMartAPI~self.getLatestReportDefinition",
+        "kind": "function",
+        "memberof": "<anonymous>~BBDataMartAPI~self",
+        "scope": "static"
+    },
+    {
+        "comment": "/**\r\n                 * Get an object definition by a URI\r\n                 * @method getObjectDefinitionByUri\r\n                 * @param {string} objectUri URI of the object\r\n                 * @return {CallExpression} A promise to return the object based on a URI\r\n                 */",
+        "meta": {
+            "range": [
+                30302,
+                30588
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 589,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {}
+        },
+        "description": "Get an object definition by a URI",
+        "kind": "function",
+        "name": "getObjectDefinitionByUri",
+        "params": [
+            {
+                "type": {
+                    "names": [
+                        "string"
+                    ]
+                },
+                "description": "URI of the object",
+                "name": "objectUri"
+            }
+        ],
+        "returns": [
+            {
+                "type": {
+                    "names": [
+                        "CallExpression"
+                    ]
+                },
+                "description": "A promise to return the object based on a URI"
+            }
+        ],
+        "longname": "npi-datamart.module:api~getObjectDefinitionByUri",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:api"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                30606,
+                30990
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 595,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100002066",
+                "name": "self.getObjectDefinitionByUri",
+                "type": "FunctionExpression",
+                "funcscope": "<anonymous>~BBDataMartAPI",
+                "paramnames": [
+                    "objectUri"
+                ]
+            },
+            "vars": {
+                "": null
+            }
+        },
+        "undocumented": true,
+        "name": "getObjectDefinitionByUri",
+        "longname": "<anonymous>~BBDataMartAPI~self.getObjectDefinitionByUri",
+        "kind": "function",
+        "memberof": "<anonymous>~BBDataMartAPI~self",
+        "scope": "static"
+    },
+    {
+        "comment": "/**\r\n                 * Maintains the authentication\r\n                 * @method maintainAuthentication\r\n                 * @param {Object} scope\r\n                 * @return {CallExpression} A promise to let you know when the authentication is maintained\r\n                 */",
+        "meta": {
+            "range": [
+                31027,
+                31302
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 603,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {}
+        },
+        "description": "Maintains the authentication",
+        "kind": "function",
+        "name": "maintainAuthentication",
+        "params": [
+            {
+                "type": {
+                    "names": [
+                        "Object"
+                    ]
+                },
+                "name": "scope"
+            }
+        ],
+        "returns": [
+            {
+                "type": {
+                    "names": [
+                        "CallExpression"
+                    ]
+                },
+                "description": "A promise to let you know when the authentication is maintained"
+            }
+        ],
+        "longname": "npi-datamart.module:api~maintainAuthentication",
+        "scope": "inner",
+        "memberof": "npi-datamart.module:api"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                31320,
+                31461
+            ],
+            "filename": "datamartapi.js",
+            "lineno": 609,
+            "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi",
+            "code": {
+                "id": "astnode100002107",
+                "name": "self.maintainAuthentication",
+                "type": "FunctionExpression",
+                "funcscope": "<anonymous>~BBDataMartAPI",
+                "paramnames": [
+                    "scope"
+                ]
+            }
+        },
+        "undocumented": true,
+        "name": "maintainAuthentication",
+        "longname": "<anonymous>~BBDataMartAPI~self.maintainAuthentication",
+        "kind": "function",
+        "memberof": "<anonymous>~BBDataMartAPI~self",
+        "scope": "static"
+    },
+    {
+        "kind": "package",
+        "longname": "package:undefined",
+        "files": [
+            "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartapi\\datamartapi.js"
+        ]
+    }
+]

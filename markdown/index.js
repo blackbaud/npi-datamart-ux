@@ -18,11 +18,53 @@ function clean_docs(docs) {
     }
     return newDocs;
 }
+
+function flattenParameters(params) {
+    'use strict';
+    var param_objects = {},
+        p_nested,
+        item,
+        j,
+        object;
+    for (j = 0; j < params.length; j += 1) {
+        if (params[j].name.includes(".")) {
+            p_nested = params[j].name.split(".");
+            p_nested[0] = p_nested[0].replace("[]", "")
+            if(p_nested[0] in param_objects) {
+                if(param_objects[p_nested[0]].params) {
+                    param_objects[p_nested[0]].params[p_nested[1]] = {};
+                    param_objects[p_nested[0]].params[p_nested[1]].name = p_nested[1];
+                    param_objects[p_nested[0]].params[p_nested[1]].description = params[j].description;
+                }
+                else {
+                    param_objects[p_nested[0]].params = {};
+                    param_objects[p_nested[0]].params[p_nested[1]] = {};
+                    param_objects[p_nested[0]].params[p_nested[1]].name = p_nested[1];
+                    param_objects[p_nested[0]].params[p_nested[1]].description = params[j].description;
+                }
+            }
+        }
+        else {
+            if(params[j].name in param_objects) {
+                param_objects[params[j].name].description = params[j].description;
+                param_objects[params[j].name].name = params[j].name
+            }
+            else {
+                param_objects[params[j].name] = {}
+                param_objects[params[j].name].description = params[j].description;
+                param_objects[params[j].name].name = params[j].name
+            }
+        }
+    }
+    return param_objects;
+        
+}
+
 function generateMarkdown(srcpath, destpath) {
     'use strict';
     var i, j,
         item,
-        main_object,
+        param_objects,
         params,
         dirty_docs,
         docs,
@@ -47,21 +89,22 @@ function generateMarkdown(srcpath, destpath) {
     }
     for (i = 0; i < functions.length; i += 1) {
         item = functions[i];
-        params = {};
-        main_object = {};
-        if (item.params) {
-            for (j = 0; j < item.params.length; j += 1) {
-                if (item.params[j].name.includes('.')) {
-                    
-                }
-            }
+        param_objects = {};
+        if(item.params) {
+            param_objects = flattenParameters(item.params);
         }
+        
+        item.params = [];
+        for(var object in param_objects) {
+            var newParams = []
+            for (var p in param_objects[object].params){
+                newParams.push(param_objects[object].params[p])
+            }
+            param_objects[object].params = newParams;
+            item.params.push(param_objects[object]);
+        }
+        console.log(item.params)
     }
-    //module_title = module.description.split('\r')[0];
-    //module.description = module.description.split('\r')[1];
-    //module.title = module_title;
-    //console.log(module);
-    //console.log(functions);
     outstr = nunjucks.render('docs.j2', {
         module: module,
         functions: functions
@@ -69,5 +112,5 @@ function generateMarkdown(srcpath, destpath) {
     fs.writeFileSync(destpath, outstr);
 }
 generateMarkdown('docs.json', 'docs.md');
-
+generateMarkdown('dmapi2.json', 'dmapi2.md');
 //console.log(_docs)

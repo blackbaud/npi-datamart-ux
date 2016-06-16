@@ -16,13 +16,14 @@ An class to handle authentication with the DataMart APIs
 		BBDataMartAuthentication - The class containing methods to handle authentication on the DataMart API
 
 **Params**:
-* options
-* options.domain
-* options.getDomain
-* options.ssoProvider
-* options.getSSOProvider
-* options.getSSOToken
-
+* options - Object containing the information for domain and single sign on
+	* domain - The domain
+	* getDomain - A promise returning the domain
+	* ssoProvider - the SSO provider
+	* getSSOProvider - A promise returning the SSO provider
+	* getSSOToken - A promise returning the SSO token
+	
+	
 ## `getDomain`
 Gets the domain of the environment
 
@@ -51,3 +52,5 @@ Ensures that the API is currently authenticated and will ensure the API maintain
 
 **Params**:
 * $scope
+	
+	

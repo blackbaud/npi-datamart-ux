@@ -5,7 +5,7 @@
 	{% for func in functions -%}
 	* `{{func.name}}`
 	{% endfor -%}
-	
+
 {% for func in functions %}
 ## `{{func.name}}`
 {{func.description}}
@@ -22,10 +22,15 @@
 	{%- endfor -%}
 	{%- endif %}
 
-{% if func.params -%}
+{% if func.params.length -%}
 **Params**:
 {% for param in func.params -%}
-* {{param.name}}
+* {{param.name}}{{ " - " if param.description}}{{ "(_Optional_) " if param.optional }}{{ param.description if param.description}}
+	{% if param.params -%}
+	{% for p in param.params -%}
+		* {{p.name}}{{ " - " if p.description}}{{ "(_Optional_) " if p.optional }}{{ p.description if p.description}}
+	{% endfor %}
+	{% endif -%}
 {% endfor -%}
 {% endif -%}
 {% endfor %}
