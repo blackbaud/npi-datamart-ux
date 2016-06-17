@@ -1,53 +1,56 @@
-<a name="npi-datamart.module_authentication"></a>
+# authentication
+Data Mart AuthenticationModule for handling Single Sign-On
 
-# Data Mart Authentication
-Module for handling Single Sign-On 
+* authentication
+    * `BBDataMartAuthentication`
+    * `getDomain`
+    * `ensureAuthenticated`
+    * `maintainAuthentication`
+    
 
-
-* [authentication](#npi-datamart.module_authentication)
-    * [BBDataMartAuthentication(options)](#npi-datamart.module_authentication..BBDataMartAuthentication) ⇒ `BBDataMartAuthentication`
-    * [getDomain()](#npi-datamart.module_authentication..getDomain) ⇒ `CallExpression`
-    * [ensureAuthenticated()](#npi-datamart.module_authentication..ensureAuthenticated) ⇒ `ensureAuthenticatedPromise`
-    * [maintainAuthentication($scope)](#npi-datamart.module_authentication..maintainAuthentication) ⇒ `CallExpression`
-
-<a name="npi-datamart.module_authentication..BBDataMartAuthentication"></a>
-
-## BBDataMartAuthentication(options) ⇒ `BBDataMartAuthentication`
+---
+## `BBDataMartAuthentication`
 An Angular Factory to create BBDataMartAuthentication objects
 
-**Kind**: inner method of `[authentication](#npi-datamart.module_authentication)`  
-**Returns**: `BBDataMartAuthentication` - The class containing methods to handle authentication on the Data Mart API  
-**Params**
+**Kind**: inner property of `authentication`
 
-- `options` - Object containing the information for domain and single sign on
-    - `domain` - String containing the domain name
-    - `getDomain` - Promise function returning the domain
-    - `ssoProvider` - String containing the SSO provider
-    - `getSSOProvider` - Promise function returning the SSO provider
-    - `getSSOToken` - Promise function returning the SSO token
+**Returns**:
+    BBDataMartAuthentication - The class containing methods to handle authentication on the Data Mart API
 
-<a name="npi-datamart.module_authentication..getDomain"></a>
+**Params**:
+* options - Object containing the information for domain and single sign on
+    * domain - The domain
+    * getDomain - A promise returning the domain
+    * ssoProvider - the SSO provider
+    * getSSOProvider - A promise returning the SSO provider
+    * getSSOToken - A promise returning the SSO token
 
-## getDomain() ⇒ `CallExpression`
+---
+## `getDomain`
 Gets the domain of the environment
 
-**Kind**: inner method of `[authentication](#npi-datamart.module_authentication)`  
-**Returns**: `CallExpression` - A promise to get the domain of the environment  
-<a name="npi-datamart.module_authentication..ensureAuthenticated"></a>
+**Kind**: inner property of `authentication`
 
-## ensureAuthenticated() ⇒ `ensureAuthenticatedPromise`
+**Returns**:
+    CallExpression - A promise to get the domain of the environment
+
+---
+## `ensureAuthenticated`
 Ensures that the client maintains an authenticated token
 
-**Kind**: inner method of `[authentication](#npi-datamart.module_authentication)`  
-**Returns**: `ensureAuthenticatedPromise` - A promise to ensure authentication  
-<a name="npi-datamart.module_authentication..maintainAuthentication"></a>
+**Kind**: inner property of `authentication`
 
-## maintainAuthentication($scope) ⇒ `CallExpression`
+**Returns**:
+    ensureAuthenticatedPromise - A promise to ensure authentication
+
+---
+## `maintainAuthentication`
 Ensures that the API is currently authenticated and will ensure the API maintains authentication tokens until the specified scope is destroyed
 
-**Kind**: inner method of `[authentication](#npi-datamart.module_authentication)`  
-**Returns**: `CallExpression` - A promise to maintain authentication  
-**Params**
+**Kind**: inner property of `authentication`
 
-- `$scope` - Angular scope object
+**Returns**:
+    CallExpression - A promise to maintain authentication
 
+**Params**:
+* $scope

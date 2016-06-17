@@ -1,158 +1,170 @@
-<a name="npi-datamart.module_api"></a>
+# api
+Data Mart APIAPI module for NPI Data Mart UX
 
-# Data Mart API
-API module for NPI Data Mart UX
+* api
+    * `BBDataMartAPI`
+    * `getDataMartId`
+    * `getApiRoot`
+    * `platformIsAvailable`
+    * `getObjectUriFromIdentifier`
+    * `executeReport`
+    * `getHeadlineReportData`
+    * `getHeadlineReportDrillContext`
+    * `loadDrillInRecordIds`
+    * `getLatestReportDefinition`
+    * `getObjectDefinitionByUri`
+    * `maintainAuthentication`
+    
 
-
-* [api](#npi-datamart.module_api)
-    * [BBDataMartAPI(options)](#npi-datamart.module_api..BBDataMartAPI) ⇒ `BBDataMartAPI`
-    * [getDataMartId()](#npi-datamart.module_api..getDataMartId) ⇒ `CallExpression`
-    * [getApiRoot()](#npi-datamart.module_api..getApiRoot) ⇒ `CallExpression`
-    * [platformIsAvailable()](#npi-datamart.module_api..platformIsAvailable) ⇒ `CallExpression`
-    * [getObjectUriFromIdentifier(identifier)](#npi-datamart.module_api..getObjectUriFromIdentifier) ⇒ `CallExpression`
-    * [executeReport(reportIdentifier, filters)](#npi-datamart.module_api..executeReport) ⇒ `CallExpression`
-    * [getHeadlineReportData(reportIdentifier, filters)](#npi-datamart.module_api..getHeadlineReportData) ⇒ `CallExpression`
-    * [getHeadlineReportDrillContext(reportIdentifier, filters)](#npi-datamart.module_api..getHeadlineReportDrillContext) ⇒ `CallExpression`
-    * [loadDrillInRecordIds(drillContext)](#npi-datamart.module_api..loadDrillInRecordIds) ⇒ `CallExpression`
-    * [getLatestReportDefinition(reportIdentifier)](#npi-datamart.module_api..getLatestReportDefinition) ⇒ `CallExpression`
-    * [getObjectDefinitionByUri(objectUri)](#npi-datamart.module_api..getObjectDefinitionByUri) ⇒ `CallExpression`
-    * [maintainAuthentication(scope)](#npi-datamart.module_api..maintainAuthentication) ⇒ `CallExpression`
-
-<a name="npi-datamart.module_api..BBDataMartAPI"></a>
-
-## BBDataMartAPI(options) ⇒ `BBDataMartAPI`
+---
+## `BBDataMartAPI`
 An Angular Factory for generating BBDataMartAPI objects
 
-**Kind**: inner method of `[api](#npi-datamart.module_api)`  
-**Returns**: `BBDataMartAPI` - A class containing methods to handle interactions with the Data Mart APIs  
-**Params**
+**Kind**: inner property of `api`
 
-- `options` - Object containing the information for the authentication and datamart
-    - `authentication` - A BBDataMartAuthentication object
-    - `dataMartId` - _(Optional.)_ String containing the ID of the datamart
-    - `getDataMartId` - _(Optional.)_ A promissory function to return the Data Mart ID as a string. Required if dataMartId not provided.
-    - `translateObjectIdentifier` - _(Optional.)_ A funtion returning a promise that returns a data mart identifier based on a provided identifier.  This is a hook to allow custom identifier translation.
-    - `translateFilters` - _(Optional.)_ A funtion returning a promise that returns a filters object based on a provided filters object.  This is a hook to allow custom filters translation.
-    - `translateAttributeName` - _(Optional.)_ A function that returns a translated attribute name based on a provided attribute name.
+**Returns**:
+    BBDataMartAPI - A class containing methods to handle interactions with the Data Mart APIs
 
-<a name="npi-datamart.module_api..getDataMartId"></a>
+**Params**:
+* options - Object containing the information for the authentication and datamart
+    * authentication - A BBDataMartAuthentication object
+    * dataMartId - ( _Optional_ ) ID of the datamart
+    * getDataMartId - ( _Optional_ ) A promise to return the Data Mart ID as a string. Required if dataMartId not provided.
+    * translateObjectIdentifier - ( _Optional_ ) A funtion returning a promise that returns a data mart identifier based on a provided identifier.  This is a hook to allow custom identifier translation.
+    * translateFilters - ( _Optional_ ) A funtion returning a promise that returns a filters object based on a provided filters object.  This is a hook to allow custom filters translation.
+    * translateAttributeName - ( _Optional_ ) A function that returns a translated attribute name based on a provided attribute name.
 
-## getDataMartId() ⇒ `CallExpression`
+---
+## `getDataMartId`
 Gets the Data Mart ID
 
-**Kind**: inner method of `[api](#npi-datamart.module_api)`  
-**Returns**: `CallExpression` - A promise to return the Data Mart ID as a string  
-<a name="npi-datamart.module_api..getApiRoot"></a>
+**Kind**: inner property of `api`
 
-## getApiRoot() ⇒ `CallExpression`
+**Returns**:
+    CallExpression - A promise to return the Data Mart ID as a string
+
+---
+## `getApiRoot`
 Get the root of the API
 
-**Kind**: inner method of `[api](#npi-datamart.module_api)`  
-**Returns**: `CallExpression` - A promise to return the root URL of the API as a string  
-<a name="npi-datamart.module_api..platformIsAvailable"></a>
+**Kind**: inner property of `api`
 
-## platformIsAvailable() ⇒ `CallExpression`
+**Returns**:
+    CallExpression - A promise to return the root URL of the API as a string
+
+---
+## `platformIsAvailable`
 Check if the platform is available.
 
-**Kind**: inner method of `[api](#npi-datamart.module_api)`  
-**Returns**: `CallExpression` - A promise for if the platform is available as a boolean  
-<a name="npi-datamart.module_api..getObjectUriFromIdentifier"></a>
+**Kind**: inner property of `api`
 
-## getObjectUriFromIdentifier(identifier) ⇒ `CallExpression`
+**Returns**:
+    CallExpression - A promise for if the platform is available as a boolean
+
+---
+## `getObjectUriFromIdentifier`
 Gets the object URI from an identifier
 
-**Kind**: inner method of `[api](#npi-datamart.module_api)`  
-**Returns**: `CallExpression` - A promise to return the relative URI for the Data Mart report or dashboard  
-**Params**
+**Kind**: inner property of `api`
 
-- `identifier` - String for a Data Mart report or dashboard
+**Returns**:
+    CallExpression - A promise to return the relative URI for the Data Mart report or dashboard
 
-<a name="npi-datamart.module_api..executeReport"></a>
+**Params**:
+* identifier - Identifier for a Data Mart report or dashboard
 
-## executeReport(reportIdentifier, filters) ⇒ `CallExpression`
+---
+## `executeReport`
 Execites a report based on an identifier and filters
 
-**Kind**: inner method of `[api](#npi-datamart.module_api)`  
-**Returns**: `CallExpression` - A promise to return the result of the report as an Object  
-**Params**
+**Kind**: inner property of `api`
 
-- `reportIdentifier `string` - Identifier for the report
-- `filters `Array.&lt;Object&gt;` - Filters for the report
-    - `attribute` - _(Optional.)_ String containing the name of the attribute to be filtered
-    - `attributeDisplayForm` - _(Optional.)_ The display form of the attribute that will be filtered. This is required if you do not provide attribute
-    - `value` - String containing the filter value
+**Returns**:
+    CallExpression - A promise to return the result of the report as an Object
 
-<a name="npi-datamart.module_api..getHeadlineReportData"></a>
+**Params**:
+* reportIdentifier - Identifier for the report
+* filters - Filters for the report
+    * attribute - ( _Optional_ ) The name of the attribute to be filtered
+    * attributeDisplayForm - ( _Optional_ ) The display form of the attribute that will be filtered. This is required if you do not provide attribute
+    * value - The filter value
 
-## getHeadlineReportData(reportIdentifier, filters) ⇒ `CallExpression`
+---
+## `getHeadlineReportData`
 Executes a report that returns a single data value
 
-**Kind**: inner method of `[api](#npi-datamart.module_api)`  
-**Returns**: `CallExpression` - A promise to return the result of the report as a single string  
-**Params**
+**Kind**: inner property of `api`
 
-- `reportIdentifier `string` - Identifier for the report
-- `filters[]` - Array of filters for the report
-    - `attribute` - _(Optional.)_ The name of the attribute to be filtered
-    - `attributeDisplayForm` - _(Optional.)_ The display form of the attribute that will be filtered. This is required if you do not provide attribute
-    - `value` - String containing the filter value
+**Returns**:
+    CallExpression - A promise to return the result of the report as a single string
 
-<a name="npi-datamart.module_api..getHeadlineReportDrillContext"></a>
+**Params**:
+* reportIdentifier - Identifier for the report
+* filters - Filters for the report
+    * attribute - ( _Optional_ ) The name of the attribute to be filtered
+    * attributeDisplayForm - ( _Optional_ ) The display form of the attribute that will be filtered. This is required if you do not provide attribute
+    * value - The filter value
 
-## getHeadlineReportDrillContext(reportIdentifier, filters) ⇒ `CallExpression`
+---
+## `getHeadlineReportDrillContext`
 Gets an object that can be used to drill into the context of a headline report
 
-**Kind**: inner method of `[api](#npi-datamart.module_api)`  
-**Returns**: `CallExpression` - A promise that will return an object to be used to drill into the context of a headline report  
-**Params**
+**Kind**: inner property of `api`
 
-- `reportIdentifier` - Identifier for the report
-- `filters[]` - Array of filters for the report
-    - `attribute`- _(Optional.)_ The name of the attribute to be filtered
-    - `attributeDisplayForm` - _(Optional.)_ The display form of the attribute that will be filtered. This is required if you do not provide attribute
-    - `value` - String containing the filter value
+**Returns**:
+    CallExpression - A promise that will return an object to be used to drill into the context of a headline report
 
-<a name="npi-datamart.module_api..loadDrillInRecordIds"></a>
+**Params**:
+* reportIdentifier - Identifier for the report
+* filters - Filters for the report
+    * attribute - ( _Optional_ ) The name of the attribute to be filtered
+    * attributeDisplayForm - ( _Optional_ ) The display form of the attribute that will be filtered. This is required if you do not provide attribute
+    * value - The filter value
 
-## loadDrillInRecordIds(drillContext) ⇒ `CallExpression`
+---
+## `loadDrillInRecordIds`
 Load the drilled in records from a context
 
-**Kind**: inner method of `[api](#npi-datamart.module_api)`  
-**Returns**: `CallExpression` - A promise to return the drilled in records object  
-**Params**
+**Kind**: inner property of `api`
 
-- `drillContext` - Context object from the getHeadlineReportDrillContext or from a Data Mart directive
+**Returns**:
+    CallExpression - A promise to return the drilled in records object
 
-<a name="npi-datamart.module_api..getLatestReportDefinition"></a>
+**Params**:
+* drillContext - Context from the getHeadlineReportDrillContext or from a Data Mart directive
 
-## getLatestReportDefinition(reportIdentifier) ⇒ `CallExpression`
+---
+## `getLatestReportDefinition`
 Gets the latest report definition
 
-**Kind**: inner method of `[api](#npi-datamart.module_api)`  
-**Returns**: `CallExpression` - A promise to return the most recent definition of the report as an object  
-**Params**
+**Kind**: inner property of `api`
 
-- `reportIdentifier` - String for the report
+**Returns**:
+    CallExpression - A promise to return the most recent definition of the report as an object
 
-<a name="npi-datamart.module_api..getObjectDefinitionByUri"></a>
+**Params**:
+* reportIdentifier - Identifier for the report
 
-## getObjectDefinitionByUri(objectUri) ⇒ `CallExpression`
+---
+## `getObjectDefinitionByUri`
 Get an object definition by a URI
 
-**Kind**: inner method of `[api](#npi-datamart.module_api)`  
-**Returns**: `CallExpression` - A promise to return the object based on a URI  
-**Params**
+**Kind**: inner property of `api`
 
-- `objectUri` - String of the URI of the object
+**Returns**:
+    CallExpression - A promise to return the object based on a URI
 
-<a name="npi-datamart.module_api..maintainAuthentication"></a>
+**Params**:
+* objectUri - URI of the object
 
-## maintainAuthentication(scope) ⇒ `CallExpression`
+---
+## `maintainAuthentication`
 Maintains the authentication
 
-**Kind**: inner method of `[api](#npi-datamart.module_api)`  
-**Returns**: `CallExpression` - A promise to let you know when the authentication is maintained  
-**Params**
+**Kind**: inner property of `api`
 
-- `scope` - Angular local scope object
+**Returns**:
+    CallExpression - A promise to let you know when the authentication is maintained
 
+**Params**:
+* scope

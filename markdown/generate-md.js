@@ -149,7 +149,7 @@ module.exports = function (grunt, env, utils) {
             template: "markdown/docs.j2"
         }
     });
-    grunt.registerTask('generate-md', function () {
+    grunt.registerTask('genmd', function () {
         var options = {
                 filter: 'isFile',
                 cwd: grunt.config.get('npiux.paths.src')
@@ -159,9 +159,9 @@ module.exports = function (grunt, env, utils) {
         grunt.file.expand(options, '*/*.js').forEach(function (filename) {
             var path,
                 component = filename.substr(0, filename.indexOf('/'));
-            path = grunt.config.get('npiux.paths.src') + filename;
+            path = grunt.config.get('npiux.paths.src');
 
-            startGenerate(path, 'js/docs/' + component + '.md');
+            startGenerate(path + filename, path + filename.replace(".js", ".md").replace(component, component + "/docs/"));
 
         });
         done = this.async();
