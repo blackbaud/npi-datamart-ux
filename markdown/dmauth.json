@@ -1,0 +1,181 @@
+[
+  {
+    "id": "npi-datamart.module:authentication",
+    "longname": "npi-datamart.module:authentication",
+    "name": "authentication",
+    "kind": "module",
+    "description": "Data Mart Authentication\rModule for handling Single Sign-On",
+    "meta": {
+      "lineno": 7,
+      "filename": "datamartauthentication.js",
+      "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication"
+    },
+    "order": 0
+  },
+  {
+    "id": "npi-datamart.module:authentication~BBDataMartAuthentication",
+    "longname": "npi-datamart.module:authentication~BBDataMartAuthentication",
+    "name": "BBDataMartAuthentication",
+    "scope": "inner",
+    "kind": "function",
+    "description": "An Angular Factory to create BBDataMartAuthentication objects",
+    "memberof": "npi-datamart.module:authentication",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "Object"
+          ]
+        },
+        "description": "Object containing the information for domain and single sign on",
+        "name": "options"
+      },
+      {
+        "type": {
+          "names": [
+            "string"
+          ]
+        },
+        "description": "The domain",
+        "name": "options.domain"
+      },
+      {
+        "type": {
+          "names": [
+            "function"
+          ]
+        },
+        "description": "A promise returning the domain",
+        "name": "options.getDomain"
+      },
+      {
+        "type": {
+          "names": [
+            "string"
+          ]
+        },
+        "description": "the SSO provider",
+        "name": "options.ssoProvider"
+      },
+      {
+        "type": {
+          "names": [
+            "function"
+          ]
+        },
+        "description": "A promise returning the SSO provider",
+        "name": "options.getSSOProvider"
+      },
+      {
+        "type": {
+          "names": [
+            "function"
+          ]
+        },
+        "description": "A promise returning the SSO token",
+        "name": "options.getSSOToken"
+      }
+    ],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "BBDataMartAuthentication"
+          ]
+        },
+        "description": "The class containing methods to handle authentication on the Data Mart API"
+      }
+    ],
+    "meta": {
+      "lineno": 14,
+      "filename": "datamartauthentication.js",
+      "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication"
+    },
+    "order": 1
+  },
+  {
+    "id": "npi-datamart.module:authentication~getDomain",
+    "longname": "npi-datamart.module:authentication~getDomain",
+    "name": "getDomain",
+    "scope": "inner",
+    "kind": "function",
+    "description": "Gets the domain of the environment",
+    "memberof": "npi-datamart.module:authentication",
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "CallExpression"
+          ]
+        },
+        "description": "A promise to get the domain of the environment"
+      }
+    ],
+    "meta": {
+      "lineno": 45,
+      "filename": "datamartauthentication.js",
+      "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication"
+    },
+    "order": 2
+  },
+  {
+    "id": "npi-datamart.module:authentication~ensureAuthenticated",
+    "longname": "npi-datamart.module:authentication~ensureAuthenticated",
+    "name": "ensureAuthenticated",
+    "scope": "inner",
+    "kind": "function",
+    "description": "Ensures that the client maintains an authenticated token",
+    "memberof": "npi-datamart.module:authentication",
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "ensureAuthenticatedPromise"
+          ]
+        },
+        "description": "A promise to ensure authentication"
+      }
+    ],
+    "meta": {
+      "lineno": 156,
+      "filename": "datamartauthentication.js",
+      "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication"
+    },
+    "order": 3
+  },
+  {
+    "id": "npi-datamart.module:authentication~maintainAuthentication",
+    "longname": "npi-datamart.module:authentication~maintainAuthentication",
+    "name": "maintainAuthentication",
+    "scope": "inner",
+    "kind": "function",
+    "description": "Ensures that the API is currently authenticated and will ensure the API maintains authentication tokens until the specified scope is destroyed",
+    "memberof": "npi-datamart.module:authentication",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "Object"
+          ]
+        },
+        "name": "$scope"
+      }
+    ],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "CallExpression"
+          ]
+        },
+        "description": "A promise to maintain authentication"
+      }
+    ],
+    "meta": {
+      "lineno": 207,
+      "filename": "datamartauthentication.js",
+      "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartauthentication"
+    },
+    "order": 4
+  }
+]

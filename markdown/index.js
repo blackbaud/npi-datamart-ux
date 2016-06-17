@@ -25,6 +25,7 @@ function flattenParameters(params) {
         p_nested,
         item,
         j,
+        arr,
         object;
     for (j = 0; j < params.length; j += 1) {
         if (params[j].name.includes(".")) {
@@ -35,12 +36,15 @@ function flattenParameters(params) {
                     param_objects[p_nested[0]].params[p_nested[1]] = {};
                     param_objects[p_nested[0]].params[p_nested[1]].name = p_nested[1];
                     param_objects[p_nested[0]].params[p_nested[1]].description = params[j].description;
+                    param_objects[p_nested[0]].params[p_nested[1]].optional = params[j].optional;
                 }
                 else {
                     param_objects[p_nested[0]].params = {};
                     param_objects[p_nested[0]].params[p_nested[1]] = {};
                     param_objects[p_nested[0]].params[p_nested[1]].name = p_nested[1];
                     param_objects[p_nested[0]].params[p_nested[1]].description = params[j].description;
+                    param_objects[p_nested[0]].params[p_nested[1]].optional = params[j].optional;
+
                 }
             }
         }
@@ -48,11 +52,13 @@ function flattenParameters(params) {
             if(params[j].name in param_objects) {
                 param_objects[params[j].name].description = params[j].description;
                 param_objects[params[j].name].name = params[j].name
+                param_objects[params[j].name].optional = params[j].optional;
             }
             else {
                 param_objects[params[j].name] = {}
                 param_objects[params[j].name].description = params[j].description;
                 param_objects[params[j].name].name = params[j].name
+                param_objects[params[j].name].optional = params[j].optional;
             }
         }
     }
@@ -60,7 +66,9 @@ function flattenParameters(params) {
         
 }
 
-function generateMarkdown(srcpath, destpath) {
+// Generates the markdown files
+// src is either a json file or a json string.
+function generateMarkdown(src, destpath) {
     'use strict';
     var i, j,
         item,
@@ -70,15 +78,25 @@ function generateMarkdown(srcpath, destpath) {
         docs,
         outstr,
         module,
+        members,
         module_title,
         functions;
-    dirty_docs = JSON.parse(fs.readFileSync(srcpath, 'utf8'));
+    if(src.endsWidth(".json")){
+        dirty_docs = JSON.parse(fs.readFileSync(src, 'utf8'));
+    }
+    else {
+        dirty_docs = JSON.parse(src);
+    }
     docs = clean_docs(dirty_docs);
     outstr = "";
     functions = [];
+    members = [];
     for (i = 0; i < docs.length; i += 1) {
         item = docs[i];
         switch (item.kind) {
+        case 'member':
+            //members.push(item);
+            //break;
         case 'function':
             functions.push(item);
             break;
@@ -107,10 +125,12 @@ function generateMarkdown(srcpath, destpath) {
     }
     outstr = nunjucks.render('docs.j2', {
         module: module,
-        functions: functions
+        functions: functions,
+        members: members,
     });
     fs.writeFileSync(destpath, outstr);
 }
-generateMarkdown('docs.json', 'docs.md');
+generateMarkdown('dmauth.json', 'dmauth.md');
 generateMarkdown('dmapi2.json', 'dmapi2.md');
+generateMarkdown('dmreport.json', 'dmreport.md')
 //console.log(_docs)

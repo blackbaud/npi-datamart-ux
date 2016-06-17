@@ -1,0 +1,60 @@
+[
+  {
+    "id": "npi-datamart.module:report",
+    "longname": "npi-datamart.module:report",
+    "name": "report",
+    "kind": "module",
+    "description": "Data Mart Report\rAuthentication module for NPI Data Mart UX",
+    "meta": {
+      "lineno": 56,
+      "filename": "datamartreport.js",
+      "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartreport"
+    },
+    "order": 0
+  },
+  {
+    "id": "npi-datamart.module:report~bbDataMartReport",
+    "longname": "npi-datamart.module:report~bbDataMartReport",
+    "name": "bbDataMartReport",
+    "scope": "inner",
+    "kind": "member",
+    "description": "The Data Mart Report directive",
+    "memberof": "npi-datamart.module:report",
+    "meta": {
+      "lineno": 283,
+      "filename": "datamartreport.js",
+      "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartreport"
+    },
+    "order": 1
+  },
+  {
+    "id": "npi-datamart.module:report~bbDataMartDashboard",
+    "longname": "npi-datamart.module:report~bbDataMartDashboard",
+    "name": "bbDataMartDashboard",
+    "scope": "inner",
+    "kind": "member",
+    "description": "The Data Mart Dashboard directive",
+    "memberof": "npi-datamart.module:report",
+    "meta": {
+      "lineno": 303,
+      "filename": "datamartreport.js",
+      "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartreport"
+    },
+    "order": 2
+  },
+  {
+    "id": "npi-datamart.module:report~bbDataMartResponsiveDashboard",
+    "longname": "npi-datamart.module:report~bbDataMartResponsiveDashboard",
+    "name": "bbDataMartResponsiveDashboard",
+    "scope": "inner",
+    "kind": "member",
+    "description": "The directive that handles dynamic page events",
+    "memberof": "npi-datamart.module:report",
+    "meta": {
+      "lineno": 323,
+      "filename": "datamartreport.js",
+      "path": "C:\\Users\\andrew.rather\\GitHub\\npi-datamart-ux\\js\\src\\datamartreport"
+    },
+    "order": 3
+  }
+]

@@ -1,5 +1,5 @@
 # authentication
-DataMart AuthenticationAuthentication module for NPI DataMart UX
+Data Mart AuthenticationModule for handling Single Sign-On
 
 * authentication
     * `BBDataMartAuthentication`
@@ -7,13 +7,13 @@ DataMart AuthenticationAuthentication module for NPI DataMart UX
     * `ensureAuthenticated`
     * `maintainAuthentication`
     
+---
 ## `BBDataMartAuthentication`
-An class to handle authentication with the DataMart APIs
+An Angular Factory to create BBDataMartAuthentication objects
 
-**Kind**: inner property of `authentication`
-
-**Returns**:
-        BBDataMartAuthentication - The class containing methods to handle authentication on the DataMart API
+**Kind**: inner property of `authentication`**Returns**:
+    
+        BBDataMartAuthentication - The class containing methods to handle authentication on the Data Mart API
 
 
 **Params**:
@@ -28,33 +28,30 @@ An class to handle authentication with the DataMart APIs
     
 
 
-
+---
 ## `getDomain`
 Gets the domain of the environment
 
-**Kind**: inner property of `authentication`
-
-**Returns**:
+**Kind**: inner property of `authentication`**Returns**:
+    
         CallExpression - A promise to get the domain of the environment
 
 
-
+---
 ## `ensureAuthenticated`
 Ensures that the client maintains an authenticated token
 
-**Kind**: inner property of `authentication`
-
-**Returns**:
+**Kind**: inner property of `authentication`**Returns**:
+    
         ensureAuthenticatedPromise - A promise to ensure authentication
 
 
-
+---
 ## `maintainAuthentication`
 Ensures that the API is currently authenticated and will ensure the API maintains authentication tokens until the specified scope is destroyed
 
-**Kind**: inner property of `authentication`
-
-**Returns**:
+**Kind**: inner property of `authentication`**Returns**:
+    
         CallExpression - A promise to maintain authentication
 
 
