@@ -1,3 +1,5 @@
+/*jslint browser: false */
+/*global require */
 var fs = require('fs'),
     nunjucks = require('nunjucks'),
     parse = require('jsdoc-parse');
@@ -76,16 +78,12 @@ function generateMarkdown(src, destpath) {
         obj,
         newParams,
         p_obj;
-    switch (typeof src) {
-    case "string":
-        if (src.endsWith(".json")) {
-            dirty_docs = JSON.parse(fs.readFileSync(src, 'utf8'));
-        } else {
-            dirty_docs = JSON.parse(src);
-        }
-        break;
+    if (src.endsWith(".json")) {
+        dirty_docs = JSON.parse(fs.readFileSync(src, 'utf8'));
+    } else {
+        dirty_docs = JSON.parse(src);
     }
-
+    
     docs = clean_docs(dirty_docs);
     outstr = "";
     functions = [];
@@ -154,8 +152,3 @@ function startGenerate(source, dest) {
 
 
 startGenerate('../js/src/datamartapi/datamartapi.js', 'dmapi.md');
-
-//generateMarkdown('dmauth.json', 'dmauth.md');
-//generateMarkdown('dmapi.json', 'dmapi.md');
-//generateMarkdown('dmreport.json', 'dmreport.md')
-//console.log(_docs)
