@@ -17,6 +17,8 @@ module.exports = function (grunt) {
     require('./config/grunt/docs')(grunt, env, utils);
     require('./config/grunt/release')(grunt, env, utils);
     require('./config/grunt/test')(grunt, env, utils);
+    
+    require('./markdown/generate-md')(grunt, env, utils);
 
     // Load required external modules
     grunt.loadNpmTasks('grunt-bump');
