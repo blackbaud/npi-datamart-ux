@@ -19,11 +19,11 @@ An Angular Factory to create BBDataMartAuthentication objects
 
 **Params**:
 * options - Object containing the information for domain and single sign on
-    * domain - The domain
-    * getDomain - A promise returning the domain
-    * ssoProvider - the SSO provider
-    * getSSOProvider - A promise returning the SSO provider
-    * getSSOToken - A promise returning the SSO token
+    * domain - ( _Optional_ ) The domain.
+    * getDomain - ( _Optional_ ) A promise returning the domain. Required if options.domain is not specified.
+    * ssoProvider - ( _Optional_ ) the SSO provider.
+    * getSSOProvider - ( _Optional_ ) A promise returning the SSO provider. Required if options.ssoProvider is not specified.
+    * getSSOToken - A promise returning the SSO token.
 
 ---
 ## `getDomain`

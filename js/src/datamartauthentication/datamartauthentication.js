@@ -15,11 +15,11 @@
              * An Angular Factory to create BBDataMartAuthentication objects
              * @method BBDataMartAuthentication
              * @param {Object} options Object containing the information for domain and single sign on
-             * @param {string} options.domain The domain
-             * @param {Function} options.getDomain A promise returning the domain
-             * @param {string} options.ssoProvider the SSO provider
-             * @param {Function} options.getSSOProvider A promise returning the SSO provider
-             * @param {Function} options.getSSOToken A promise returning the SSO token
+             * @param {string} [options.domain] The domain.
+             * @param {Function} [options.getDomain] A promise returning the domain. Required if options.domain is not specified.
+             * @param {string} [options.ssoProvider] the SSO provider.
+             * @param {Function} [options.getSSOProvider] A promise returning the SSO provider. Required if options.ssoProvider is not specified.
+             * @param {Function} options.getSSOToken A promise returning the SSO token.
              * @return {BBDataMartAuthentication} The class containing methods to handle authentication on the Data Mart API
              */
             var BBDataMartAuthentication = function (options) {

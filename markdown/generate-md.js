@@ -160,7 +160,7 @@ module.exports = function (grunt, env, utils) {
             var path,
                 component = filename.substr(0, filename.indexOf('/'));
             path = grunt.config.get('npiux.paths.src');
-
+            utils.log('Writing markdown file to ' + path + filename.replace(".js", ".md").replace(component, component + "/docs"));
             startGenerate(path + filename, path + filename.replace(".js", ".md").replace(component, component + "/docs/"));
 
         });
