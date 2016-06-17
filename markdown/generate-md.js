@@ -1,12 +1,9 @@
 /*jslint browser: false */
 /*global require */
+/*exported startGenerate */
 var fs = require('fs'),
     nunjucks = require('nunjucks'),
     parse = require('jsdoc-parse');
-//var docs_json = fs.readFileSync('docs.json', 'utf8');
-//var docs = JSON.parse(docs_json);
-
-//console.log(docs[0]);
 
 function clean_docs(docs) {
     'use strict';
@@ -125,6 +122,7 @@ function generateMarkdown(src, destpath) {
         functions: functions
     });
     fs.writeFileSync(destpath, outstr);
+    return true;
 }
 function prepareMarkdown(source) {
     'use strict';
@@ -145,10 +143,6 @@ function startGenerate(source, dest) {
         }
     });
     stream.on('end', function () {
-        generateMarkdown(str, dest);
-
+        return generateMarkdown(str, dest);
     });
 }
-
-
-startGenerate('../js/src/datamartapi/datamartapi.js', 'dmapi.md');
