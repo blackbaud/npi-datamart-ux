@@ -82,7 +82,6 @@ module.exports = function (grunt, env, utils) {
             utils.log('Writing markdown file to stache/' + component + ' directory.');
 
             grunt.file.write('stache/' + component + '/index.md', newFile);
-            
         });
     });
    
