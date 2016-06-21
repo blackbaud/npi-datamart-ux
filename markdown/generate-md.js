@@ -34,12 +34,14 @@ module.exports = function (grunt, env, utils) {
                         param_objects[p_nested[0]].params[p_nested[1]].name = p_nested[1];
                         param_objects[p_nested[0]].params[p_nested[1]].description = params[j].description;
                         param_objects[p_nested[0]].params[p_nested[1]].optional = params[j].optional;
+                        param_objects[p_nested[0]].params[p_nested[1]].id = params[j].id;
                     } else {
                         param_objects[p_nested[0]].params = {};
                         param_objects[p_nested[0]].params[p_nested[1]] = {};
                         param_objects[p_nested[0]].params[p_nested[1]].name = p_nested[1];
                         param_objects[p_nested[0]].params[p_nested[1]].description = params[j].description;
                         param_objects[p_nested[0]].params[p_nested[1]].optional = params[j].optional;
+                        param_objects[p_nested[0]].params[p_nested[1]].id = params[j].id;
 
                     }
                 }
@@ -48,11 +50,13 @@ module.exports = function (grunt, env, utils) {
                     param_objects[params[j].name].description = params[j].description;
                     param_objects[params[j].name].name = params[j].name;
                     param_objects[params[j].name].optional = params[j].optional;
+                    param_objects[params[j].name].id = params[j].id;
                 } else {
                     param_objects[params[j].name] = {};
                     param_objects[params[j].name].description = params[j].description;
                     param_objects[params[j].name].name = params[j].name;
                     param_objects[params[j].name].optional = params[j].optional;
+                    param_objects[params[j].name].id = params[j].id;
                 }
             }
         }
@@ -144,11 +148,6 @@ module.exports = function (grunt, env, utils) {
             return generateMarkdown(str, dest);
         });
     }
-    grunt.config.merge({
-        genmd: {
-            template: "markdown/docs.j2"
-        }
-    });
     grunt.registerTask('genmd', function () {
         var options = {
                 filter: 'isFile',

@@ -3,6 +3,9 @@ module.exports = function (grunt, env, utils) {
     'use strict';
 
     grunt.config.merge({
+        genmd: {
+            template: "markdown/docs.j2"
+        },
         jsdoc2md: {
             options: {
                 'heading-depth': 1,
@@ -83,7 +86,8 @@ module.exports = function (grunt, env, utils) {
         });
     });
    
-    // Main docs task
-    grunt.registerTask('docs', ['jsdoc2md']);
+    // Main docs tasks
+    grunt.registerTask('docs', ['genmd']);
+    grunt.registerTask('releaseDocs', ['genmd', 'prepareDocs']);
 };
 

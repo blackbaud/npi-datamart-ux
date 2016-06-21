@@ -3,11 +3,11 @@
 
 (function () {
     'use strict';
-    //YAML Title, YAML Description, JSDoc Heading
+    //JSDoc Module Heading, YAML Title, YAML Description
     /**
-     * Data Mart API
-     * API module for NPI Data Mart UX
      * @module npi-datamart.api
+     * @title Data Mart API
+     * @description API module for NPI Data Mart UX
      */
     angular.module('npi-datamart.api', ['npi-datamart.authentication'])
         .factory('BBDataMartAPI', ['$q', '$timeout', '$http', function ($q, $timeout, $http) {

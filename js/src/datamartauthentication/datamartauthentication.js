@@ -3,11 +3,11 @@
 
 (function () {
     'use strict';
-    //YAML Title, YAML Description, JSDoc Heading
+    //JSDoc Module Heading, YAML Title, YAML Description
     /**
-     * Data Mart Authentication
-     * Module for handling Single Sign-On
      * @module npi-datamart.authentication
+     * @title Data Mart Authentication
+     * @description Module for handling Single Sign-On
      */
     angular.module('npi-datamart.authentication', [])
         .factory('BBDataMartAuthentication', ['$q', '$http', '$rootScope', function ($q, $http, $rootScope) {
