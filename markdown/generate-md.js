@@ -152,8 +152,7 @@ module.exports = function (grunt, env, utils) {
         var options = {
                 filter: 'isFile',
                 cwd: grunt.config.get('npiux.paths.src')
-            },
-            done;
+            };
 
         grunt.file.expand(options, '*/*.js').forEach(function (filename) {
             var path,
@@ -163,6 +162,5 @@ module.exports = function (grunt, env, utils) {
             startGenerate(path + filename, path + filename.replace(".js", ".md").replace(component, component + "/docs/"));
 
         });
-        done = this.async();
     });
 };
