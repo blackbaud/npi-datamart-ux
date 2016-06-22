@@ -114758,7 +114758,7 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
                     //If the message doesn't target the iFrame in this element, then exit
                     if (!(el.find('iframe')[0] && el.find('iframe')[0].contentWindow === e.source)) {
                         if (e.origin === 'https://www.blackbaud.com' && e.data.indexOf('bbHelpKey') > 0) {
-                            message = JSON.parse(e.data);
+                            message = angular.isString(e.data) ? JSON.parse(e.data) : e.data;
                             if (message.bbHelpKey) {
                                 bbHelp.open(message.bbHelpKey);
                             }
@@ -114773,7 +114773,7 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
                         }
                     }
 
-                    message = JSON.parse(e.data);
+                    message = angular.isString(e.data) ? JSON.parse(e.data) : e.data;
                     if (message.gdc) {
                         message = message.gdc;
 
