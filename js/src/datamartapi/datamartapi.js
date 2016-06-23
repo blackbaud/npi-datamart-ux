@@ -3,25 +3,25 @@
 
 (function () {
     'use strict';
-    //YAML Title, YAML Description, JSDoc Heading
+    //JSDoc Module Heading, YAML Title, YAML Description
     /**
-     * DataMart API
-     * API module for NPI DataMart UX
      * @module npi-datamart.api
+     * @title Data Mart API
+     * @description API module for NPI Data Mart UX
      */
     angular.module('npi-datamart.api', ['npi-datamart.authentication'])
         .factory('BBDataMartAPI', ['$q', '$timeout', '$http', function ($q, $timeout, $http) {
             /**
-             * An object for interacting with the DataMart APIs
+             * An Angular Factory for generating BBDataMartAPI objects
              * @method BBDataMartAPI
              * @param {Object} options Object containing the information for the authentication and datamart
              * @param {BBDataMartAuthentication} options.authentication A BBDataMartAuthentication object
              * @param {string} [options.dataMartId] ID of the datamart
-             * @param {Function} [options.getDataMartId] A promise to return the DataMart ID as a string. Required if dataMartId not provided.
+             * @param {Function} [options.getDataMartId] A promise to return the Data Mart ID as a string. Required if dataMartId not provided.
              * @param {Function} [options.translateObjectIdentifier] A funtion returning a promise that returns a data mart identifier based on a provided identifier.  This is a hook to allow custom identifier translation.
              * @param {Function} [options.translateFilters] A funtion returning a promise that returns a filters object based on a provided filters object.  This is a hook to allow custom filters translation. 
              * @param {Function} [options.translateAttributeName] A function that returns a translated attribute name based on a provided attribute name.
-             * @return {BBDataMartAPI} A class containing methods to handle interactions with the DataMart APIs
+             * @return {BBDataMartAPI} A class containing methods to handle interactions with the Data Mart APIs
              */
             var BBDataMartAPI = function (options) {
                 var apiContextPromise,
@@ -41,9 +41,9 @@
                 }
 
                 /**
-                 * Gets the datamart ID
+                 * Gets the Data Mart ID
                  * @method getDataMartId
-                 * @return {CallExpression} A promise to return the datamart ID as a string
+                 * @return {CallExpression} A promise to return the Data Mart ID as a string
                  */
                 self.getDataMartId = function getDataMartId() {
                     return $q(function (resolve, reject) {
@@ -491,8 +491,8 @@
                 /**
                  * Gets the object URI from an identifier
                  * @method getObjectUriFromIdentifier
-                 * @param {string} identifier Identifier for a datamart report or dashboard
-                 * @return {CallExpression} A promise to return the relative URI for the datamart report or dashboard
+                 * @param {string} identifier Identifier for a Data Mart report or dashboard
+                 * @return {CallExpression} A promise to return the relative URI for the Data Mart report or dashboard
                  */
                 self.getObjectUriFromIdentifier = function (identifier) {
                     return $q(function (resolve, reject) {
@@ -561,7 +561,7 @@
                 /**
                  * Load the drilled in records from a context
                  * @method loadDrillInRecordIds
-                 * @param {Object} drillContext Context from the getHeadlineReportDrillContext or from a datamart directive
+                 * @param {Object} drillContext Context from the getHeadlineReportDrillContext or from a Data Mart directive
                  * @return {CallExpression} A promise to return the drilled in records object
                  */
                 self.loadDrillInRecordIds = function (drillContext) {

@@ -3,24 +3,24 @@
 
 (function () {
     'use strict';
-    //YAML Title, YAML Description, JSDoc Heading
+    //JSDoc Module Heading, YAML Title, YAML Description
     /**
-     * DataMart Authentication
-     * Authentication module for NPI DataMart UX
      * @module npi-datamart.authentication
+     * @title Data Mart Authentication
+     * @description Module for handling Single Sign-On
      */
     angular.module('npi-datamart.authentication', [])
         .factory('BBDataMartAuthentication', ['$q', '$http', '$rootScope', function ($q, $http, $rootScope) {
             /**
-             * An class to handle authentication with the DataMart APIs
+             * An Angular Factory to create BBDataMartAuthentication objects
              * @method BBDataMartAuthentication
              * @param {Object} options Object containing the information for domain and single sign on
-             * @param {string} options.domain The domain
-             * @param {Function} options.getDomain A promise returning the domain
-             * @param {string} options.ssoProvider the SSO provider
-             * @param {Function} options.getSSOProvider A promise returning the SSO provider
-             * @param {Function} options.getSSOToken A promise returning the SSO token
-             * @return {BBDataMartAuthentication} The class containing methods to handle authentication on the DataMart API
+             * @param {string} [options.domain] The domain.
+             * @param {Function} [options.getDomain] A promise returning the domain. Required if options.domain is not specified.
+             * @param {string} [options.ssoProvider] the SSO provider.
+             * @param {Function} [options.getSSOProvider] A promise returning the SSO provider. Required if options.ssoProvider is not specified.
+             * @param {Function} options.getSSOToken A promise returning the SSO token.
+             * @return {BBDataMartAuthentication} The class containing methods to handle authentication on the Data Mart API
              */
             var BBDataMartAuthentication = function (options) {
                 var ensureAuthenticatedPromise,
