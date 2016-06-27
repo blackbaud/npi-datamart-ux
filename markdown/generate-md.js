@@ -149,7 +149,8 @@ module.exports = function (grunt, env, utils) {
         });
     }
     grunt.registerTask('genmd', function () {
-        var options = {
+        var done,
+            options = {
                 filter: 'isFile',
                 cwd: grunt.config.get('npiux.paths.src')
             };
@@ -159,8 +160,9 @@ module.exports = function (grunt, env, utils) {
                 component = filename.substr(0, filename.indexOf('/'));
             path = grunt.config.get('npiux.paths.src');
             utils.log('Writing markdown file to ' + path + filename.replace(".js", ".md").replace(component, component + "/docs"));
-            startGenerate(path + filename, path + filename.replace(".js", ".md").replace(component, component + "/docs/"));
-
+            startGenerate(path + filename, path + filename.replace(".js", ".md").replace(component, component + "/docs"));
         });
+
+        done = this.async();
     });
 };
