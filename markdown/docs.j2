@@ -3,9 +3,9 @@
 # {{module.customTags[0].value}}
 {{module.description}}
 
-* [`{{module.id}}`](#{{module.id}})
+* [{{module.id}}](#{{module.id}})
     {% for func in functions -%}
-    * [`{{func.name}}`](#{{func.id}})
+    * [{{func.name}}](#{{func.id}})
     {% endfor -%}
 {% for func in functions %}
 
@@ -18,10 +18,10 @@
 **Params**:
 {%- endif -%}
 {%- for param in func.params %}
-* `{{param.name}}`{{ " - " if param.description}}{{ "( _Optional_ ) " if param.optional }}{{ param.description if param.description}}
+- `{{param.name}}`{{ " - " if param.description}}{{ "( _Optional_ ) " if param.optional }}{{ param.description if param.description}}
     {%- if param.params -%}
     {%- for p in param.params %}
-    * `{{p.name}}`{{ " - " if p.description}}{{ "( _Optional_ ) " if p.optional }}{{ p.description if p.description}}
+    - `{{p.name}}`{{ " - " if p.description}}{{ "( _Optional_ ) " if p.optional }}{{ p.description if p.description}}
     {%- endfor -%}
     {% endif -%}
 {%- endfor %}
@@ -29,7 +29,7 @@
 {% if func.returns %}
 **Returns**:
     {% for return in func.returns -%}
-        {{return.type.names}} - {{return.description}}
+        `{{return.type.names}}` - {{return.description}}
     {%- endfor -%}
 {%- endif -%}
 {% endfor -%}
