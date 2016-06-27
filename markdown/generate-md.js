@@ -134,8 +134,8 @@ module.exports = function (grunt, env, utils) {
         return stream;
     }
 
-    function startGenerate(source, dest) {
-        var stream = prepareMarkdown(source),
+    function startGenerate(src, dest) {
+        var stream = prepareMarkdown(src),
             str = '',
             chunk;
 
@@ -145,24 +145,38 @@ module.exports = function (grunt, env, utils) {
             }
         });
         stream.on('end', function () {
-            return generateMarkdown(str, dest);
+            generateMarkdown(str, dest);
         });
+        return stream;
     }
     grunt.registerTask('genmd', function () {
-        var done,
+        var done = this.async(),
             options = {
                 filter: 'isFile',
                 cwd: grunt.config.get('npiux.paths.src')
+            },
+            files = grunt.file.expand(options, '*/*.js'),
+            monitor = {
+                finished: 0,
+                done: function () {
+                    this.finished++;
+                    if (this.finished === files.length) {
+                        done();
+                    }
+                }
             };
 
-        grunt.file.expand(options, '*/*.js').forEach(function (filename) {
+        files.forEach(function (filename) {
             var path,
-                component = filename.substr(0, filename.indexOf('/'));
+                component = filename.substr(0, filename.indexOf('/')),
+                renderStream;
             path = grunt.config.get('npiux.paths.src');
             utils.log('Writing markdown file to ' + path + filename.replace(".js", ".md").replace(component, component + "/docs"));
-            startGenerate(path + filename, path + filename.replace(".js", ".md").replace(component, component + "/docs"));
+            renderStream = startGenerate(path + filename, path + filename.replace(".js", ".md").replace(component, component + "/docs"));
+            renderStream.on('error', grunt.fail.fatal);
+            renderStream.on('end', function () {
+                monitor.done();
+            });
         });
-
-        done = this.async();
     });
 };

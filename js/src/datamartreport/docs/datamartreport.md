@@ -3,8 +3,6 @@
 # Data Mart Report
 Module for embedding dashboards and reports on a page
 
-Test
-
 * [npi-datamart.module:report](#npi-datamart.module:report)
     * [bbDataMartReportConfiguration](#npi-datamart.module:report~bbDataMartReportConfiguration)
     * [bbDataMartReport](#npi-datamart.module:report~bbDataMartReport)

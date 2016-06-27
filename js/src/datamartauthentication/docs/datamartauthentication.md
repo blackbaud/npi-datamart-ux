@@ -3,8 +3,6 @@
 # Data Mart Authentication
 Module for handling Single Sign-On
 
-Test
-
 * [npi-datamart.module:authentication](#npi-datamart.module:authentication)
     * [BBDataMartAuthentication](#npi-datamart.module:authentication~BBDataMartAuthentication)
     * [getDomain](#npi-datamart.module:authentication~getDomain)

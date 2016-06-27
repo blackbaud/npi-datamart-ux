@@ -3,8 +3,6 @@
 # Data Mart API
 API module for NPI Data Mart UX
 
-Test
-
 * [npi-datamart.module:api](#npi-datamart.module:api)
     * [BBDataMartAPI](#npi-datamart.module:api~BBDataMartAPI)
     * [getDataMartId](#npi-datamart.module:api~getDataMartId)
