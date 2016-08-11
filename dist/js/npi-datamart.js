@@ -1261,10 +1261,6 @@
             };
         }])
         /**
-         * The DataMart Designer directive
-         * @name bbDataMartDesigner
-         */
-        /**
          * Directive for displaying the analytical designer. 
         * @description Directive for displaying the analytical designer on a page. When loaded, the directive will authenticate with the Data Mart API (if not already authenticated) and ensure authentication is maintained until the directive is destroyed. It will show the analytical designer
         as an embedded iFrame on the page.
