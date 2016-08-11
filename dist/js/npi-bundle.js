@@ -114751,6 +114751,46 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
                 });
             }
 
+            function designerController($scope) {
+                var api = getAPI();
+
+                api.maintainAuthentication($scope).then(function () {
+                    function getEmbedUrl() {
+                        return $q(function (resolve) {
+                            var tasks = [
+                                api.getDataMartId(),
+                                api.getApiRoot()
+                            ];
+
+                            $q.all(tasks).then(function (values) {
+                                var projectId,
+                                    reportUrl,
+                                    domain;
+
+                                projectId = values[0];
+                                domain = values[1];
+
+                                if (projectId && domain) {
+                                    reportUrl = domain + '/analyze/embedded/#/';
+                                    reportUrl += projectId;
+                                    reportUrl += '/reportId/edit';
+                                    resolve(reportUrl);
+                                }
+                            });
+                        });
+                    }
+
+                    function setiFrameUrl() {
+                        $scope.frameUrl = null;
+                        getEmbedUrl().then(function (url) {
+                            $scope.frameUrl = $sce.trustAsResourceUrl(url);
+                        });
+                    }
+
+                    setiFrameUrl();
+                });
+            }
+
             function link($scope, el) {
                 $scope.windowEventCallback = function (e) {
                     var message;
@@ -114813,6 +114853,9 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
                     $scope.$on('$destroy', function () {
                         bbMediaBreakpoints.unregister(handleMediaBreakpoint);
                     });
+                }],
+                designerController: ['$scope', function ($scope) {
+                    designerController($scope);
                 }],
                 reportLink: link,
                 dashboardLink: link
@@ -114894,6 +114937,31 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
                     drillHandler: '=bbDataMartResponsiveDashboardDrillHandler'
                 },
                 controller: bbDataMartReportService.responsiveDashboardController
+            };
+        }])
+        /**
+         * The DataMart Designer directive
+         * @name bbDataMartDesigner
+         */
+        /**
+         * Directive for displaying the analytical designer. 
+        * @description Directive for displaying the analytical designer on a page. When loaded, the directive will authenticate with the Data Mart API (if not already authenticated) and ensure authentication is maintained until the directive is destroyed. It will show the analytical designer
+        as an embedded iFrame on the page.
+         * @name bbDataMartDesigner
+         * @param {directive} bb-data-mart-designer
+         * @param {directive} [bb-data-mart-designer.height] Sets the height attribute of the iFrame.
+         * @param {directive} [bb-data-mart-designer.width] Sets the width attribute of the iFrame.
+         */
+        .directive('bbDataMartDesigner', ['bbDataMartReportService', function (bbDataMartReportService) {
+            return {
+                replace: true,
+                restrict: 'E',
+                templateUrl: 'templates/datamartreport/embedtemplate.html',
+                scope: {
+                    frameHeight: '@height',
+                    frameWidth: '@width'
+                },
+                controller: bbDataMartReportService.designerController
             };
         }]);
 }());
