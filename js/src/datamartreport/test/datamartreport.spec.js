@@ -17,7 +17,7 @@
             $rootScope,
             $timeout;
 
-        function formatFrameUrl(expectedPath) {
+        function formatReportFrameUrl(expectedPath) {
             return DOMAIN + '/reportWidget.html?#project=/gdc/projects/' + PROJECTID + '&report=' + expectedPath + '&title=no&override=ui.frameinfo,ui.link';
         }
 
@@ -111,12 +111,12 @@
             $scope.$digest();
 
             expect(el.find('iframe').length).toBe(1);
-            expect(el.find('iframe').attr('src')).toBe(formatFrameUrl(REPORT_PATH_1));
+            expect(el.find('iframe').attr('src')).toBe(formatReportFrameUrl(REPORT_PATH_1));
 
             //Changing the report ID should update the iframe URL
             $scope.scopeReportId = REPORT_ID_2;
             $scope.$digest();
-            expect(el.find('iframe').attr('src')).toBe(formatFrameUrl(REPORT_PATH_2));
+            expect(el.find('iframe').attr('src')).toBe(formatReportFrameUrl(REPORT_PATH_2));
         });
 
         it('Data mart reports refresh the iFrame when rotating the device on iOS to force the report to resize', function () {
@@ -130,13 +130,13 @@
 
             $scope.$digest();
 
-            expect(el.find('iframe').attr('src')).toBe(formatFrameUrl(REPORT_PATH_1));
+            expect(el.find('iframe').attr('src')).toBe(formatReportFrameUrl(REPORT_PATH_1));
 
             windowEl.trigger('orientationchange');
             $scope.$digest();
             expect(el.find('iframe').length).toBe(0);
             $timeout.flush();
-            expect(el.find('iframe').attr('src')).toBe(formatFrameUrl(REPORT_PATH_1));
+            expect(el.find('iframe').attr('src')).toBe(formatReportFrameUrl(REPORT_PATH_1));
         });
 
         it('Data mart reports should listen for events from embedded iframe', function (done) {
@@ -197,6 +197,26 @@
             });
 
             expect(openedUrl).toBe(data.gdc.data.uri);
+        });
+
+        it('Data mart designer should maintain authentication with GoodData while it is on the page', function () {
+            var $scope = $rootScope.$new();
+
+            expect(maintaingAuth).toBe(false);
+            
+            $compile('<bb-data-mart-designer/>')($scope);
+            $scope.$digest();
+            expect(maintaingAuth).toBe(true);
+        });
+
+        it('Data mart designer should create an iframe with the correct URL', function () {
+            var $scope = $rootScope.$new(),
+                el = $compile('<bb-data-mart-designer/>')($scope);
+
+            $scope.$digest();
+
+            expect(el.find('iframe').length).toBe(1);
+            expect(el.find('iframe').attr('src')).toBe(DOMAIN + '/analyze/embedded/#/' + PROJECTID + '/reportId/edit');
         });
     });
 }());
