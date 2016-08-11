@@ -8,6 +8,8 @@ Module for embedding dashboards and reports on a page
     * [bbDataMartReport](#npi-datamart.module:report~bbDataMartReport)
     * [bbDataMartDashboard](#npi-datamart.module:report~bbDataMartDashboard)
     * [bbDataMartResponsiveDashboard](#npi-datamart.module:report~bbDataMartResponsiveDashboard)
+    * [bbDataMartDesigner](#npi-datamart.module:report~bbDataMartDesigner)
+    * [bbDataMartDesigner](#npi-datamart.module:report~bbDataMartDesigner)
     
 
 ---
@@ -57,3 +59,20 @@ Directive for creating the effect of reponsive design for dashboards. Data Mart 
     - `bb-data-mart-responsive-dashboard-sm` - The dashboard id of the dashboard to display on small devices (portait tablets).
     - `bb-data-mart-responsive-dashboard-lg` - The dashboard id of the dashboard to display on medium (landscape tablets) and large devices (desktop).  There is no distinction between medium and large devices because the maximum size of a dashboard already fits on the medium device width.
     - `bb-data-mart-responsive-dashboard-drill-handler` - ( _Optional_ ) Overrides the `bbDataMartReportConfiguration.processFilters` function for a specific directive.
+
+
+---
+<a id="npi-datamart.module:report~bbDataMartDesigner"></a>
+## bbDataMartDesigner
+The DataMart Designer directive
+
+
+---
+<a id="npi-datamart.module:report~bbDataMartDesigner"></a>
+## bbDataMartDesigner
+Directive for displaying the analytical designer on a page. When loaded, the directive will authenticate with the Data Mart API (if not already authenticated) and ensure authentication is maintained until the directive is destroyed. It will show the analytical designer
+        as an embedded iFrame on the page.
+
+- `bb-data-mart-designer`
+    - `height` - ( _Optional_ ) Sets the height attribute of the iFrame.
+    - `width` - ( _Optional_ ) Sets the width attribute of the iFrame.
