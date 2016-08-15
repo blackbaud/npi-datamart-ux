@@ -9,7 +9,6 @@ Module for embedding dashboards and reports on a page
     * [bbDataMartDashboard](#npi-datamart.module:report~bbDataMartDashboard)
     * [bbDataMartResponsiveDashboard](#npi-datamart.module:report~bbDataMartResponsiveDashboard)
     * [bbDataMartDesigner](#npi-datamart.module:report~bbDataMartDesigner)
-    * [bbDataMartDesigner](#npi-datamart.module:report~bbDataMartDesigner)
     
 
 ---
@@ -34,6 +33,7 @@ Directive for displaying a single data mart report on a page. When loaded, the d
     - `bb-data-mart-report-drill-header` - ( _Optional_ ) Overrides the `bbDataMartReportConfiguration.processFilters` function for a specific directive.
     - `height` - ( _Optional_ ) Sets the height attribute of the iFrame.
     - `width` - ( _Optional_ ) Sets the width attribute of the iFrame.
+    - `bb-data-mart-report-api` - ( _Optional_ ) Optional.  Overrides the default BBDataMartAPI used by the directive.
 
 
 ---
@@ -47,6 +47,7 @@ Directive for displaying a report dashboard on a page. When loaded, the directiv
     - `bb-data-mart-dashboard-drill-handler` - ( _Optional_ ) Overrides the `bbDataMartReportConfiguration.processFilters` function for a specific directive.
     - `bb-data-mart-dashboard-no-chrome` - ( _Optional_ ) If true, does not include the dashboard chrome for saving filters and exporting as PDF.
     - `width` - ( _Optional_ ) Sets the width attribute of the iFrame.
+    - `bb-data-mart-dashboard-api` - ( _Optional_ ) Optional.  Overrides the default BBDataMartAPI used by the directive.
 
 
 ---
@@ -59,12 +60,7 @@ Directive for creating the effect of reponsive design for dashboards. Data Mart 
     - `bb-data-mart-responsive-dashboard-sm` - The dashboard id of the dashboard to display on small devices (portait tablets).
     - `bb-data-mart-responsive-dashboard-lg` - The dashboard id of the dashboard to display on medium (landscape tablets) and large devices (desktop).  There is no distinction between medium and large devices because the maximum size of a dashboard already fits on the medium device width.
     - `bb-data-mart-responsive-dashboard-drill-handler` - ( _Optional_ ) Overrides the `bbDataMartReportConfiguration.processFilters` function for a specific directive.
-
-
----
-<a id="npi-datamart.module:report~bbDataMartDesigner"></a>
-## bbDataMartDesigner
-The DataMart Designer directive
+    - `bb-data-mart-responsive-dashboard-api` - ( _Optional_ ) Optional.  Overrides the default BBDataMartAPI used by the directive.
 
 
 ---
@@ -76,3 +72,4 @@ Directive for displaying the analytical designer on a page. When loaded, the dir
 - `bb-data-mart-designer`
     - `height` - ( _Optional_ ) Sets the height attribute of the iFrame.
     - `width` - ( _Optional_ ) Sets the width attribute of the iFrame.
+    - `bb-data-mart-designer-api` - ( _Optional_ ) Optional.  Overrides the default BBDataMartAPI used by the directive.

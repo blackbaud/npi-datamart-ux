@@ -4,6 +4,7 @@
     'use strict';
     describe('bbDataMartReport', function () {
         var $q,
+            bbDataMartReportConfiguration,
             linkHandler,
             REPORT_ID_1 = "report_id_1",
             REPORT_ID_2 = "report_id_2",
@@ -25,7 +26,7 @@
             module('npi-datamart.report');
         });
 
-        beforeEach(inject(['$rootScope', '$q', '$compile', '$window', 'bbDataMartReportConfiguration', '$timeout', function (rootScope, q, compile, window, bbDataMartReportConfiguration, timeout) {
+        beforeEach(inject(['$rootScope', '$q', '$compile', '$window', 'bbDataMartReportConfiguration', '$timeout', function (rootScope, q, compile, window, $bbDataMartReportConfiguration, timeout) {
             maintaingAuth = false;
             $q = q;
             $rootScope = rootScope;
@@ -33,6 +34,8 @@
             $window = window;
             $timeout = timeout;
 
+
+            bbDataMartReportConfiguration = $bbDataMartReportConfiguration;
             bbDataMartReportConfiguration.api = {
                 maintainAuthentication: function () {
                     var deferred = $q.defer();
@@ -100,6 +103,29 @@
             $compile('<bb-data-mart-report bb-data-mart-report-id="scopeReportId"></bb-data-mart-report>')($scope);
             $scope.$digest();
             expect(maintaingAuth).toBe(true);
+        });
+
+        it('Data mart reports should use the API provided as an override in the directive', function () {
+            var $scope = $rootScope.$new(),
+                localMaintaingAuth = false;
+            
+            $scope.localAPI = angular.extend(bbDataMartReportConfiguration.api, {
+                maintainAuthentication: function () {
+                    var deferred = $q.defer();
+                    localMaintaingAuth = true;
+                    deferred.resolve();
+                    return deferred.promise;
+                }
+            });
+
+            expect(maintaingAuth).toBe(false);
+            expect(localMaintaingAuth).toBe(false);
+
+            $compile('<bb-data-mart-report bb-data-mart-report-api="localAPI" bb-data-mart-report-id="scopeReportId"></bb-data-mart-report>')($scope);
+            $scope.$digest();
+
+            expect(maintaingAuth).toBe(false);
+            expect(localMaintaingAuth).toBe(true);
         });
 
         it('Data mart reports should create an iframe with the correct URL', function () {
@@ -207,6 +233,31 @@
             $compile('<bb-data-mart-designer/>')($scope);
             $scope.$digest();
             expect(maintaingAuth).toBe(true);
+        });
+
+        it('Data mart designer should use the API provided as an override in the directive', function () {
+            var $scope = $rootScope.$new(),
+                localMaintaingAuth = false;
+            
+            $scope.localAPI = angular.extend(bbDataMartReportConfiguration.api, {
+                maintainAuthentication: function () {
+                    var deferred = $q.defer();
+                    localMaintaingAuth = true;
+                    deferred.resolve();
+                    return deferred.promise;
+                }
+            });
+
+            angular.extend($scope.localAPI, bbDataMartReportConfiguration.api);
+
+            expect(maintaingAuth).toBe(false);
+            expect(localMaintaingAuth).toBe(false);
+
+            $compile('<bb-data-mart-designer bb-data-mart-designer-api="localAPI" />')($scope);
+            $scope.$digest();
+
+            expect(maintaingAuth).toBe(false);
+            expect(localMaintaingAuth).toBe(true);
         });
 
         it('Data mart designer should create an iframe with the correct URL', function () {
