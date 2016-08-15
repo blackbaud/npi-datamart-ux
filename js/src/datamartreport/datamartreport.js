@@ -340,7 +340,7 @@
          * @param {directive} [bb-data-mart-report.bb-data-mart-report-drill-header] Overrides the `bbDataMartReportConfiguration.processFilters` function for a specific directive.
          * @param {directive} [bb-data-mart-report.height] Sets the height attribute of the iFrame.
          * @param {directive} [bb-data-mart-report.width] Sets the width attribute of the iFrame.
-         * @param {directive} [bb-data-mart-report.bb-data-mart-report-api] Optional.  Overrides the default BBDataMartAPI used by the directive.
+         * @param {directive} [bb-data-mart-report.bb-data-mart-report-api] Overrides the default BBDataMartAPI used by the directive.
          */
         .directive('bbDataMartReport', ['bbDataMartReportService', function (bbDataMartReportService) {
             return {
@@ -370,7 +370,7 @@
          * @param {directive} [bb-data-mart-dashboard.bb-data-mart-dashboard-drill-handler] Overrides the `bbDataMartReportConfiguration.processFilters` function for a specific directive.
          * @param {directive} [bb-data-mart-dashboard.bb-data-mart-dashboard-no-chrome] If true, does not include the dashboard chrome for saving filters and exporting as PDF.
          * @param {directive} [bb-data-mart-dashboard.width] Sets the width attribute of the iFrame.
-         * @param {directive} [bb-data-mart-dashboard.bb-data-mart-dashboard-api] Optional.  Overrides the default BBDataMartAPI used by the directive.
+         * @param {directive} [bb-data-mart-dashboard.bb-data-mart-dashboard-api] Overrides the default BBDataMartAPI used by the directive.
          */
         .directive('bbDataMartDashboard', ['bbDataMartReportService', function (bbDataMartReportService) {
             return {
@@ -398,7 +398,7 @@
          * @param {directive} [bb-data-mart-responsive-dashboard.bb-data-mart-responsive-dashboard-sm The dashboard id of the dashboard to display on small devices (portait tablets).
          * @param {directive} [bb-data-mart-responsive-dashboard.bb-data-mart-responsive-dashboard-lg The dashboard id of the dashboard to display on medium (landscape tablets) and large devices (desktop).  There is no distinction between medium and large devices because the maximum size of a dashboard already fits on the medium device width.
          * @param {directive} [bb-data-mart-responsive-dashboard.bb-data-mart-responsive-dashboard-drill-handler] Overrides the `bbDataMartReportConfiguration.processFilters` function for a specific directive.
-         * @param {directive} [bb-data-mart-responsive-dashboard.bb-data-mart-responsive-dashboard-api] Optional.  Overrides the default BBDataMartAPI used by the directive. 
+         * @param {directive} [bb-data-mart-responsive-dashboard.bb-data-mart-responsive-dashboard-api] Overrides the default BBDataMartAPI used by the directive. 
          */
         .directive('bbDataMartResponsiveDashboard', ['bbDataMartReportService', function (bbDataMartReportService) {
             return {
@@ -423,7 +423,7 @@
          * @param {directive} bb-data-mart-designer
          * @param {directive} [bb-data-mart-designer.height] Sets the height attribute of the iFrame.
          * @param {directive} [bb-data-mart-designer.width] Sets the width attribute of the iFrame.
-         * @param {directive} [bb-data-mart-designer.bb-data-mart-designer-api] Optional.  Overrides the default BBDataMartAPI used by the directive.
+         * @param {directive} [bb-data-mart-designer.bb-data-mart-designer-api] Overrides the default BBDataMartAPI used by the directive.
          */
         .directive('bbDataMartDesigner', ['bbDataMartReportService', function (bbDataMartReportService) {
             return {
