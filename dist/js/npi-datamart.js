@@ -935,12 +935,12 @@
                 return windowIsiOS;
             }
 
-            function getAPI() {
-                return bbDataMartReportConfiguration.api;
+            function getAPI($scope) {
+                return $scope.api || bbDataMartReportConfiguration.api;
             }
 
             function emeddedObjectController($scope, isDashboard) {
-                var api = getAPI();
+                var api = getAPI($scope);
 
                 api.maintainAuthentication($scope).then(function () {
                     var windowEl = angular.element($window),
@@ -1073,7 +1073,7 @@
             }
 
             function designerController($scope) {
-                var api = getAPI();
+                var api = getAPI($scope);
 
                 api.maintainAuthentication($scope).then(function () {
                     function getEmbedUrl() {
@@ -1191,6 +1191,7 @@
          * @param {directive} [bb-data-mart-report.bb-data-mart-report-drill-header] Overrides the `bbDataMartReportConfiguration.processFilters` function for a specific directive.
          * @param {directive} [bb-data-mart-report.height] Sets the height attribute of the iFrame.
          * @param {directive} [bb-data-mart-report.width] Sets the width attribute of the iFrame.
+         * @param {directive} [bb-data-mart-report.bb-data-mart-report-api] Overrides the default BBDataMartAPI used by the directive.
          */
         .directive('bbDataMartReport', ['bbDataMartReportService', function (bbDataMartReportService) {
             return {
@@ -1202,7 +1203,8 @@
                     filters: '=bbDataMartReportFilters',
                     drillHandler: '=bbDataMartReportDrillHandler',
                     frameHeight: '@height',
-                    frameWidth: '@width'
+                    frameWidth: '@width',
+                    api: '=bbDataMartReportApi'
                 },
                 link: bbDataMartReportService.reportLink,
                 controller: bbDataMartReportService.controller
@@ -1219,6 +1221,7 @@
          * @param {directive} [bb-data-mart-dashboard.bb-data-mart-dashboard-drill-handler] Overrides the `bbDataMartReportConfiguration.processFilters` function for a specific directive.
          * @param {directive} [bb-data-mart-dashboard.bb-data-mart-dashboard-no-chrome] If true, does not include the dashboard chrome for saving filters and exporting as PDF.
          * @param {directive} [bb-data-mart-dashboard.width] Sets the width attribute of the iFrame.
+         * @param {directive} [bb-data-mart-dashboard.bb-data-mart-dashboard-api] Overrides the default BBDataMartAPI used by the directive.
          */
         .directive('bbDataMartDashboard', ['bbDataMartReportService', function (bbDataMartReportService) {
             return {
@@ -1230,7 +1233,8 @@
                     filters: '=bbDataMartDashboardFilters',
                     drillHandler: '=bbDataMartDashboardDrillHandler',
                     noChrome: '=bbDataMartDashboardNoChrome',
-                    frameWidth: '@width'
+                    frameWidth: '@width',
+                    api: '=bbDataMartDashboardApi'
                 },
                 link: bbDataMartReportService.dashboardLink,
                 controller: bbDataMartReportService.dashboardController
@@ -1244,7 +1248,8 @@
          * @param {directive} [bb-data-mart-responsive-dashboard.bb-data-mart-responsive-dashboard-xs The dashboard id of the dashboard to display on extra small devices (phone).
          * @param {directive} [bb-data-mart-responsive-dashboard.bb-data-mart-responsive-dashboard-sm The dashboard id of the dashboard to display on small devices (portait tablets).
          * @param {directive} [bb-data-mart-responsive-dashboard.bb-data-mart-responsive-dashboard-lg The dashboard id of the dashboard to display on medium (landscape tablets) and large devices (desktop).  There is no distinction between medium and large devices because the maximum size of a dashboard already fits on the medium device width.
-         * @param {directive} [bb-data-mart-responsive-dashboard.bb-data-mart-responsive-dashboard-drill-handler] Overrides the `bbDataMartReportConfiguration.processFilters` function for a specific directive. 
+         * @param {directive} [bb-data-mart-responsive-dashboard.bb-data-mart-responsive-dashboard-drill-handler] Overrides the `bbDataMartReportConfiguration.processFilters` function for a specific directive.
+         * @param {directive} [bb-data-mart-responsive-dashboard.bb-data-mart-responsive-dashboard-api] Overrides the default BBDataMartAPI used by the directive. 
          */
         .directive('bbDataMartResponsiveDashboard', ['bbDataMartReportService', function (bbDataMartReportService) {
             return {
@@ -1255,7 +1260,8 @@
                     xsId: '=bbDataMartResponsiveDashboardXs',
                     smId: '=bbDataMartResponsiveDashboardSm',
                     lgId: '=bbDataMartResponsiveDashboardLg',
-                    drillHandler: '=bbDataMartResponsiveDashboardDrillHandler'
+                    drillHandler: '=bbDataMartResponsiveDashboardDrillHandler',
+                    api: '=bbDataMartResponsiveDashboardApi'
                 },
                 controller: bbDataMartReportService.responsiveDashboardController
             };
@@ -1268,6 +1274,7 @@
          * @param {directive} bb-data-mart-designer
          * @param {directive} [bb-data-mart-designer.height] Sets the height attribute of the iFrame.
          * @param {directive} [bb-data-mart-designer.width] Sets the width attribute of the iFrame.
+         * @param {directive} [bb-data-mart-designer.bb-data-mart-designer-api] Overrides the default BBDataMartAPI used by the directive.
          */
         .directive('bbDataMartDesigner', ['bbDataMartReportService', function (bbDataMartReportService) {
             return {
@@ -1276,7 +1283,8 @@
                 templateUrl: 'templates/datamartreport/embedtemplate.html',
                 scope: {
                     frameHeight: '@height',
-                    frameWidth: '@width'
+                    frameWidth: '@width',
+                    api: '=bbDataMartDesignerApi'
                 },
                 controller: bbDataMartReportService.designerController
             };
@@ -1307,16 +1315,16 @@ angular.module('npi-datamart.templates', []).run(['$templateCache', function($te
     $templateCache.put('templates/datamartreport/responsivedashboard.html',
         '<div style="text-align:center">\n' +
         '  <div ng-if="breakPoints.xs">\n' +
-        '    <bb-data-mart-dashboard bb-data-mart-dashboard-drill-handler="drillHandler" bb-data-mart-dashboard-id="xsId" width="340px" bb-data-mart-dashboard-no-chrome="true"></bb-data-mart-dashboard>\n' +
+        '    <bb-data-mart-dashboard bb-data-mart-dashboard-api="api" bb-data-mart-dashboard-drill-handler="drillHandler" bb-data-mart-dashboard-id="xsId" width="340px" bb-data-mart-dashboard-no-chrome="true"></bb-data-mart-dashboard>\n' +
         '  </div>\n' +
         '  <div ng-if="breakPoints.sm">\n' +
-        '    <bb-data-mart-dashboard bb-data-mart-dashboard-drill-handler="drillHandler" bb-data-mart-dashboard-id="smId" width="776px" bb-data-mart-dashboard-no-chrome="true"></bb-data-mart-dashboard>\n' +
+        '    <bb-data-mart-dashboard bb-data-mart-dashboard-api="api" bb-data-mart-dashboard-drill-handler="drillHandler" bb-data-mart-dashboard-id="smId" width="776px" bb-data-mart-dashboard-no-chrome="true"></bb-data-mart-dashboard>\n' +
         '  </div>\n' +
         '  <div ng-if="breakPoints.md">\n' +
-        '    <bb-data-mart-dashboard bb-data-mart-dashboard-drill-handler="drillHandler" bb-data-mart-dashboard-id="lgId" width="100%"  bb-data-mart-dashboard-no-chrome="true"></bb-data-mart-dashboard>\n' +
+        '    <bb-data-mart-dashboard bb-data-mart-dashboard-api="api" bb-data-mart-dashboard-drill-handler="drillHandler" bb-data-mart-dashboard-id="lgId" width="100%"  bb-data-mart-dashboard-no-chrome="true"></bb-data-mart-dashboard>\n' +
         '  </div>\n' +
         '  <div ng-if="breakPoints.lg">\n' +
-        '    <bb-data-mart-dashboard bb-data-mart-dashboard-drill-handler="drillHandler" bb-data-mart-dashboard-id="lgId" width="100%"></bb-data-mart-dashboard>\n' +
+        '    <bb-data-mart-dashboard bb-data-mart-dashboard-api="api" bb-data-mart-dashboard-drill-handler="drillHandler" bb-data-mart-dashboard-id="lgId" width="100%"></bb-data-mart-dashboard>\n' +
         '  </div>\n' +
         '</div>\n' +
         '');
