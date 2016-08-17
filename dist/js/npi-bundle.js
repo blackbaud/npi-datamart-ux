@@ -114537,6 +114537,14 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
     var DASHBOARD_STYLES = {
         "dashboardStylist": {
             "skin": {
+                //Hide lock button on embedded dashboards for users in Editor role.
+                ".dashboardHeader .yui3-lockbutton": {
+                    "display": "none"
+                },
+                //Hide report flyout link on embedded dashboards.  Needed because users in Editor role see undesirable "View this report" link in the flyout.
+                ".reportInfoPanelHandle": {
+                    "display": "none !important"
+                },
                 "body.white": {
                     "background": "#f3f3f4"
                 },
