@@ -135,12 +135,15 @@
             $scope.scopeReportId = REPORT_ID_1;
 
             $scope.$digest();
+            $timeout.flush();
 
             expect(el.find('iframe').length).toBe(1);
             expect(el.find('iframe').attr('src')).toBe(formatReportFrameUrl(REPORT_PATH_1));
 
             //Changing the report ID should update the iframe URL
             $scope.scopeReportId = REPORT_ID_2;
+            $scope.$digest();
+            $timeout.flush();
             $scope.$digest();
             expect(el.find('iframe').attr('src')).toBe(formatReportFrameUrl(REPORT_PATH_2));
         });
@@ -155,6 +158,7 @@
             $scope.scopeReportId = REPORT_ID_1;
 
             $scope.$digest();
+            $timeout.flush();
 
             expect(el.find('iframe').attr('src')).toBe(formatReportFrameUrl(REPORT_PATH_1));
 
@@ -173,6 +177,7 @@
             $scope.scopeReportId = REPORT_ID_1;
 
             $scope.$digest();
+            $timeout.flush();
 
             expect(el.find('iframe').length).toBe(1);
 
@@ -196,7 +201,8 @@
             $scope.scopeReportId = REPORT_ID_1;
 
             $scope.$digest();
-
+            $timeout.flush();
+            
             frame = el.find('iframe');
 
             expect(frame.length).toBe(1);
