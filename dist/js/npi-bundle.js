@@ -114718,9 +114718,9 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
                         });
                     }
 
-                    $scope.$watch('embeddedObjectId', setiFrameUrl);
+                    $scope.$watch('embeddedObjectId', resetiFrameUrl);
 
-                    $scope.$watch('filters', setiFrameUrl, true);
+                    $scope.$watch('filters', resetiFrameUrl, true);
 
                     setiFrameUrl();
                     
