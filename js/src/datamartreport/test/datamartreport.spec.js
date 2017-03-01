@@ -266,14 +266,59 @@
             expect(localMaintaingAuth).toBe(true);
         });
 
-        it('Data mart designer should create an iframe with the correct URL', function () {
+        it('KPI Dashboard should create an iframe with the correct URL', function () {
             var $scope = $rootScope.$new(),
-                el = $compile('<bb-data-mart-designer/>')($scope);
+                el = $compile('<bb-data-mart-kpi-dashboard/>')($scope);
 
             $scope.$digest();
 
             expect(el.find('iframe').length).toBe(1);
-            expect(el.find('iframe').attr('src')).toBe(DOMAIN + '/analyze/embedded/#/' + PROJECTID + '/reportId/edit');
+            expect(el.find('iframe').attr('src')).toBe(DOMAIN + '/dashboards/embedded/#/project/' + PROJECTID + '/reportId/edit');
+        });
+
+        it('Data mart designer should maintain authentication with GoodData while it is on the page', function () {
+            var $scope = $rootScope.$new();
+
+            expect(maintaingAuth).toBe(false);
+            
+            $compile('<bb-data-mart-kpi-dashboard/>')($scope);
+            $scope.$digest();
+            expect(maintaingAuth).toBe(true);
+        });
+
+        it('KPI Dashboard should use the API provided as an override in the directive', function () {
+            var $scope = $rootScope.$new(),
+                localMaintaingAuth = false;
+            
+            $scope.localAPI = angular.extend(bbDataMartReportConfiguration.api, {
+                maintainAuthentication: function () {
+                    var deferred = $q.defer();
+                    localMaintaingAuth = true;
+                    deferred.resolve();
+                    return deferred.promise;
+                }
+            });
+
+            angular.extend($scope.localAPI, bbDataMartReportConfiguration.api);
+
+            expect(maintaingAuth).toBe(false);
+            expect(localMaintaingAuth).toBe(false);
+
+            $compile('<bb-data-mart-kpi-dashboard bb-data-mart-designer-api="localAPI" />')($scope);
+            $scope.$digest();
+
+            expect(maintaingAuth).toBe(false);
+            expect(localMaintaingAuth).toBe(true);
+        });
+
+        it('KPI Dashboard should create an iframe with the correct URL', function () {
+            var $scope = $rootScope.$new(),
+                el = $compile('<bb-data-mart-kpi-dashboard/>')($scope);
+
+            $scope.$digest();
+
+            expect(el.find('iframe').length).toBe(1);
+            expect(el.find('iframe').attr('src')).toBe(DOMAIN + '/dashboards/embedded/#/project/' + PROJECTID + '/reportId/edit');
         });
     });
 }());
