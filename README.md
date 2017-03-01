@@ -42,7 +42,7 @@ We welcome contributions to this library. Please be sure to follow the coding co
 2. Write your code, documentation, and unit tests.  All new code must have 100% unit test coverage and include documentation for how to use the feature or the pull request will not be accepted.  
 
   - Your unit tests should be located in a folder called `test` under your feature's folder in `js/src` and should consist of one or more JavaScript files named `<featurename>.spec.js`.  As you write unit tests or change code, the `grunt watch` task will run your unit tests and generate code coverage.  Code coverage reports can be located under `coverage/<browser version>/index.html` and can be launched straight from disk.
-  - You should include documentation for each module you create within your source code. These files should reside in a folder called `docs` under your feature's folder. In future releases, we will use JSDoc-style comments in our JavaScript files to generate Markdown documentation.
+  - You should include documentation for each module you create within your source code. These files should reside in a folder called `docs` under your feature's folder. When your feature is built, we use JSDoc-style comments in our JavaScript files to generate Markdown documentation.
 
 
 ### Submitting the code
