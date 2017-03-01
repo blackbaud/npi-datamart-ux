@@ -114795,6 +114795,46 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
                 });
             }
 
+            function kpiDashboardController($scope) {
+                var api = getAPI($scope);
+
+                api.maintainAuthentication($scope).then(function () {
+                    function getEmbedUrl() {
+                        return $q(function (resolve) {
+                            var tasks = [
+                                api.getDataMartId(),
+                                api.getApiRoot()
+                            ];
+
+                            $q.all(tasks).then(function (values) {
+                                var projectId,
+                                    reportUrl,
+                                    domain;
+
+                                projectId = values[0];
+                                domain = values[1];
+
+                                if (projectId && domain) {
+                                    reportUrl = domain + '/dashboards/embedded/#/project/';
+                                    reportUrl += projectId;
+                                    reportUrl += '/reportId/edit';
+                                    resolve(reportUrl);
+                                }
+                            });
+                        });
+                    }
+
+                    function setiFrameUrl() {
+                        $scope.frameUrl = null;
+                        getEmbedUrl().then(function (url) {
+                            $scope.frameUrl = $sce.trustAsResourceUrl(url);
+                        });
+                    }
+
+                    setiFrameUrl();
+                });
+            }
+
             function link($scope, el) {
                 $scope.windowEventCallback = function (e) {
                     var message;
@@ -114861,10 +114901,14 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
                 designerController: ['$scope', function ($scope) {
                     designerController($scope);
                 }],
+                kpiDashboardController: ['$scope', function ($scope) {
+                    kpiDashboardController($scope);
+                }],
                 reportLink: link,
                 dashboardLink: link
             };
         }])
+        
         /**
          * @name bbDataMartReport
          * @description Directive for displaying a single data mart report on a page. When loaded, the directive will authenticate with the Data Mart API (if not already authenticated) and ensure authentication is maintained until the directive is destroyed. It will show the specified report as an embedded iFrame on the page.
@@ -114970,6 +115014,29 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
                     api: '=bbDataMartDesignerApi'
                 },
                 controller: bbDataMartReportService.designerController
+            };
+        }])
+        /**
+        * Directive for displaying the KPI Dashboard. 
+        * @description Directive for displaying the KPI Dashboard on a page. When loaded, the directive will authenticate with the Data Mart API (if not already authenticated) and ensure authentication is maintained until the directive is destroyed. It will show the KPI Dashboard
+        as an embedded iFrame on the page.
+         * @name bbDataMartKpiDashboard
+         * @param {directive} bb-data-mart-kpi-dashboard
+         * @param {directive} [bb-data-mart-kpi-dashboard.height] Sets the height attribute of the iFrame.
+         * @param {directive} [bb-data-mart-kpi-dashboard.width] Sets the width attribute of the iFrame.
+         * @param {directive} [bb-data-mart-kpi-dashboard.bb-data-mart-designer-api] Overrides the default BBDataMartAPI used by the directive.
+         */
+        .directive('bbDataMartKpiDashboard', ['bbDataMartReportService', function (bbDataMartReportService) {
+            return {
+                replace: true,
+                restrict: 'E',
+                templateUrl: 'templates/datamartreport/embedtemplate.html',
+                scope: {
+                    frameHeight: '@height',
+                    frameWidth: '@width',
+                    api: '=bbDataMartKpiDashboardApi'
+                },
+                controller: bbDataMartReportService.kpiDashboardController
             };
         }]);
 }());
