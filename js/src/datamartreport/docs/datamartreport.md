@@ -9,6 +9,7 @@ Module for embedding dashboards and reports on a page
     * [bbDataMartDashboard](#npi-datamart.module:report~bbDataMartDashboard)
     * [bbDataMartResponsiveDashboard](#npi-datamart.module:report~bbDataMartResponsiveDashboard)
     * [bbDataMartDesigner](#npi-datamart.module:report~bbDataMartDesigner)
+    * [bbDataMartKpiDashboard](#npi-datamart.module:report~bbDataMartKpiDashboard)
     
 
 ---
@@ -70,6 +71,18 @@ Directive for displaying the analytical designer on a page. When loaded, the dir
         as an embedded iFrame on the page.
 
 - `bb-data-mart-designer`
+    - `height` - ( _Optional_ ) Sets the height attribute of the iFrame.
+    - `width` - ( _Optional_ ) Sets the width attribute of the iFrame.
+    - `bb-data-mart-designer-api` - ( _Optional_ ) Overrides the default BBDataMartAPI used by the directive.
+
+
+---
+<a id="npi-datamart.module:report~bbDataMartKpiDashboard"></a>
+## bbDataMartKpiDashboard
+Directive for displaying the KPI Dashboard on a page. When loaded, the directive will authenticate with the Data Mart API (if not already authenticated) and ensure authentication is maintained until the directive is destroyed. It will show the KPI Dashboard
+        as an embedded iFrame on the page.
+
+- `bb-data-mart-kpi-dashboard`
     - `height` - ( _Optional_ ) Sets the height attribute of the iFrame.
     - `width` - ( _Optional_ ) Sets the width attribute of the iFrame.
     - `bb-data-mart-designer-api` - ( _Optional_ ) Overrides the default BBDataMartAPI used by the directive.
