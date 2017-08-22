@@ -273,7 +273,17 @@
             $scope.$digest();
 
             expect(el.find('iframe').length).toBe(1);
-            expect(el.find('iframe').attr('src')).toBe(DOMAIN + '/dashboards/embedded/#/project/' + PROJECTID + '/reportId/edit');
+            expect(el.find('iframe').attr('src')).toBe(DOMAIN + '/dashboards/embedded/#/project/' + PROJECTID);
+        });
+
+        it('KPI Dashboard supporting multiple dashboards should create an iframe with the correct URL', function () {
+            var $scope = $rootScope.$new(),
+                el = $compile('<bb-data-mart-kpi-dashboard bb-data-mart-kpi-dashboard-multiple="true"/>')($scope);
+
+            $scope.$digest();
+
+            expect(el.find('iframe').length).toBe(1);
+            expect(el.find('iframe').attr('src')).toBe(DOMAIN + '/dashboards/embedded/#/project/' + PROJECTID + '?showNavigation=true');
         });
 
         it('Data mart designer should maintain authentication with GoodData while it is on the page', function () {
@@ -318,7 +328,7 @@
             $scope.$digest();
 
             expect(el.find('iframe').length).toBe(1);
-            expect(el.find('iframe').attr('src')).toBe(DOMAIN + '/dashboards/embedded/#/project/' + PROJECTID + '/reportId/edit');
+            expect(el.find('iframe').attr('src')).toBe(DOMAIN + '/dashboards/embedded/#/project/' + PROJECTID);
         });
     });
 }());

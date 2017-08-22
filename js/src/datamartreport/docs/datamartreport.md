@@ -85,4 +85,5 @@ Directive for displaying the KPI Dashboard on a page. When loaded, the directive
 - `bb-data-mart-kpi-dashboard`
     - `height` - ( _Optional_ ) Sets the height attribute of the iFrame.
     - `width` - ( _Optional_ ) Sets the width attribute of the iFrame.
+    - `bb-data-mart-kpi-dashboard-multiple` - ( _Optional_ ) If true, allows creating and editing multiple dashboards.
     - `bb-data-mart-designer-api` - ( _Optional_ ) Overrides the default BBDataMartAPI used by the directive.
