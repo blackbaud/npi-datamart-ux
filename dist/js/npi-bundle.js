@@ -114817,7 +114817,11 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
                                 if (projectId && domain) {
                                     reportUrl = domain + '/dashboards/embedded/#/project/';
                                     reportUrl += projectId;
-                                    reportUrl += '/reportId/edit';
+                                    
+                                    if ($scope.multiple) {
+                                        reportUrl += '?showNavigation=true';
+                                    }
+                                    
                                     resolve(reportUrl);
                                 }
                             });
@@ -114833,6 +114837,14 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
 
                     setiFrameUrl();
                 });
+
+                $scope.handleFrameEvent = function (message) {
+                    if ($scope.autoSize) {
+                        if (message.event.name === 'resized' && message.event.data && message.event.data.height) {
+                            $scope.frameHeight = (message.event.data.height) + 'px';
+                        }
+                    }
+                };
             }
 
             function link($scope, el) {
@@ -114905,7 +114917,8 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
                     kpiDashboardController($scope);
                 }],
                 reportLink: link,
-                dashboardLink: link
+                dashboardLink: link,
+                kpiDashboardLink: link
             };
         }])
         
@@ -115024,6 +115037,7 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
          * @param {directive} bb-data-mart-kpi-dashboard
          * @param {directive} [bb-data-mart-kpi-dashboard.height] Sets the height attribute of the iFrame.
          * @param {directive} [bb-data-mart-kpi-dashboard.width] Sets the width attribute of the iFrame.
+         * @param {directive} [bb-data-mart-kpi-dashboard.bb-data-mart-kpi-dashboard-multiple] If true, allows creating and editing multiple dashboards.
          * @param {directive} [bb-data-mart-kpi-dashboard.bb-data-mart-designer-api] Overrides the default BBDataMartAPI used by the directive.
          */
         .directive('bbDataMartKpiDashboard', ['bbDataMartReportService', function (bbDataMartReportService) {
@@ -115034,8 +115048,11 @@ angular.module('sky.templates', []).run(['$templateCache', function($templateCac
                 scope: {
                     frameHeight: '@height',
                     frameWidth: '@width',
+                    multiple: '=bbDataMartKpiDashboardMultiple',
+                    autoSize: '=bbDataMartKpiDashboardAutoSize',
                     api: '=bbDataMartKpiDashboardApi'
                 },
+                link: bbDataMartReportService.kpiDashboardLink,
                 controller: bbDataMartReportService.kpiDashboardController
             };
         }]);
