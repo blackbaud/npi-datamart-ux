@@ -25,7 +25,7 @@ NPI Data Mart UX can be installed via [NPM](https://www.npmjs.com/package/blackb
 
     npm install blackbaud-npi-datamart-ux
 
-##Contributing
+## Contributing
 
 We welcome contributions to this library. Please be sure to follow the coding conventions already established in the esixting code, and write appropriate documentation and unit tests to go along with new features.
 
