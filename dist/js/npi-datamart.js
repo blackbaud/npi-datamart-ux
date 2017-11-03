@@ -684,7 +684,7 @@
                     });
                 }
 
-                function getSSOUrl(targetUrl) {
+                function getSSORequest(targetUrl) {
                     return $q(function (resolve, reject) {
                         var tasks = [
                             options.getSSOToken(),
@@ -693,7 +693,7 @@
                         ];
 
                         $q.all(tasks).then(function (values) {
-                            var iFrameUrl,
+                            var ssoRequest = {},
                                 reportRootPath,
                                 ssoToken,
                                 ssoProvider;
@@ -701,18 +701,19 @@
                             ssoToken = values[0];
                             reportRootPath = values[1];
                             ssoProvider = values[2];
-
+                            
                             if (ssoToken && ssoProvider) {
-                                iFrameUrl = reportRootPath;
-                                iFrameUrl += "/gdc/account/customerlogin?sessionId=";
-                                iFrameUrl += encodeURIComponent(ssoToken);
-                                iFrameUrl += "&serverURL=";
-                                iFrameUrl += encodeURIComponent(ssoProvider);
-                                iFrameUrl += "&targetURL=";
-                                iFrameUrl += encodeURIComponent(targetUrl);
+                                ssoRequest.url = reportRootPath + "/gdc/account/customerlogin";
 
-                                resolve(iFrameUrl);
+                                ssoRequest.data = {
+                                    targetUrl: targetUrl,
+                                    ssoProvider: ssoProvider,
+                                    encryptedClaims: ssoToken
+                                };
+
+                                resolve(ssoRequest);
                             }
+
                         }).catch(reject);
                     });
                 }
@@ -734,8 +735,26 @@
 
                 function authenticate() {
                     return $q(function (resolve, reject) {
-                        getSSOUrl('/gdc/account/token').then(function (ssoUrl) {
-                            $http.get(ssoUrl, { withCredentials: true }).then(function () {
+                        getSSORequest('/gdc/account/token').then(function (ssoRequest) {
+                            $http({
+                                method: 'POST',
+                                withCredentials: true,
+                                url: ssoRequest.url,
+                                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                                transformRequest: function (obj) {
+                                    var p,
+                                        str = [];
+
+                                    for (p in obj) {
+                                        if (obj.hasOwnProperty(p)) {
+                                            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                                        }
+                                    }
+                                    
+                                    return str.join("&");
+                                },
+                                data: ssoRequest.data
+                            }).then(function () {
                                 resolve();
                             }).catch(function () {
                                 //The request for single sign on failed.  In some cases, such as Google Chrome on iOS, this request
@@ -750,6 +769,7 @@
                                     resolve();
                                 }).catch(reject);
                             });
+
                         }).catch(reject);
                     });
                 }
