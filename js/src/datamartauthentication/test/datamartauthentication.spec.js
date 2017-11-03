@@ -44,7 +44,7 @@
         });
 
         function expectAuthenticateRequest() {
-            return $httpBackend.expect('GET', sampleDomain + '/gdc/account/customerlogin?sessionId=' + encodeURIComponent(sampleSSOToken) + '&serverURL=' + sampleSSOProvider + '&targetURL=%2Fgdc%2Faccount%2Ftoken').respond();
+            return $httpBackend.expect('POST', sampleDomain + '/gdc/account/customerlogin', 'targetUrl=%2Fgdc%2Faccount%2Ftoken&ssoProvider=' + sampleSSOProvider + '&encryptedClaims=' + encodeURIComponent(sampleSSOToken)).respond();
         }
 
         function expectTemporaryTokenRequest() {
