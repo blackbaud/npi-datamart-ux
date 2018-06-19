@@ -12,48 +12,52 @@
                     "display": "none"
                 },
                 "body.white": {
-                    "background": "#f3f3f4"
+                    "background": "#eeeeef"
                 },
                 ".yui3-c-textdashboardwidget-middleText .yui3-c-textdashboardwidget-ipe, .yui3-c-textdashboardwidget-middleText .yui3-c-textdashboardwidget-label": {
-                    "font-size": "22px",
-                    "color": "#292a2b",
-                    "font-family": "Oswald",
+                    "font-size": "26px",
+                    "color": "#282b32",
+                    "font-family": "BlackbaudSansCondensedLight",
                     "font-weight": "100",
                     "height": "40px"
                 },
                 ".yui3-c-textdashboardwidget-smallText .yui3-c-textdashboardwidget-ipe, .yui3-c-textdashboardwidget-smallText .yui3-c-textdashboardwidget-label": {
-                    "font-size": "14px",
-                    "color": "#292a2b",
-                    "font-weight": "600"
+                    "font-family": "BlackbaudSansLight",
+                    "font-size": "19px",
+                    "color": "#686c73",
+                    "font-weight": "100"
                 },
                 ".yui3-c-onenumberreport .description": {
-                    "font-size": "13px !important",
+                    "font-size": "15px !important",
                     "line-height": "normal",
-                    "color": "#292a2b"
+                    "color": "#686c73"
                 },
                 ".yui3-c-onenumberreport .number": {
-                    "font-size": "26px !important",
-                    "font-family": "Oswald",
+                    "font-family": "BlackbaudSansCondensedSemibold",
+                    "font-size": "22px !important",
                     "line-height": "normal",
-                    "color": "#292a2b"
+                    "color": "#282b31"
                 },
                 ".yui3-c-tabfilteritem .filterItemTitle, .yui3-c-dashboardwidget-editMode .yui3-c-tabfilteritem .titleContainer input": {
                     "text-transform": "none",
-                    "font-size": "12px",
-                    "color": "#292a2b"
+                    "font-size": "15px",
+                    "color": "#282b31"
                 },
                 "body": {
-                    "font-family": "Open Sans"
-                },
-                "text": {
-                    "font-family": "Open Sans"
+                    "font-family": "BlackbaudSans",
+                    "font-size": "15px"
                 },
                 ".yui3-c-linedashboardwidget .lineContent": {
-                    "background": "#e7eaec",
+                    "background": "#e2e3e4",
                     "left": "0px"
                 }
             },
-            "extraFonts": { 'googlefonts': ['Oswald', 'Open Sans'] }
+            "extraFonts": {
+                'BlackbaudSans': ['https://sky.blackbaudcdn.net/skyux-fonts/1.0.1/blackbaud-sans.woff'],
+                'BlackbaudSansCondensedLight': ['https://sky.blackbaudcdn.net/skyux-fonts/1.0.1/blackbaud-sans-condensed-light.woff'],
+                'BlackbaudSansLight': ['https://sky.blackbaudcdn.net/skyux-fonts/1.0.1/blackbaud-sans-light.woff'],
+                'BlackbaudSansCondensedSemibold': ['https://sky.blackbaudcdn.net/skyux-fonts/1.0.1/blackbaud-sans-condensed-semi-bold.woff']
+            }
         }
     };
     //JSDoc Module Heading, YAML Title, YAML Description
