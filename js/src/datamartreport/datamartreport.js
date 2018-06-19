@@ -56,7 +56,8 @@
                 'BlackbaudSans': ['https://sky.blackbaudcdn.net/skyux-fonts/1.0.1/blackbaud-sans.woff'],
                 'BlackbaudSansCondensedLight': ['https://sky.blackbaudcdn.net/skyux-fonts/1.0.1/blackbaud-sans-condensed-light.woff'],
                 'BlackbaudSansLight': ['https://sky.blackbaudcdn.net/skyux-fonts/1.0.1/blackbaud-sans-light.woff'],
-                'BlackbaudSansCondensedSemibold': ['https://sky.blackbaudcdn.net/skyux-fonts/1.0.1/blackbaud-sans-condensed-semi-bold.woff']
+                'BlackbaudSansCondensedSemibold': ['https://sky.blackbaudcdn.net/skyux-fonts/1.0.1/blackbaud-sans-condensed-semi-bold.woff'],
+                'googlefonts': ['Oswald', 'Open Sans']
             }
         }
     };
